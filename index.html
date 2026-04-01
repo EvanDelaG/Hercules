@@ -26,7 +26,7 @@
 </head>
 <body>
 <div class="app" id="app" data-theme="dark">
-  <header><div class="brand"><img src="hercules_logo.svg" alt="Hercules logo" onerror="this.style.display='none'"><div><h1>Hercules</h1><div class="sub">Ready-to-ship offline workout tracker • v17</div></div></div></header>
+  <header><div class="brand"><img src="hercules_logo.svg" alt="Hercules logo" onerror="this.style.display='none'"><div><h1>Hercules</h1><div class="sub">Ready-to-ship offline workout tracker • v18</div></div></div></header>
   <section class="screen active" id="screen-home">
     <div class="hero"><div class="hero-kicker">Today’s focus</div><h2 id="heroWorkout">No active program</h2><p id="heroSub">Set up a program, choose today’s body parts, and start logging.</p><div class="row" style="margin-top:14px"><button class="primary" onclick="startTodayWorkout()">Start workout</button></div></div>
     <div class="summary"><div class="metric"><div class="k">This week</div><div class="v" id="metricWorkouts">0</div><div class="s">workouts</div></div><div class="metric"><div class="k">Volume</div><div class="v" id="metricVolume">0</div><div class="s">kg</div></div><div class="metric"><div class="k">Recent PRs</div><div class="v" id="metricPRs">0</div><div class="s">hits</div></div></div>
@@ -36,7 +36,7 @@
   <section class="screen" id="screen-logger"><div class="rest-banner" id="restBanner"></div><div class="card"><div class="row between"><div><h3 id="loggerTitle">Workout Logger</h3><div class="small muted" id="loggerSubtitle">Log your sets clearly and fast.</div></div><span class="pill" id="elapsedPill">00:00</span></div><textarea id="sessionNotes" placeholder="Session notes"></textarea></div><div id="loggerExercises"></div><div class="card"><h3>Add extra exercise</h3><select id="extraExerciseSelect"></select><div class="row" style="margin-top:8px"><button class="subtle" onclick="addExtraExercise()">Add to workout</button></div></div><div class="row"><button class="primary" onclick="finishWorkout()">Finish workout</button></div></section>
   <section class="screen" id="screen-progress"><div class="card"><h3>Progress</h3><select id="progressExerciseSelect" onchange="renderProgress()"></select><div class="helper" style="margin-top:8px">Tap a chart point to view the related session details.</div></div><div class="card"><canvas id="progressChart"></canvas></div><div class="card" id="progressInfo"></div></section>
   <section class="screen" id="screen-history"><div class="card"><div class="row between"><h3>History</h3><span class="pill" id="historyCount">0 sessions</span></div><div id="historyList"></div></div></section>
-  <section class="screen" id="screen-settings"><div class="card"><h3>Theme</h3><select id="themeSelect" onchange="changeTheme()"><option value="dark">Dark</option><option value="light">Light</option><option value="midnight">Midnight Blue</option><option value="forest">Forest Green</option></select></div><div class="card"><h3>Rest timer</h3><select id="restDefaultSelect" onchange="saveSettings()"><option value="30">30 seconds</option><option value="60">60 seconds</option><option value="90">90 seconds</option><option value="120">120 seconds</option><option value="180">180 seconds</option></select></div><div class="card"><h3>Exercise library</h3><div class="grid-2"><input id="customExerciseName" placeholder="Exercise name"><select id="customExerciseType"><option value="weighted">Weighted</option><option value="bodyweight">Bodyweight</option><option value="cardio">Cardio</option><option value="timed">Timed hold</option></select></div><div class="grid-2" style="margin-top:8px"><select id="customExerciseCategory"><option>Chest</option><option>Back</option><option>Legs</option><option>Shoulders</option><option>Arms</option><option>Core</option><option>Cardio</option><option>Other</option></select><button class="primary" onclick="addCustomExercise()">Add exercise</button></div><div id="exerciseLibraryList" style="margin-top:8px"></div></div><div class="card"><h3>Backup & restore</h3><div class="grid-2"><button class="subtle" onclick="exportJSON()">Export JSON</button><button class="subtle" onclick="document.getElementById('importJsonInput').click()">Import JSON</button></div><input id="importJsonInput" type="file" accept=".json,application/json" style="display:none" onchange="importJSON(event)"><div class="row" style="margin-top:8px"><button class="danger" onclick="clearAllData()">Clear all data</button></div></div><div class="card"><h3>App version</h3><div class="small muted">Current build: <strong>v17</strong></div></div><div class="card"><h3>Storage usage</h3><div class="small muted">Approximate browser storage used by this app on this device.</div><div class="row between" style="margin-top:10px"><div><div id="storageUsedText" style="font-weight:800;font-size:22px">0 KB</div><div class="tiny muted" id="storagePercentText">0% of 5 MB estimate</div></div><button class="inline-btn subtle" onclick="renderStorageUsage()">Refresh</button></div><div style="margin-top:10px;height:12px;border-radius:999px;background:var(--panel-3);border:1px solid var(--line);overflow:hidden"><div id="storageBar" style="height:100%;width:0%;background:linear-gradient(180deg,var(--accent-2),var(--accent));border-radius:999px"></div></div></div></section>
+  <section class="screen" id="screen-settings"><div class="card"><h3>Theme</h3><select id="themeSelect" onchange="changeTheme()"><option value="dark">Dark</option><option value="light">Light</option><option value="midnight">Midnight Blue</option><option value="forest">Forest Green</option></select></div><div class="card"><h3>Rest timer</h3><select id="restDefaultSelect" onchange="saveSettings()"><option value="30">30 seconds</option><option value="60">60 seconds</option><option value="90">90 seconds</option><option value="120">120 seconds</option><option value="180">180 seconds</option></select></div><div class="card"><h3>Exercise library</h3><div class="grid-2"><input id="customExerciseName" placeholder="Exercise name"><select id="customExerciseType"><option value="weighted">Weighted</option><option value="bodyweight">Bodyweight</option><option value="cardio">Cardio</option><option value="timed">Timed hold</option></select></div><div class="grid-2" style="margin-top:8px"><select id="customExerciseCategory"><option>Chest</option><option>Back</option><option>Legs</option><option>Shoulders</option><option>Arms</option><option>Core</option><option>Cardio</option><option>Other</option></select><button class="primary" onclick="addCustomExercise()">Add exercise</button></div><div id="exerciseLibraryList" style="margin-top:8px"></div></div><div class="card"><h3>Backup & restore</h3><div class="grid-2"><button class="subtle" onclick="exportJSON()">Export JSON</button><button class="subtle" onclick="document.getElementById('importJsonInput').click()">Import JSON</button></div><input id="importJsonInput" type="file" accept=".json,application/json" style="display:none" onchange="importJSON(event)"><div class="row" style="margin-top:8px"><button class="danger" onclick="clearAllData()">Clear all data</button></div></div><div class="card"><h3>App version</h3><div class="small muted">Current build: <strong>v18</strong></div></div><div class="card"><h3>Storage usage</h3><div class="small muted">Approximate browser storage used by this app on this device.</div><div class="row between" style="margin-top:10px"><div><div id="storageUsedText" style="font-weight:800;font-size:22px">0 KB</div><div class="tiny muted" id="storagePercentText">0% of 5 MB estimate</div></div><button class="inline-btn subtle" onclick="renderStorageUsage()">Refresh</button></div><div style="margin-top:10px;height:12px;border-radius:999px;background:var(--panel-3);border:1px solid var(--line);overflow:hidden"><div id="storageBar" style="height:100%;width:0%;background:linear-gradient(180deg,var(--accent-2),var(--accent));border-radius:999px"></div></div></div></section>
 
   <section class="screen" id="screen-edit-session">
     <div class="card">
@@ -68,6 +68,7 @@ state.ui.collapsedDays=state.ui.collapsedDays||{};
 state.programs.forEach(program=>{(program.days||[]).forEach(day=>{if(typeof state.ui.collapsedDays[day.id]==='undefined') state.ui.collapsedDays[day.id]=true;})});
 function isDayCollapsed(dayId){return !!(state.ui&&state.ui.collapsedDays&&state.ui.collapsedDays[dayId]);}
 function toggleDayCollapsed(dayId){state.ui=state.ui||{collapsedDays:{}};state.ui.collapsedDays=state.ui.collapsedDays||{};state.ui.collapsedDays[dayId]=!state.ui.collapsedDays[dayId];renderPrograms();}
+function setDayCollapsed(dayId, collapsed){state.ui=state.ui||{collapsedDays:{}};state.ui.collapsedDays=state.ui.collapsedDays||{};state.ui.collapsedDays[dayId]=collapsed;}
 
 function showScreen(name,el){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById('screen-'+name).classList.add('active');document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));if(el)el.classList.add('active');if(name==='home')renderHome();if(name==='programs')renderPrograms();if(name==='progress'){renderProgressExerciseOptions();renderProgress()}if(name==='history')renderHistory();if(name==='settings')renderSettings()}
 const getActiveProgram=()=>state.programs.find(p=>p.id===state.activeProgram)||null,getTodayWeekday=()=>['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'][new Date().getDay()],getTodaysDayFromActiveProgram=()=>{const p=getActiveProgram();return !p?null:(p.days||[]).find(d=>d.weekday===getTodayWeekday())||p.days?.[0]||null};
@@ -87,8 +88,106 @@ function addInlineOtherExercise(pid,did){const name=document.getElementById(`oth
 function addExerciseForSelectedBodyPart(pid,did){const name=document.getElementById(`newExName-${did}`).value.trim(),category=document.getElementById(`newExBodyPart-${did}`).value,type=document.getElementById(`newExType-${did}`).value;if(!name)return alert('Enter an exercise name.');const ex={id:uid(),name,category,type,custom:true};state.exercises.push(ex);const day=state.programs.find(p=>p.id===pid)?.days.find(d=>d.id===did);if(day&&!day.exercises.includes(ex.id))day.exercises.push(ex.id);document.getElementById(`newExName-${did}`).value='';saveState();renderPrograms();renderSettings();updateGlobalExerciseSelects();renderProgressExerciseOptions()}
 function duplicateDay(pid,did){const program=state.programs.find(p=>p.id===pid);const day=program?.days.find(d=>d.id===did);if(!day)return;const copy=JSON.parse(JSON.stringify(day));copy.id=uid();copy.name=`${day.name} Copy`;program.days.unshift(copy);state.ui=state.ui||{collapsedDays:{}};state.ui.collapsedDays=state.ui.collapsedDays||{};state.ui.collapsedDays[copy.id]=false;saveState();renderPrograms();renderHome();setTimeout(()=>{const el=document.getElementById(`day-card-${copy.id}`);if(el) el.scrollIntoView({behavior:'smooth', block:'nearest'});},50)}
 function renderDaySummary(day){return `<div class="day-summary"><div><div><strong>${escapeHtml(day.name||'Untitled day')}</strong></div><div class="tiny muted">${day.weekday||'No weekday selected yet'}</div></div><span class="badge">${(day.bodyParts||[]).length} body parts</span></div>`}
-function safeRenderDay(program,day){try{return renderDay(program,day)}catch(err){console.error('renderDay failed',err,day);return `<div class="day-card"><div><strong>${escapeHtml(day.name||'Untitled day')}</strong></div><div class="small muted">${day.weekday||'No weekday selected yet'}</div><div class="helper" style="margin-top:8px">This day was created but the detailed editor failed to render. Reload the page once.</div></div>`}}
-function renderDay(program,day){const filtered=getExercisesForBodyParts(day.bodyParts);const collapsed=isDayCollapsed(day.id);return `<div class="day-card" id="day-card-${day.id}"><div class="accordion-header"><button class="accordion-toggle subtle" onclick="toggleDayCollapsed('${day.id}'); return false;">${collapsed?'+':'−'}</button><div style="flex:1"><input value="${escapeHtml(day.name)}" onchange="updateDayMeta('${program.id}','${day.id}','name', this.value)"></div><div class="pill">${day.exercises.length} exercises</div><button class="inline-btn danger" onclick="deleteDay('${program.id}','${day.id}')">Delete</button></div><div class="accordion-content ${collapsed?'collapsed':''}"><div class="row wrap" style="margin-top:8px"><button class="inline-btn subtle" onclick="duplicateDay('${program.id}','${day.id}')">Duplicate day</button></div><div class="grid-2" style="margin-top:8px"><select onchange="updateDayMeta('${program.id}','${day.id}','weekday', this.value)"><option value="">Weekday</option>${['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'].map(w=>`<option ${day.weekday===w?'selected':''}>${w}</option>`).join('')}</select><div class="pill">${day.weekday||'No weekday'}</div></div><div class="section-label">Body parts</div><div class="row wrap">${BODY_PARTS.map(bp=>`<button class="chip ${day.bodyParts.includes(bp)?'active':''}" onclick="toggleBodyPart('${program.id}','${day.id}','${bp}'); return false;">${bp}</button>`).join('')}</div>${day.bodyParts.length?`<div class="divider"></div><div class="section-label">Add exercise to a body part</div><div class="grid-2"><input id="newExName-${day.id}" placeholder="Exercise name"><select id="newExBodyPart-${day.id}">${day.bodyParts.map(bp=>`<option value="${bp}">${bp}</option>`).join('')}</select></div><div class="grid-2" style="margin-top:8px"><select id="newExType-${day.id}"><option value="weighted">Weighted</option><option value="bodyweight">Bodyweight</option><option value="cardio">Cardio</option><option value="timed">Timed hold</option></select><button class="subtle" onclick="addExerciseForSelectedBodyPart('${program.id}','${day.id}')">Create & add</button></div>`:''}<div class="section-label">Exercises</div>${day.bodyParts.length?`<div class="helper">Select from exercises related to the body parts chosen.</div><div>${filtered.length?filtered.map(ex=>`<div class="exercise-choice"><div><div><strong>${escapeHtml(ex.name)}</strong></div><div class="tiny muted">${ex.category} • ${formatExerciseType(ex.type)}</div></div><button class="inline-btn ${day.exercises.includes(ex.id)?'primary':'subtle'}" onclick="toggleExerciseOnDay('${program.id}','${day.id}','${ex.id}')">${day.exercises.includes(ex.id)?'Added':'Add'}</button></div>`).join(''):`<div class="helper">No exercises match yet.</div>`}</div>`:`<div class="helper">Pick one or more body parts first.</div>`}${day.bodyParts.includes('Other')?`<div class="divider"></div><div class="section-label">Other / custom exercise</div><div class="grid-2"><input id="otherName-${day.id}" placeholder="Custom exercise name"><select id="otherType-${day.id}"><option value="weighted">Weighted</option><option value="bodyweight">Bodyweight</option><option value="cardio">Cardio</option><option value="timed">Timed hold</option></select></div><div class="row" style="margin-top:8px"><button class="subtle" onclick="addInlineOtherExercise('${program.id}','${day.id}')">Add custom exercise</button></div>`:''}${day.exercises.length?`<div class="divider"></div><div class="section-label">Selected</div><div class="row wrap">${day.exercises.map(exId=>{const ex=state.exercises.find(e=>e.id===exId);return ex?`<span class="badge">${escapeHtml(ex.name)}</span>`:''}).join('')}</div>`:''}</div></div>`}
+function safeRenderDay(program,day){try{return renderDay(program,day)}catch(err){console.error('renderDay failed',err,day);return `<div class="day-card"><div><strong>${escapeHtml(day.name||'Untitled day')}</strong></div><div class="small muted">${day.weekday||'No weekday selected yet'}</div><div class="helper" style="margin-top:8px">This day was created but the editor failed to render.</div></div>`}}
+function renderDay(program,day){
+const collapsed=isDayCollapsed(day.id);
+const bodyParts=Array.isArray(day.bodyParts)?day.bodyParts:[];
+const exercises=Array.isArray(day.exercises)?day.exercises:[];
+const filtered=getExercisesForBodyParts(bodyParts);
+const summaryText=(day.weekday||'No weekday')+' • '+exercises.length+' exercises';
+return `<div class="day-card" id="day-card-${day.id}">
+  <details ${collapsed ? '' : 'open'} ontoggle="setDayCollapsed('${day.id}', !this.open)">
+    <summary class="row between" style="list-style:none;cursor:pointer">
+      <div>
+        <strong>${escapeHtml(day.name||'Untitled day')}</strong>
+        <div class="tiny muted">${escapeHtml(summaryText)}</div>
+      </div>
+      <div class="row wrap">
+        <span class="pill">${bodyParts.length} body parts</span>
+      </div>
+    </summary>
+
+    <div style="margin-top:10px">
+      <div class="grid-2">
+        <input value="${escapeHtml(day.name||'')}" onchange="updateDayMeta('${program.id}','${day.id}','name', this.value)">
+        <select onchange="updateDayMeta('${program.id}','${day.id}','weekday', this.value)">
+          <option value="">Weekday</option>
+          ${['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'].map(w=>`<option value="${w}" ${day.weekday===w?'selected':''}>${w}</option>`).join('')}
+        </select>
+      </div>
+
+      <div class="row wrap" style="margin-top:8px">
+        <button class="inline-btn subtle" onclick="duplicateDay('${program.id}','${day.id}'); return false;">Duplicate day</button>
+        <button class="inline-btn danger" onclick="deleteDay('${program.id}','${day.id}'); return false;">Delete</button>
+      </div>
+
+      <div class="section-label">Body parts</div>
+      <div class="row wrap">
+        ${BODY_PARTS.map(bp=>`<button class="chip ${bodyParts.includes(bp)?'active':''}" onclick="toggleBodyPart('${program.id}','${day.id}','${bp}'); return false;">${bp}</button>`).join('')}
+      </div>
+
+      ${bodyParts.length ? `
+        <div class="divider"></div>
+        <div class="section-label">Create exercise for this day</div>
+        <div class="grid-2">
+          <input id="newExName-${day.id}" placeholder="Exercise name">
+          <select id="newExBodyPart-${day.id}">
+            ${bodyParts.map(bp=>`<option value="${bp}">${bp}</option>`).join('')}
+          </select>
+        </div>
+        <div class="grid-2" style="margin-top:8px">
+          <select id="newExType-${day.id}">
+            <option value="weighted">Weighted</option>
+            <option value="bodyweight">Bodyweight</option>
+            <option value="cardio">Cardio</option>
+            <option value="timed">Timed hold</option>
+          </select>
+          <button class="subtle" onclick="addExerciseForSelectedBodyPart('${program.id}','${day.id}'); return false;">Create & add</button>
+        </div>
+      ` : `<div class="helper" style="margin-top:8px">Pick one or more body parts to start adding exercises.</div>`}
+
+      <div class="section-label">Exercises</div>
+      ${bodyParts.length ? `
+        ${filtered.length ? filtered.map(ex=>`
+          <div class="exercise-choice">
+            <div>
+              <div><strong>${escapeHtml(ex.name)}</strong></div>
+              <div class="tiny muted">${escapeHtml(ex.category)} • ${formatExerciseType(ex.type)}</div>
+            </div>
+            <button class="inline-btn ${exercises.includes(ex.id)?'primary':'subtle'}" onclick="toggleExerciseOnDay('${program.id}','${day.id}','${ex.id}'); return false;">
+              ${exercises.includes(ex.id)?'Added':'Add'}
+            </button>
+          </div>
+        `).join('') : `<div class="helper">No exercises match the selected body parts yet.</div>`}
+      ` : ''}
+
+      ${bodyParts.includes('Other') ? `
+        <div class="divider"></div>
+        <div class="section-label">Other / custom exercise</div>
+        <div class="grid-2">
+          <input id="otherName-${day.id}" placeholder="Custom exercise name">
+          <select id="otherType-${day.id}">
+            <option value="weighted">Weighted</option>
+            <option value="bodyweight">Bodyweight</option>
+            <option value="cardio">Cardio</option>
+            <option value="timed">Timed hold</option>
+          </select>
+        </div>
+        <div class="row" style="margin-top:8px">
+          <button class="subtle" onclick="addInlineOtherExercise('${program.id}','${day.id}'); return false;">Add custom exercise</button>
+        </div>
+      ` : ''}
+
+      ${exercises.length ? `
+        <div class="divider"></div>
+        <div class="section-label">Selected exercises</div>
+        <div class="row wrap">
+          ${exercises.map(exId=>{const ex=state.exercises.find(e=>e.id===exId); return ex?`<span class="badge">${escapeHtml(ex.name)}</span>`:'';}).join('')}
+        </div>
+      ` : ''}
+    </div>
+  </details>
+</div>`}
 function renderPrograms(){document.getElementById('programCount').textContent=state.programs.length;document.getElementById('programList').innerHTML=!state.programs.length?'<div class="helper">No programs yet. Create your first one above.</div>':state.programs.map(program=>`<div class="program-card"><div class="row between"><div style="flex:1"><input value="${escapeHtml(program.name)}" onchange="updateProgramName('${program.id}', this.value)"></div></div><div class="row wrap" style="margin-top:8px"><button class="inline-btn ${state.activeProgram===program.id?'primary':'subtle'}" onclick="setActiveProgram('${program.id}')">${state.activeProgram===program.id?'Active program':'Set active'}</button><button class="inline-btn danger" onclick="deleteProgram('${program.id}')">Delete program</button></div><div class="section-label">Add day</div><div class="grid-2"><input id="dayName-${program.id}" placeholder="Day name"><select id="dayWeekday-${program.id}"><option value="">Weekday</option><option>Monday</option><option>Tuesday</option><option>Wednesday</option><option>Thursday</option><option>Friday</option><option>Saturday</option><option>Sunday</option></select></div><div class="row" style="margin-top:8px"><button class="primary" onclick="return addDay(\'${program.id}\')">Add day</button></div>${(program.days||[]).length?`<div class="section-label">Days</div>${(program.days||[]).map(day=>renderDaySummary(day)).join('')}`:''}${(program.days||[]).map(day=>safeRenderDay(program,day)).join('')}</div>`).join('')}
 function buildDefaultSetsForType(type,count=3){return Array.from({length:count},(_,i)=>type==='weighted'?{set:i+1,weight:'',reps:'',warmup:false,isPR:false,completed:false}:type==='bodyweight'?{set:i+1,reps:'',warmup:false,isPR:false,completed:false}:type==='cardio'?{set:i+1,distance:'',duration:'',warmup:false,isPR:false,completed:false}:{set:i+1,duration:'',warmup:false,isPR:false,completed:false})}
 function startTodayWorkout(){const day=getTodaysDayFromActiveProgram();if(!day){alert('No day is ready for today yet. Set one up in Programs.');showScreen('programs',document.querySelectorAll('.tab')[1]);return}if(!day.exercises.length){alert('Today’s day has no exercises yet.');showScreen('programs',document.querySelectorAll('.tab')[1]);return}currentWorkout={id:uid(),name:day.name,startedAt:Date.now(),notes:'',exercises:day.exercises.map(exId=>{const ex=state.exercises.find(e=>e.id===exId);return{uid:uid(),exerciseId:ex.id,name:ex.name,category:ex.category,type:ex.type,notes:'',sets:buildDefaultSetsForType(ex.type,3)}})};sessionNotes.value='';renderLogger();showScreen('logger',document.querySelectorAll('.tab')[2]);if(workoutTimer)clearInterval(workoutTimer);workoutTimer=setInterval(()=>{const s=Math.floor((Date.now()-currentWorkout.startedAt)/1000);elapsedPill.textContent=`${String(Math.floor(s/60)).padStart(2,'0')}:${String(s%60).padStart(2,'0')}`},1000)}
