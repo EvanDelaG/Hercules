@@ -79,6 +79,8 @@ function setActiveProgram(pid){state.activeProgram=pid;saveState();renderProgram
 function deleteProgram(pid){const p=state.programs.find(x=>x.id===pid);if(!p||!confirm(`Delete program "${p.name}"?`))return;state.programs=state.programs.filter(x=>x.id!==pid);if(state.activeProgram===pid)state.activeProgram=state.programs[0]?.id||'';saveState();renderPrograms();renderHome()}
 function sortProgramDays(program){program.days=[...(program.days||[])].sort((a,b)=>weekdaySortValue(a.weekday)-weekdaySortValue(b.weekday)||String(a.name||'').localeCompare(String(b.name||'')));}
 function addDay(pid){const nameInput=document.getElementById(`dayName-${pid}`);if(!nameInput){console.error('Day name input not found for program',pid);alert('Day field could not be found.');return false;}const name=(nameInput.value||'').trim();if(!name){alert('Please enter a day name.');return false;}const p=(state.programs||[]).find(x=>x.id===pid);if(!p){console.error('Program not found for addDay',pid);alert('Program could not be found.');return false;}const selectedWeekdays=getSelectedNewDayWeekdays(pid);const weekdaysToCreate=selectedWeekdays.length?selectedWeekdays:[''];const template={name,bodyParts:[],exercises:[]};const newDays=weekdaysToCreate.map(weekday=>({...JSON.parse(JSON.stringify(template)),id:uid(),weekday}));p.days=Array.isArray(p.days)?p.days:[];p.days.unshift(...newDays);sortProgramDays(p);state.ui=state.ui||{collapsedDays:{},newDayWeekdays:{}};state.ui.collapsedDays=state.ui.collapsedDays||{};state.ui.newDayWeekdays=state.ui.newDayWeekdays||{};newDays.forEach(newDay=>{state.ui.collapsedDays[newDay.id]=true;});state.ui.newDayWeekdays[pid]=[];nameInput.value='';saveState();renderPrograms();renderHome();setTimeout(()=>{const el=document.getElementById(`day-card-${newDays[0].id}`);if(el) el.scrollIntoView({behavior:'smooth', block:'nearest'});},50);return false;}
+function deleteDay(pid,did){const program=state.programs.find(p=>p.id===pid);const day=program?.days.find(d=>d.id===did);if(!day)return;if(!confirm(`Delete "${day.name}" from this program?`))return;program.days=program.days.filter(d=>d.id!==did);saveState();renderPrograms();renderHome();}
+function duplicateDay(pid,did){const program=state.programs.find(p=>p.id===pid);const day=program?.days.find(d=>d.id===did);if(!day)return;if(!confirm(`Duplicate "${day.name}" in this program?`))return;const copy=JSON.parse(JSON.stringify(day));copy.id=uid();copy.name=`${day.name} Copy`;program.days.unshift(copy);sortProgramDays(program);state.ui=state.ui||{collapsedDays:{}};state.ui.collapsedDays=state.ui.collapsedDays||{};state.ui.collapsedDays[copy.id]=true;saveState();renderPrograms();renderHome();}
 function updateDayMeta(pid,did,field,value){const program=state.programs.find(p=>p.id===pid);const day=program?.days.find(d=>d.id===did);if(!day)return;day[field]=value;if(field==='weekday'||field==='name')sortProgramDays(program);saveState();if(field==='weekday'||field==='name')renderHome()}
 function toggleBodyPart(pid,did,bp){const day=state.programs.find(p=>p.id===pid)?.days.find(d=>d.id===did);if(!day)return;if(day.bodyParts.includes(bp)){day.bodyParts=day.bodyParts.filter(x=>x!==bp);const allowed=new Set(day.bodyParts);day.exercises=day.exercises.filter(exId=>{const ex=state.exercises.find(e=>e.id===exId);return ex&&(allowed.size===0||allowed.has(ex.category)||ex.category==='Other')})}else day.bodyParts.push(bp);saveState();renderPrograms();renderHome()}
 const getExercisesForBodyParts=bodyParts=>!bodyParts?.length?[]:state.exercises.filter(e=>bodyParts.includes(e.category)||(bodyParts.includes('Other')&&e.category==='Other'));
@@ -115,6 +117,12 @@ function renderDayCard(program, day){
   const toggleBtn = makeButton(isDayCollapsed(day.id) ? '+' : '−', 'accordion-toggle subtle', () => toggleDayCollapsed(day.id));
   toggleBtn.title = isDayCollapsed(day.id) ? 'Expand day' : 'Collapse day';
   headerBtns.appendChild(toggleBtn);
+  const duplicateBtn = makeButton('⧉', 'inline-btn subtle', () => duplicateDay(program.id, day.id));
+  duplicateBtn.title = 'Duplicate day';
+  headerBtns.appendChild(duplicateBtn);
+  const deleteBtn = makeButton('🗑️', 'inline-btn danger', () => deleteDay(program.id, day.id));
+  deleteBtn.title = 'Delete day';
+  headerBtns.appendChild(deleteBtn);
 
   header.appendChild(titleWrap);
   header.appendChild(headerBtns);
