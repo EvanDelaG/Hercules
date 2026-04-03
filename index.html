@@ -148,7 +148,10 @@ function renderDayCard(program, day){
     .map(w => `<option value="${w}" ${day.weekday===w?'selected':''}>${w}</option>`).join('');
   weekdaySelect.onchange = () => updateDayMeta(program.id, day.id, 'weekday', weekdaySelect.value);
 
-  metaGrid.appendChild(nameInput);
+  const spacer = document.createElement('div');
+  spacer.className = 'helper';
+  spacer.textContent = 'Weekday assignment';
+  metaGrid.appendChild(spacer);
   metaGrid.appendChild(weekdaySelect);
   content.appendChild(metaGrid);
 
@@ -369,6 +372,20 @@ function renderPrograms(){
       weekdayWrap.appendChild(chip);
     });
     programContent.appendChild(weekdayWrap);
+
+    const weekdayWrap = document.createElement('div');
+    weekdayWrap.className = 'row wrap';
+    weekdayWrap.style.marginTop = '8px';
+    const selectedWeekdays = getSelectedNewDayWeekdays(program.id);
+    WEEKDAYS.forEach(weekday => {
+      const chip = document.createElement('button');
+      chip.className = `chip ${selectedWeekdays.includes(weekday) ? 'active' : ''}`;
+      chip.textContent = weekday.slice(0,3);
+      chip.title = weekday;
+      chip.onclick = (e) => { e.preventDefault(); toggleNewDayWeekday(program.id, weekday); return false; };
+      weekdayWrap.appendChild(chip);
+    });
+    card.appendChild(weekdayWrap);
 
     const addRow = document.createElement('div');
     addRow.className = 'row';
