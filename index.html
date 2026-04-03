@@ -26,7 +26,7 @@
 </head>
 <body>
 <div class="app" id="app" data-theme="dark">
-  <header><div class="brand"><img src="hercules_logo.svg" alt="Hercules logo" onerror="this.style.display='none'"><div><h1>Hercules</h1><div class="sub">Ready-to-ship offline workout tracker • v24</div></div></div></header>
+  <header><div class="brand"><img src="hercules_logo.svg" alt="Hercules logo" onerror="this.style.display='none'"><div><h1>Hercules</h1><div class="sub">Ready-to-ship offline workout tracker • v26-3</div></div></div></header>
   <section class="screen active" id="screen-home">
     <div class="hero"><div class="hero-kicker">Today’s focus</div><h2 id="heroWorkout">No active program</h2><p id="heroSub">Set up a program, choose today’s body parts, and start logging.</p><div class="row" style="margin-top:14px"><button class="primary" onclick="startTodayWorkout()">Start workout</button></div></div>
     <div class="summary"><div class="metric"><div class="k">This week</div><div class="v" id="metricWorkouts">0</div><div class="s">workouts</div></div><div class="metric"><div class="k">Volume</div><div class="v" id="metricVolume">0</div><div class="s">kg</div></div><div class="metric"><div class="k">Recent PRs</div><div class="v" id="metricPRs">0</div><div class="s">hits</div></div></div>
@@ -36,7 +36,7 @@
   <section class="screen" id="screen-logger"><div class="rest-banner" id="restBanner"></div><div class="card"><div class="row between"><div><h3 id="loggerTitle">Workout Logger</h3><div class="small muted" id="loggerSubtitle">Log your sets clearly and fast.</div></div><span class="pill" id="elapsedPill">00:00</span></div><textarea id="sessionNotes" placeholder="Session notes"></textarea></div><div id="loggerExercises"></div><div class="card"><h3>Add extra exercise</h3><select id="extraExerciseSelect"></select><div class="row" style="margin-top:8px"><button class="subtle" onclick="addExtraExercise()">Add to workout</button></div></div><div class="row"><button class="primary" onclick="finishWorkout()">Finish workout</button></div></section>
   <section class="screen" id="screen-progress"><div class="card"><h3>Progress</h3><select id="progressExerciseSelect" onchange="renderProgress()"></select><div class="helper" style="margin-top:8px">Tap a chart point to view the related session details.</div></div><div class="card"><canvas id="progressChart"></canvas></div><div class="card" id="progressInfo"></div></section>
   <section class="screen" id="screen-history"><div class="card"><div class="row between"><h3>History</h3><span class="pill" id="historyCount">0 sessions</span></div><div id="historyList"></div></div></section>
-  <section class="screen" id="screen-settings"><div class="card"><h3>Theme</h3><select id="themeSelect" onchange="changeTheme()"><option value="dark">Dark</option><option value="light">Light</option><option value="midnight">Midnight Blue</option><option value="forest">Forest Green</option></select></div><div class="card"><h3>Rest timer</h3><select id="restDefaultSelect" onchange="saveSettings()"><option value="30">30 seconds</option><option value="60">60 seconds</option><option value="90">90 seconds</option><option value="120">120 seconds</option><option value="180">180 seconds</option></select></div><div class="card"><h3>Exercise library</h3><div class="grid-2"><input id="customExerciseName" placeholder="Exercise name"><select id="customExerciseType"><option value="weighted">Weighted</option><option value="bodyweight">Bodyweight</option><option value="cardio">Cardio</option><option value="timed">Timed hold</option></select></div><div class="grid-2" style="margin-top:8px"><select id="customExerciseCategory"><option>Chest</option><option>Back</option><option>Legs</option><option>Shoulders</option><option>Arms</option><option>Core</option><option>Cardio</option><option>Other</option></select><button class="primary" onclick="addCustomExercise()">Add exercise</button></div><div id="exerciseLibraryList" style="margin-top:8px"></div></div><div class="card"><h3>Backup & restore</h3><div class="grid-2"><button class="subtle" onclick="exportJSON()">Export JSON</button><button class="subtle" onclick="document.getElementById('importJsonInput').click()">Import JSON</button></div><input id="importJsonInput" type="file" accept=".json,application/json" style="display:none" onchange="importJSON(event)"><div class="row" style="margin-top:8px"><button class="danger" onclick="clearAllData()">Clear all data</button></div></div><div class="card"><h3>App version</h3><div class="small muted">Current build: <strong>v24</strong></div></div><div class="card"><h3>Storage usage</h3><div class="small muted">Approximate browser storage used by this app on this device.</div><div class="row between" style="margin-top:10px"><div><div id="storageUsedText" style="font-weight:800;font-size:22px">0 KB</div><div class="tiny muted" id="storagePercentText">0% of 5 MB estimate</div></div><button class="inline-btn subtle" onclick="renderStorageUsage()">Refresh</button></div><div style="margin-top:10px;height:12px;border-radius:999px;background:var(--panel-3);border:1px solid var(--line);overflow:hidden"><div id="storageBar" style="height:100%;width:0%;background:linear-gradient(180deg,var(--accent-2),var(--accent));border-radius:999px"></div></div></div><div class="card"><h3>View JSON</h3><div class="small muted">See the current saved data directly in the app.</div><div class="row wrap" style="margin-top:8px"><button class="inline-btn subtle" onclick="renderJsonView()">Refresh JSON</button></div><textarea id="jsonViewBox" readonly style="margin-top:8px;min-height:220px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace"></textarea></div></section>
+  <section class="screen" id="screen-settings"><div class="card"><h3>Theme</h3><select id="themeSelect" onchange="changeTheme()"><option value="dark">Dark</option><option value="light">Light</option><option value="midnight">Midnight Blue</option><option value="forest">Forest Green</option></select></div><div class="card"><h3>Rest timer</h3><select id="restDefaultSelect" onchange="saveSettings()"><option value="30">30 seconds</option><option value="60">60 seconds</option><option value="90">90 seconds</option><option value="120">120 seconds</option><option value="180">180 seconds</option></select></div><div class="card"><h3>Exercise library</h3><div class="grid-2"><input id="customExerciseName" placeholder="Exercise name"><select id="customExerciseType"><option value="weighted">Weighted</option><option value="bodyweight">Bodyweight</option><option value="cardio">Cardio</option><option value="timed">Timed hold</option></select></div><div class="grid-2" style="margin-top:8px"><select id="customExerciseCategory"><option>Chest</option><option>Back</option><option>Legs</option><option>Shoulders</option><option>Arms</option><option>Core</option><option>Cardio</option><option>Other</option></select><button class="primary" onclick="addCustomExercise()">Add exercise</button></div><div id="exerciseLibraryList" style="margin-top:8px"></div></div><div class="card"><h3>Backup & restore</h3><div class="grid-2"><button class="subtle" onclick="exportJSON()">Export JSON</button><button class="subtle" onclick="document.getElementById('importJsonInput').click()">Import JSON</button></div><input id="importJsonInput" type="file" accept=".json,application/json" style="display:none" onchange="importJSON(event)"><div class="row" style="margin-top:8px"><button class="danger" onclick="clearAllData()">Clear all data</button></div></div><div class="card"><h3>App version</h3><div class="small muted">Current build: <strong>v26-3</strong></div></div><div class="card"><h3>Storage usage</h3><div class="small muted">Approximate browser storage used by this app on this device.</div><div class="row between" style="margin-top:10px"><div><div id="storageUsedText" style="font-weight:800;font-size:22px">0 KB</div><div class="tiny muted" id="storagePercentText">0% of 5 MB estimate</div></div><button class="inline-btn subtle" onclick="renderStorageUsage()">Refresh</button></div><div style="margin-top:10px;height:12px;border-radius:999px;background:var(--panel-3);border:1px solid var(--line);overflow:hidden"><div id="storageBar" style="height:100%;width:0%;background:linear-gradient(180deg,var(--accent-2),var(--accent));border-radius:999px"></div></div></div><div class="card"><h3>View JSON</h3><div class="small muted">See the current saved data directly in the app.</div><div class="row wrap" style="margin-top:8px"><button class="inline-btn subtle" onclick="renderJsonView()">Refresh JSON</button></div><textarea id="jsonViewBox" readonly style="margin-top:8px;min-height:220px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace"></textarea></div></section>
 
   <section class="screen" id="screen-edit-session">
     <div class="card">
@@ -60,12 +60,16 @@
 <script>
 const STORAGE_KEYS={exercises:'gym_exercises',programs:'gym_programs',sessions:'gym_sessions',settings:'gym_settings',activeProgram:'gym_active_program'},BODY_PARTS=['Chest','Back','Legs','Shoulders','Arms','Core','Cardio','Other'],DEFAULT_EXERCISES=[{name:'Bench Press',category:'Chest',type:'weighted'},{name:'Incline Bench Press',category:'Chest',type:'weighted'},{name:'Cable Fly',category:'Chest',type:'weighted'},{name:'Push-ups',category:'Chest',type:'bodyweight'},{name:'Dips',category:'Chest',type:'bodyweight'},{name:'Deadlift',category:'Back',type:'weighted'},{name:'Barbell Row',category:'Back',type:'weighted'},{name:'Cable Row',category:'Back',type:'weighted'},{name:'Lat Pulldown',category:'Back',type:'weighted'},{name:'Pull-ups',category:'Back',type:'bodyweight'},{name:'Inverted Row',category:'Back',type:'bodyweight'},{name:'Squat',category:'Legs',type:'weighted'},{name:'Romanian Deadlift',category:'Legs',type:'weighted'},{name:'Leg Press',category:'Legs',type:'weighted'},{name:'Walking Lunges',category:'Legs',type:'weighted'},{name:'Leg Extension',category:'Legs',type:'weighted'},{name:'Hamstring Curl',category:'Legs',type:'weighted'},{name:'Calf Raise',category:'Legs',type:'weighted'},{name:'Overhead Press',category:'Shoulders',type:'weighted'},{name:'Dumbbell Lateral Raise',category:'Shoulders',type:'weighted'},{name:'Rear Delt Fly',category:'Shoulders',type:'weighted'},{name:'Arnold Press',category:'Shoulders',type:'weighted'},{name:'Dumbbell Curl',category:'Arms',type:'weighted'},{name:'Hammer Curl',category:'Arms',type:'weighted'},{name:'Tricep Pushdown',category:'Arms',type:'weighted'},{name:'Skullcrusher',category:'Arms',type:'weighted'},{name:'Close-Grip Bench Press',category:'Arms',type:'weighted'},{name:'Plank',category:'Core',type:'timed'},{name:'Hanging Leg Raise',category:'Core',type:'bodyweight'},{name:'Cable Crunch',category:'Core',type:'weighted'},{name:'Russian Twist',category:'Core',type:'bodyweight'},{name:'Running',category:'Cardio',type:'cardio'},{name:'Cycling',category:'Cardio',type:'cardio'},{name:'Rowing',category:'Cardio',type:'cardio'},{name:'Assault Bike',category:'Cardio',type:'cardio'}];
 let state={},currentWorkout=null,workoutTimer=null,restTimer=null,progressChart=null;
+const WEEKDAYS=['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'];
 const escapeHtml=(s='')=>s.replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m])),uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,8),formatExerciseType=t=>({weighted:'Weighted',bodyweight:'Bodyweight',cardio:'Cardio',timed:'Timed hold'})[t]||t;
 function saveState(){localStorage.setItem(STORAGE_KEYS.exercises,JSON.stringify(state.exercises));localStorage.setItem(STORAGE_KEYS.programs,JSON.stringify(state.programs));localStorage.setItem(STORAGE_KEYS.sessions,JSON.stringify(state.sessions));localStorage.setItem(STORAGE_KEYS.settings,JSON.stringify(state.settings));localStorage.setItem(STORAGE_KEYS.activeProgram,state.activeProgram||'')}
-function loadState(){const safeParse=(key,fallback)=>{try{const raw=localStorage.getItem(key);if(raw===null)return fallback;const parsed=JSON.parse(raw);return parsed??fallback}catch{return fallback}};const defaultExercises=DEFAULT_EXERCISES.map(e=>({...e,id:uid(),custom:false}));const parsedExercises=safeParse(STORAGE_KEYS.exercises,null);state.exercises=Array.isArray(parsedExercises)?parsedExercises.filter(ex=>ex&&typeof ex==='object').map(ex=>({...ex,id:ex.id||uid(),name:typeof ex.name==='string'?ex.name:'Unnamed exercise',category:typeof ex.category==='string'?ex.category:'Other',type:typeof ex.type==='string'?ex.type:'weighted',custom:!!ex.custom})):defaultExercises;if(!state.exercises.length)state.exercises=defaultExercises;state.programs=safeParse(STORAGE_KEYS.programs,[]);state.sessions=safeParse(STORAGE_KEYS.sessions,[]);state.settings=safeParse(STORAGE_KEYS.settings,{theme:'dark',restDefault:90});state.activeProgram=localStorage.getItem(STORAGE_KEYS.activeProgram)||'';state.programs=Array.isArray(state.programs)?state.programs.filter(program=>program&&typeof program==='object').map(program=>({...program,id:program.id||uid(),name:typeof program.name==='string'&&program.name.trim()?program.name:'Untitled program',days:Array.isArray(program.days)?program.days.filter(day=>day&&typeof day==='object').map(day=>({id:day.id||uid(),name:typeof day.name==='string'&&day.name.trim()?day.name:'Untitled day',weekday:typeof day.weekday==='string'?day.weekday:'',bodyParts:Array.isArray(day.bodyParts)?day.bodyParts.filter(bp=>typeof bp==='string'):[],exercises:Array.isArray(day.exercises)?day.exercises.filter(exId=>typeof exId==='string'):[]})):[]})):[];state.sessions=Array.isArray(state.sessions)?state.sessions:[];state.settings=(state.settings&&typeof state.settings==='object')?state.settings:{theme:'dark',restDefault:90};if(!['dark','light','midnight','forest'].includes(state.settings.theme))state.settings.theme='dark';state.settings.restDefault=Number(state.settings.restDefault)||90;if(state.programs.length&&!state.programs.find(p=>p.id===state.activeProgram))state.activeProgram=state.programs[0].id;state.ui=state.ui||{collapsedDays:{}};state.ui.collapsedDays=(state.ui.collapsedDays&&typeof state.ui.collapsedDays==='object')?state.ui.collapsedDays:{};state.programs.forEach(program=>{program.days.forEach(day=>{if(typeof state.ui.collapsedDays[day.id]==='undefined')state.ui.collapsedDays[day.id]=true;});});}
+function loadState(){const safeParse=(key,fallback)=>{try{const raw=localStorage.getItem(key);if(raw===null)return fallback;const parsed=JSON.parse(raw);return parsed??fallback}catch{return fallback}};const defaultExercises=DEFAULT_EXERCISES.map(e=>({...e,id:uid(),custom:false}));const parsedExercises=safeParse(STORAGE_KEYS.exercises,null);state.exercises=Array.isArray(parsedExercises)?parsedExercises.filter(ex=>ex&&typeof ex==='object').map(ex=>({...ex,id:ex.id||uid(),name:typeof ex.name==='string'?ex.name:'Unnamed exercise',category:typeof ex.category==='string'?ex.category:'Other',type:typeof ex.type==='string'?ex.type:'weighted',custom:!!ex.custom})):defaultExercises;if(!state.exercises.length)state.exercises=defaultExercises;state.programs=safeParse(STORAGE_KEYS.programs,[]);state.sessions=safeParse(STORAGE_KEYS.sessions,[]);state.settings=safeParse(STORAGE_KEYS.settings,{theme:'dark',restDefault:90});state.activeProgram=localStorage.getItem(STORAGE_KEYS.activeProgram)||'';state.programs=Array.isArray(state.programs)?state.programs.filter(program=>program&&typeof program==='object').map(program=>({...program,id:program.id||uid(),name:typeof program.name==='string'&&program.name.trim()?program.name:'Untitled program',days:Array.isArray(program.days)?program.days.filter(day=>day&&typeof day==='object').map(day=>({id:day.id||uid(),name:typeof day.name==='string'&&day.name.trim()?day.name:'Untitled day',weekday:typeof day.weekday==='string'?day.weekday:'',bodyParts:Array.isArray(day.bodyParts)?day.bodyParts.filter(bp=>typeof bp==='string'):[],exercises:Array.isArray(day.exercises)?day.exercises.filter(exId=>typeof exId==='string'):[]})):[]})):[];state.sessions=Array.isArray(state.sessions)?state.sessions:[];state.settings=(state.settings&&typeof state.settings==='object')?state.settings:{theme:'dark',restDefault:90};if(!['dark','light','midnight','forest'].includes(state.settings.theme))state.settings.theme='dark';state.settings.restDefault=Number(state.settings.restDefault)||90;if(state.programs.length&&!state.programs.find(p=>p.id===state.activeProgram))state.activeProgram=state.programs[0].id;state.ui=state.ui||{collapsedDays:{},collapsedPrograms:{},newDayWeekdays:{}};state.ui.collapsedDays=(state.ui.collapsedDays&&typeof state.ui.collapsedDays==='object')?state.ui.collapsedDays:{};state.ui.collapsedPrograms=(state.ui.collapsedPrograms&&typeof state.ui.collapsedPrograms==='object')?state.ui.collapsedPrograms:{};state.ui.newDayWeekdays=(state.ui.newDayWeekdays&&typeof state.ui.newDayWeekdays==='object')?state.ui.newDayWeekdays:{};state.programs.forEach(program=>{program.days.forEach(day=>{if(typeof state.ui.collapsedDays[day.id]==='undefined')state.ui.collapsedDays[day.id]=true;});if(typeof state.ui.collapsedPrograms[program.id]==='undefined')state.ui.collapsedPrograms[program.id]=true;if(!Array.isArray(state.ui.newDayWeekdays[program.id]))state.ui.newDayWeekdays[program.id]=[];});}
 function isDayCollapsed(dayId){return !!(state.ui&&state.ui.collapsedDays&&state.ui.collapsedDays[dayId]);}
 function toggleDayCollapsed(dayId){state.ui=state.ui||{collapsedDays:{}};state.ui.collapsedDays=state.ui.collapsedDays||{};state.ui.collapsedDays[dayId]=!state.ui.collapsedDays[dayId];renderPrograms();}
-function setDayCollapsed(dayId, collapsed){state.ui=state.ui||{collapsedDays:{}};state.ui.collapsedDays=state.ui.collapsedDays||{};state.ui.collapsedDays[dayId]=collapsed;}
+function isProgramCollapsed(programId){const value=state.ui?.collapsedPrograms?.[programId];return typeof value==='boolean'?value:true;}
+function toggleProgramCollapsed(programId){state.ui=state.ui||{collapsedPrograms:{}};state.ui.collapsedPrograms=state.ui.collapsedPrograms||{};state.ui.collapsedPrograms[programId]=!isProgramCollapsed(programId);renderPrograms();}
+function toggleNewDayWeekday(pid, weekday){state.ui=state.ui||{collapsedDays:{},newDayWeekdays:{}};state.ui.newDayWeekdays=state.ui.newDayWeekdays||{};const selected=Array.isArray(state.ui.newDayWeekdays[pid])?state.ui.newDayWeekdays[pid]:[];state.ui.newDayWeekdays[pid]=selected.includes(weekday)?selected.filter(d=>d!==weekday):[...selected,weekday];renderPrograms();}
+function getSelectedNewDayWeekdays(pid){const selected=state.ui?.newDayWeekdays?.[pid];return Array.isArray(selected)?selected.filter(day=>WEEKDAYS.includes(day)):[];}
 
 function showScreen(name,el){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById('screen-'+name).classList.add('active');document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));if(el)el.classList.add('active');if(name==='home')renderHome();if(name==='programs')renderPrograms();if(name==='progress'){renderProgressExerciseOptions();renderProgress()}if(name==='history')renderHistory();if(name==='settings')renderSettings()}
 const getActiveProgram=()=>state.programs.find(p=>p.id===state.activeProgram)||null,getTodayWeekday=()=>['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'][new Date().getDay()],getTodaysDayFromActiveProgram=()=>{const p=getActiveProgram();return !p?null:(p.days||[]).find(d=>d.weekday===getTodayWeekday())||p.days?.[0]||null};
@@ -75,19 +79,17 @@ function createProgram(){const input=document.getElementById('newProgramName');i
 function updateProgramName(pid,name){const p=state.programs.find(x=>x.id===pid);if(!p)return;p.name=name.trim()||p.name;saveState();renderPrograms();renderHome()}
 function setActiveProgram(pid){state.activeProgram=pid;saveState();renderPrograms();renderHome()}
 function deleteProgram(pid){const p=state.programs.find(x=>x.id===pid);if(!p||!confirm(`Delete program "${p.name}"?`))return;state.programs=state.programs.filter(x=>x.id!==pid);if(state.activeProgram===pid)state.activeProgram=state.programs[0]?.id||'';saveState();renderPrograms();renderHome()}
-function addDay(pid){const nameInput=document.getElementById(`dayName-${pid}`);const weekdayInput=document.getElementById(`dayWeekday-${pid}`);if(!nameInput){console.error('Day name input not found for program',pid);alert('Day field could not be found.');return false;}const name=(nameInput.value||'').trim();const weekday=weekdayInput?weekdayInput.value:'';if(!name){alert('Please enter a day name.');return false;}const p=(state.programs||[]).find(x=>x.id===pid);if(!p){console.error('Program not found for addDay',pid);alert('Program could not be found.');return false;}const newDay={id:uid(),name,weekday,bodyParts:[],exercises:[]};p.days=Array.isArray(p.days)?p.days:[];p.days.unshift(newDay);state.ui=state.ui||{collapsedDays:{}};state.ui.collapsedDays=state.ui.collapsedDays||{};state.ui.collapsedDays[newDay.id]=false;nameInput.value='';if(weekdayInput) weekdayInput.value='';saveState();renderPrograms();renderHome();setTimeout(()=>{const el=document.getElementById(`day-card-${newDay.id}`);if(el) el.scrollIntoView({behavior:'smooth', block:'nearest'});},50);return false;}
-function deleteDay(pid,did){const p=state.programs.find(x=>x.id===pid),day=p?.days.find(d=>d.id===did);if(!day||!confirm(`Delete day "${day.name}"?`))return;p.days=p.days.filter(d=>d.id!==did);saveState();renderPrograms();renderHome()}
-function updateDayMeta(pid,did,field,value){const day=state.programs.find(p=>p.id===pid)?.days.find(d=>d.id===did);if(!day)return;day[field]=value;saveState();if(field==='weekday'||field==='name')renderHome()}
+function sortProgramDays(program){program.days=[...(program.days||[])].sort((a,b)=>weekdaySortValue(a.weekday)-weekdaySortValue(b.weekday)||String(a.name||'').localeCompare(String(b.name||'')));}
+function addDay(pid){const nameInput=document.getElementById(`dayName-${pid}`);if(!nameInput){console.error('Day name input not found for program',pid);alert('Day field could not be found.');return false;}const name=(nameInput.value||'').trim();if(!name){alert('Please enter a day name.');return false;}const p=(state.programs||[]).find(x=>x.id===pid);if(!p){console.error('Program not found for addDay',pid);alert('Program could not be found.');return false;}const selectedWeekdays=getSelectedNewDayWeekdays(pid);const weekdaysToCreate=selectedWeekdays.length?selectedWeekdays:[''];const template={name,bodyParts:[],exercises:[]};const newDays=weekdaysToCreate.map(weekday=>({...JSON.parse(JSON.stringify(template)),id:uid(),weekday}));p.days=Array.isArray(p.days)?p.days:[];p.days.unshift(...newDays);sortProgramDays(p);state.ui=state.ui||{collapsedDays:{},newDayWeekdays:{}};state.ui.collapsedDays=state.ui.collapsedDays||{};state.ui.newDayWeekdays=state.ui.newDayWeekdays||{};newDays.forEach(newDay=>{state.ui.collapsedDays[newDay.id]=true;});state.ui.newDayWeekdays[pid]=[];nameInput.value='';saveState();renderPrograms();renderHome();setTimeout(()=>{const el=document.getElementById(`day-card-${newDays[0].id}`);if(el) el.scrollIntoView({behavior:'smooth', block:'nearest'});},50);return false;}
+function deleteDay(pid,did){const program=state.programs.find(p=>p.id===pid);const day=program?.days.find(d=>d.id===did);if(!day)return;if(!confirm(`Delete "${day.name}" from this program?`))return;program.days=program.days.filter(d=>d.id!==did);saveState();renderPrograms();renderHome();}
+function duplicateDay(pid,did){const program=state.programs.find(p=>p.id===pid);const day=program?.days.find(d=>d.id===did);if(!day)return;if(!confirm(`Duplicate "${day.name}" in this program?`))return;const copy=JSON.parse(JSON.stringify(day));copy.id=uid();copy.name=`${day.name} Copy`;program.days.unshift(copy);sortProgramDays(program);state.ui=state.ui||{collapsedDays:{}};state.ui.collapsedDays=state.ui.collapsedDays||{};state.ui.collapsedDays[copy.id]=true;saveState();renderPrograms();renderHome();}
+function updateDayMeta(pid,did,field,value){const program=state.programs.find(p=>p.id===pid);const day=program?.days.find(d=>d.id===did);if(!day)return;day[field]=value;if(field==='weekday'||field==='name')sortProgramDays(program);saveState();if(field==='weekday'||field==='name')renderHome()}
 function toggleBodyPart(pid,did,bp){const day=state.programs.find(p=>p.id===pid)?.days.find(d=>d.id===did);if(!day)return;if(day.bodyParts.includes(bp)){day.bodyParts=day.bodyParts.filter(x=>x!==bp);const allowed=new Set(day.bodyParts);day.exercises=day.exercises.filter(exId=>{const ex=state.exercises.find(e=>e.id===exId);return ex&&(allowed.size===0||allowed.has(ex.category)||ex.category==='Other')})}else day.bodyParts.push(bp);saveState();renderPrograms();renderHome()}
 const getExercisesForBodyParts=bodyParts=>!bodyParts?.length?[]:state.exercises.filter(e=>bodyParts.includes(e.category)||(bodyParts.includes('Other')&&e.category==='Other'));
 function toggleExerciseOnDay(pid,did,exId){const day=state.programs.find(p=>p.id===pid)?.days.find(d=>d.id===did);if(!day)return;day.exercises=day.exercises.includes(exId)?day.exercises.filter(id=>id!==exId):[...day.exercises,exId];saveState();renderPrograms()}
-function addInlineOtherExercise(pid,did){const name=document.getElementById(`otherName-${did}`).value.trim(),type=document.getElementById(`otherType-${did}`).value;if(!name)return alert('Enter a custom exercise name.');const ex={id:uid(),name,category:'Other',type,custom:true};state.exercises.push(ex);const day=state.programs.find(p=>p.id===pid)?.days.find(d=>d.id===did);if(day&&!day.exercises.includes(ex.id))day.exercises.push(ex.id);document.getElementById(`otherName-${did}`).value='';saveState();renderPrograms();renderSettings();updateGlobalExerciseSelects()}
+function addInlineOtherExercise(pid,did){const name=document.getElementById(`otherName-${did}`).value.trim(),type=document.getElementById(`otherType-${did}`).value;if(!name)return alert('Enter a custom exercise name.');const ex={id:uid(),name,category:'Other',type,custom:true};state.exercises.push(ex);const day=state.programs.find(p=>p.id===pid)?.days.find(d=>d.id===did);if(day&&!day.exercises.includes(ex.id))day.exercises.push(ex.id);document.getElementById(`otherName-${did}`).value='';saveState();renderPrograms();renderSettings();updateGlobalExerciseSelects();renderProgressExerciseOptions()}
 function addExerciseForSelectedBodyPart(pid,did){const name=document.getElementById(`newExName-${did}`).value.trim(),category=document.getElementById(`newExBodyPart-${did}`).value,type=document.getElementById(`newExType-${did}`).value;if(!name)return alert('Enter an exercise name.');const ex={id:uid(),name,category,type,custom:true};state.exercises.push(ex);const day=state.programs.find(p=>p.id===pid)?.days.find(d=>d.id===did);if(day&&!day.exercises.includes(ex.id))day.exercises.push(ex.id);document.getElementById(`newExName-${did}`).value='';saveState();renderPrograms();renderSettings();updateGlobalExerciseSelects();renderProgressExerciseOptions()}
-function duplicateDay(pid,did){const program=state.programs.find(p=>p.id===pid);const day=program?.days.find(d=>d.id===did);if(!day)return;const copy=JSON.parse(JSON.stringify(day));copy.id=uid();copy.name=`${day.name} Copy`;program.days.unshift(copy);state.ui=state.ui||{collapsedDays:{}};state.ui.collapsedDays=state.ui.collapsedDays||{};state.ui.collapsedDays[copy.id]=false;saveState();renderPrograms();renderHome();setTimeout(()=>{const el=document.getElementById(`day-card-${copy.id}`);if(el) el.scrollIntoView({behavior:'smooth', block:'nearest'});},50)}
-
-function renderDaySummary(day){
-  return `<div class="day-summary"><div><div><strong>${escapeHtml(day.name||'Untitled day')}</strong></div><div class="tiny muted">${day.weekday||'No weekday selected yet'}</div></div><span class="badge">${(Array.isArray(day.exercises)?day.exercises.length:0)} exercises</span></div>`;
-}
+function weekdaySortValue(weekday){const idx=WEEKDAYS.indexOf(weekday);return idx===-1?999:idx;}
 
 function makeButton(text, className, onClick){
   const btn = document.createElement('button');
@@ -114,12 +116,22 @@ function renderDayCard(program, day){
 
   const headerBtns = document.createElement('div');
   headerBtns.className = 'row wrap';
-  headerBtns.appendChild(makeButton('Duplicate', 'inline-btn subtle', () => duplicateDay(program.id, day.id)));
-  headerBtns.appendChild(makeButton('Delete', 'inline-btn danger', () => deleteDay(program.id, day.id)));
+  const toggleBtn = makeButton(isDayCollapsed(day.id) ? '+' : '−', 'accordion-toggle subtle', () => toggleDayCollapsed(day.id));
+  toggleBtn.title = isDayCollapsed(day.id) ? 'Expand day' : 'Collapse day';
+  headerBtns.appendChild(toggleBtn);
+  const duplicateBtn = makeButton('⧉', 'inline-btn subtle', () => duplicateDay(program.id, day.id));
+  duplicateBtn.title = 'Duplicate day';
+  headerBtns.appendChild(duplicateBtn);
+  const deleteBtn = makeButton('🗑️', 'inline-btn danger', () => deleteDay(program.id, day.id));
+  deleteBtn.title = 'Delete day';
+  headerBtns.appendChild(deleteBtn);
 
   header.appendChild(titleWrap);
   header.appendChild(headerBtns);
   card.appendChild(header);
+
+  const content = document.createElement('div');
+  content.className = `accordion-content ${isDayCollapsed(day.id) ? 'collapsed' : ''}`;
 
   const metaGrid = document.createElement('div');
   metaGrid.className = 'grid-2';
@@ -127,6 +139,7 @@ function renderDayCard(program, day){
 
   const nameInput = document.createElement('input');
   nameInput.value = day.name || '';
+  nameInput.placeholder = 'Workout name';
   nameInput.onchange = () => updateDayMeta(program.id, day.id, 'name', nameInput.value);
 
   const weekdaySelect = document.createElement('select');
@@ -136,12 +149,12 @@ function renderDayCard(program, day){
 
   metaGrid.appendChild(nameInput);
   metaGrid.appendChild(weekdaySelect);
-  card.appendChild(metaGrid);
+  content.appendChild(metaGrid);
 
   const label1 = document.createElement('div');
   label1.className = 'section-label';
   label1.textContent = 'Body parts';
-  card.appendChild(label1);
+  content.appendChild(label1);
 
   const bpWrap = document.createElement('div');
   bpWrap.className = 'row wrap';
@@ -152,12 +165,12 @@ function renderDayCard(program, day){
     chip.onclick = (e) => { e.preventDefault(); toggleBodyPart(program.id, day.id, bp); return false; };
     bpWrap.appendChild(chip);
   });
-  card.appendChild(bpWrap);
+  content.appendChild(bpWrap);
 
   const label2 = document.createElement('div');
   label2.className = 'section-label';
   label2.textContent = 'Create exercise for this day';
-  card.appendChild(label2);
+  content.appendChild(label2);
 
   const createGrid1 = document.createElement('div');
   createGrid1.className = 'grid-2';
@@ -175,7 +188,7 @@ function renderDayCard(program, day){
   }
   createGrid1.appendChild(newExName);
   createGrid1.appendChild(newExBodyPart);
-  card.appendChild(createGrid1);
+  content.appendChild(createGrid1);
 
   const createGrid2 = document.createElement('div');
   createGrid2.className = 'grid-2';
@@ -192,12 +205,12 @@ function renderDayCard(program, day){
   const createBtn = makeButton('Create & add', 'subtle', () => addExerciseForSelectedBodyPart(program.id, day.id));
   createGrid2.appendChild(newExType);
   createGrid2.appendChild(createBtn);
-  card.appendChild(createGrid2);
+  content.appendChild(createGrid2);
 
   const label3 = document.createElement('div');
   label3.className = 'section-label';
   label3.textContent = 'Exercises';
-  card.appendChild(label3);
+  content.appendChild(label3);
 
   if(bodyParts.length){
     if(filtered.length){
@@ -209,29 +222,29 @@ function renderDayCard(program, day){
         const btn = makeButton(exercises.includes(ex.id) ? 'Added' : 'Add', `inline-btn ${exercises.includes(ex.id) ? 'primary' : 'subtle'}`, () => toggleExerciseOnDay(program.id, day.id, ex.id));
         row.appendChild(left);
         row.appendChild(btn);
-        card.appendChild(row);
+        content.appendChild(row);
       });
     } else {
       const helper = document.createElement('div');
       helper.className = 'helper';
       helper.textContent = 'No exercises exist yet for the selected body parts.';
-      card.appendChild(helper);
+      content.appendChild(helper);
     }
   } else {
     const helper = document.createElement('div');
     helper.className = 'helper';
     helper.textContent = 'Select one or more body parts above. Then the matching exercises will appear here.';
-    card.appendChild(helper);
+    content.appendChild(helper);
   }
 
   const divider1 = document.createElement('div');
   divider1.className = 'divider';
-  card.appendChild(divider1);
+  content.appendChild(divider1);
 
   const label4 = document.createElement('div');
   label4.className = 'section-label';
   label4.textContent = 'Other / custom exercise';
-  card.appendChild(label4);
+  content.appendChild(label4);
 
   const otherGrid1 = document.createElement('div');
   otherGrid1.className = 'grid-2';
@@ -250,23 +263,23 @@ function renderDayCard(program, day){
   `;
   otherGrid1.appendChild(otherName);
   otherGrid1.appendChild(otherType);
-  card.appendChild(otherGrid1);
+  content.appendChild(otherGrid1);
 
   const otherRow = document.createElement('div');
   otherRow.className = 'row';
   otherRow.style.marginTop = '8px';
   otherRow.appendChild(makeButton('Add custom exercise', 'subtle', () => addInlineOtherExercise(program.id, day.id)));
-  card.appendChild(otherRow);
+  content.appendChild(otherRow);
 
   if(exercises.length){
     const divider2 = document.createElement('div');
     divider2.className = 'divider';
-    card.appendChild(divider2);
+    content.appendChild(divider2);
 
     const label5 = document.createElement('div');
     label5.className = 'section-label';
     label5.textContent = 'Selected exercises';
-    card.appendChild(label5);
+    content.appendChild(label5);
 
     const selectedWrap = document.createElement('div');
     selectedWrap.className = 'row wrap';
@@ -279,8 +292,9 @@ function renderDayCard(program, day){
         selectedWrap.appendChild(span);
       }
     });
-    card.appendChild(selectedWrap);
+    content.appendChild(selectedWrap);
   }
+  card.appendChild(content);
 
   return card;
 }
@@ -308,53 +322,72 @@ function renderPrograms(){
     programInput.value = program.name || '';
     programInput.onchange = () => updateProgramName(program.id, programInput.value);
     headWrap.appendChild(programInput);
+    const programToggleBtn = makeButton(isProgramCollapsed(program.id) ? '+' : '−', 'accordion-toggle subtle', () => toggleProgramCollapsed(program.id));
+    programToggleBtn.title = isProgramCollapsed(program.id) ? 'Expand program' : 'Collapse program';
     head.appendChild(headWrap);
+    head.appendChild(programToggleBtn);
     card.appendChild(head);
+
+    const programContent = document.createElement('div');
+    programContent.className = `accordion-content ${isProgramCollapsed(program.id) ? 'collapsed' : ''}`;
 
     const btnRow = document.createElement('div');
     btnRow.className = 'row wrap';
     btnRow.style.marginTop = '8px';
     btnRow.appendChild(makeButton(state.activeProgram===program.id ? 'Active program' : 'Set active', `inline-btn ${state.activeProgram===program.id ? 'primary' : 'subtle'}`, () => setActiveProgram(program.id)));
     btnRow.appendChild(makeButton('Delete program', 'inline-btn danger', () => deleteProgram(program.id)));
-    card.appendChild(btnRow);
+    programContent.appendChild(btnRow);
 
     const addLabel = document.createElement('div');
     addLabel.className = 'section-label';
     addLabel.textContent = 'Add day';
-    card.appendChild(addLabel);
+    programContent.appendChild(addLabel);
 
     const addGrid = document.createElement('div');
     addGrid.className = 'grid-2';
     const dayName = document.createElement('input');
     dayName.id = `dayName-${program.id}`;
     dayName.placeholder = 'Day name';
-    const dayWeekday = document.createElement('select');
-    dayWeekday.id = `dayWeekday-${program.id}`;
-    dayWeekday.innerHTML = `
-      <option value="">Weekday</option>
-      <option>Monday</option><option>Tuesday</option><option>Wednesday</option>
-      <option>Thursday</option><option>Friday</option><option>Saturday</option><option>Sunday</option>
-    `;
     addGrid.appendChild(dayName);
-    addGrid.appendChild(dayWeekday);
-    card.appendChild(addGrid);
+    const weekdayHint = document.createElement('div');
+    weekdayHint.className = 'helper';
+    weekdayHint.textContent = 'Select one or more weekdays (optional):';
+    addGrid.appendChild(weekdayHint);
+    programContent.appendChild(addGrid);
+
+    const weekdayWrap = document.createElement('div');
+    weekdayWrap.className = 'row wrap';
+    weekdayWrap.style.marginTop = '8px';
+    const selectedWeekdays = getSelectedNewDayWeekdays(program.id);
+    WEEKDAYS.forEach(weekday => {
+      const chip = document.createElement('button');
+      chip.className = `chip ${selectedWeekdays.includes(weekday) ? 'active' : ''}`;
+      chip.textContent = weekday.slice(0,3);
+      chip.title = weekday;
+      chip.onclick = (e) => { e.preventDefault(); toggleNewDayWeekday(program.id, weekday); return false; };
+      weekdayWrap.appendChild(chip);
+    });
+    programContent.appendChild(weekdayWrap);
 
     const addRow = document.createElement('div');
     addRow.className = 'row';
     addRow.style.marginTop = '8px';
     addRow.appendChild(makeButton('Add day', 'primary', () => addDay(program.id)));
-    card.appendChild(addRow);
+    programContent.appendChild(addRow);
 
     if((program.days||[]).length){
       const daysLabel = document.createElement('div');
       daysLabel.className = 'section-label';
       daysLabel.textContent = 'Days';
-      card.appendChild(daysLabel);
+      programContent.appendChild(daysLabel);
 
-      (program.days || []).forEach(day => {
-        card.appendChild(renderDayCard(program, day));
+      const sortedDays=[...(program.days||[])].sort((a,b)=>weekdaySortValue(a.weekday)-weekdaySortValue(b.weekday)||String(a.name||'').localeCompare(String(b.name||'')));
+      sortedDays.forEach(day => {
+        programContent.appendChild(renderDayCard(program, day));
       });
     }
+
+    card.appendChild(programContent);
 
     root.appendChild(card);
   });
