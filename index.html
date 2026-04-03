@@ -318,20 +318,26 @@ function renderPrograms(){
     programInput.value = program.name || '';
     programInput.onchange = () => updateProgramName(program.id, programInput.value);
     headWrap.appendChild(programInput);
+    const programToggleBtn = makeButton(isProgramCollapsed(program.id) ? '+' : '−', 'accordion-toggle subtle', () => toggleProgramCollapsed(program.id));
+    programToggleBtn.title = isProgramCollapsed(program.id) ? 'Expand program' : 'Collapse program';
     head.appendChild(headWrap);
+    head.appendChild(programToggleBtn);
     card.appendChild(head);
+
+    const programContent = document.createElement('div');
+    programContent.className = `accordion-content ${isProgramCollapsed(program.id) ? 'collapsed' : ''}`;
 
     const btnRow = document.createElement('div');
     btnRow.className = 'row wrap';
     btnRow.style.marginTop = '8px';
     btnRow.appendChild(makeButton(state.activeProgram===program.id ? 'Active program' : 'Set active', `inline-btn ${state.activeProgram===program.id ? 'primary' : 'subtle'}`, () => setActiveProgram(program.id)));
     btnRow.appendChild(makeButton('Delete program', 'inline-btn danger', () => deleteProgram(program.id)));
-    card.appendChild(btnRow);
+    programContent.appendChild(btnRow);
 
     const addLabel = document.createElement('div');
     addLabel.className = 'section-label';
     addLabel.textContent = 'Add day';
-    card.appendChild(addLabel);
+    programContent.appendChild(addLabel);
 
     const addGrid = document.createElement('div');
     addGrid.className = 'grid-2';
@@ -363,19 +369,21 @@ function renderPrograms(){
     addRow.className = 'row';
     addRow.style.marginTop = '8px';
     addRow.appendChild(makeButton('Add day', 'primary', () => addDay(program.id)));
-    card.appendChild(addRow);
+    programContent.appendChild(addRow);
 
     if((program.days||[]).length){
       const daysLabel = document.createElement('div');
       daysLabel.className = 'section-label';
       daysLabel.textContent = 'Days';
-      card.appendChild(daysLabel);
+      programContent.appendChild(daysLabel);
 
       const sortedDays=[...(program.days||[])].sort((a,b)=>weekdaySortValue(a.weekday)-weekdaySortValue(b.weekday)||String(a.name||'').localeCompare(String(b.name||'')));
       sortedDays.forEach(day => {
         card.appendChild(renderDayCard(program, day));
       });
     }
+
+    card.appendChild(programContent);
 
     root.appendChild(card);
   });
