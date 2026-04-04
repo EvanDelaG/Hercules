@@ -163,7 +163,10 @@ function renderDayCard(program, day){
     .map(w => `<option value="${w}" ${day.weekday===w?'selected':''}>${w}</option>`).join('');
   weekdaySelect.onchange = () => updateDayMeta(program.id, day.id, 'weekday', weekdaySelect.value);
 
-  metaGrid.appendChild(nameInput);
+  const spacer = document.createElement('div');
+  spacer.className = 'helper';
+  spacer.textContent = 'Weekday assignment';
+  metaGrid.appendChild(spacer);
   metaGrid.appendChild(weekdaySelect);
   content.appendChild(metaGrid);
 
