@@ -144,13 +144,18 @@ function renderDayCard(program, day){
   const content = document.createElement('div');
   content.className = `accordion-content ${isDayCollapsed(day.id) ? 'collapsed' : ''}`;
 
+  const nameLabel = document.createElement('div');
+  nameLabel.className = 'section-label';
+  nameLabel.textContent = 'Day name';
+  content.appendChild(nameLabel);
+
   const metaGrid = document.createElement('div');
   metaGrid.className = 'grid-2';
   metaGrid.style.marginTop = '10px';
 
   const nameInput = document.createElement('input');
   nameInput.value = day.name || '';
-  nameInput.placeholder = 'Workout name';
+  nameInput.placeholder = 'Edit day name';
   nameInput.oninput = () => updateDayMeta(program.id, day.id, 'name', nameInput.value);
 
   const weekdaySelect = document.createElement('select');
