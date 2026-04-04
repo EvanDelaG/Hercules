@@ -18,7 +18,7 @@
     .metric{padding:12px;border-radius:18px;background:linear-gradient(180deg,var(--panel-2),var(--panel));border:1px solid var(--line)}.metric .k{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.7px;font-weight:700}.metric .v{font-size:22px;font-weight:900;margin:4px 0 2px}.metric .s{font-size:12px;color:var(--muted)}
     .muted{color:var(--muted)}.small{font-size:12px}.tiny{font-size:11px}.pill{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border-radius:999px;background:var(--panel-2);border:1px solid var(--line);font-size:12px;color:var(--muted)}.badge{display:inline-flex;align-items:center;gap:6px;padding:5px 9px;border-radius:999px;font-size:11px;font-weight:700;background:var(--accent-soft);color:var(--accent-2);border:1px solid rgba(255,255,255,.08)}
     input,select,textarea,button{width:100%;min-height:46px;border-radius:14px;border:1px solid var(--line);background:var(--panel-2);color:var(--text);padding:11px 12px;font:inherit;outline:none} textarea{min-height:84px;resize:vertical} input:focus,select:focus,textarea:focus{border-color:var(--accent)} button{font-weight:800} button.primary{border:none;color:#07201b;background:linear-gradient(180deg,var(--accent-2),var(--accent))} button.subtle{background:var(--panel-3)} button.ghost{background:transparent} button.danger{border:none;background:linear-gradient(180deg,var(--danger-2),var(--danger));color:white}.inline-btn{width:auto;min-height:38px;padding:8px 12px;border-radius:12px}
-    .tabs{position:fixed;left:0;right:0;bottom:0;max-width:430px;margin:0 auto;z-index:50;display:grid;grid-template-columns:repeat(6,1fr);background:rgba(10,17,25,.93);backdrop-filter:blur(14px);border-top:1px solid var(--line)} .tab{padding:8px 2px;text-align:center;color:var(--muted);font-size:11px;min-height:68px;cursor:pointer}.tab.active{color:var(--accent-2);font-weight:900}.tab .icon{display:block;font-size:20px;margin-bottom:2px}
+    .tabs{position:fixed;left:0;right:0;bottom:0;max-width:430px;margin:0 auto;z-index:50;display:grid;grid-template-columns:repeat(5,1fr);background:rgba(10,17,25,.93);backdrop-filter:blur(14px);border-top:1px solid var(--line)} .tab{padding:8px 2px;text-align:center;color:var(--muted);font-size:11px;min-height:68px;cursor:pointer}.tab.active{color:var(--accent-2);font-weight:900}.tab .icon{display:block;font-size:20px;margin-bottom:2px}
     .program-card{padding:14px;border-radius:20px;background:linear-gradient(180deg,var(--panel-2),var(--panel));border:1px solid var(--line);margin:10px 0}.day-card{padding:12px;border-radius:16px;background:rgba(255,255,255,.02);border:1px solid var(--line);margin-top:10px}.accordion-header{display:flex;align-items:center;gap:8px}.accordion-toggle{width:38px;min-width:38px;min-height:38px;padding:0;border-radius:12px;font-size:20px;line-height:1}.accordion-content{margin-top:8px}.accordion-content.collapsed{display:none}.chip{display:inline-flex;align-items:center;justify-content:center;min-height:40px;width:auto;padding:8px 12px;border-radius:999px;background:var(--panel-2);border:1px solid var(--line);color:var(--text);font-size:13px;cursor:pointer}.chip.active{background:var(--accent-soft);color:var(--accent-2)}
     .exercise-choice{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 0;border-top:1px solid var(--line)}.exercise-choice:first-child{border-top:none}.exercise-block{padding:12px;border-radius:18px;border:1px solid var(--line);background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,.01));margin:10px 0}.set-row{display:grid;grid-template-columns:42px 1fr 1fr auto;gap:6px;align-items:center;margin:8px 0}.set-row.bodyweight{grid-template-columns:42px 1fr auto}.set-row.cardio{grid-template-columns:42px 1fr 1fr auto}.set-row.timed{grid-template-columns:42px 1fr auto}.warmup{opacity:.65}.set-complete input{border-color:var(--accent)}.complete-btn.done{background:linear-gradient(180deg,var(--accent-2),var(--accent));color:#07201b;border:none}
     .rest-banner{display:none;position:sticky;top:0;z-index:30;margin:8px 0;background:linear-gradient(180deg,var(--accent-2),var(--accent));color:#08211b;padding:12px;border-radius:16px;font-weight:900;box-shadow:var(--shadow)}.rest-banner.show{display:block}.session-card{padding:12px 0;border-top:1px solid var(--line)}.session-card:first-child{border-top:none}.day-summary{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 12px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.02);margin-top:8px}.day-list{margin-top:8px}.native-details{margin-top:10px;border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.02);padding:0}.native-details>summary{list-style:none;cursor:pointer;padding:12px 14px;font-weight:700}.native-details>summary::-webkit-details-marker{display:none}.native-details .details-body{padding:0 14px 14px}canvas{width:100%!important;height:260px!important}.helper{font-size:13px;color:var(--muted);line-height:1.45}.divider{height:1px;background:var(--line);margin:10px 0}details summary{cursor:pointer}
@@ -26,17 +26,23 @@
 </head>
 <body>
 <div class="app" id="app" data-theme="dark">
-  <header><div class="brand"><img src="hercules_logo.svg" alt="Hercules logo" onerror="this.style.display='none'"><div><h1>Hercules</h1><div class="sub">Ready-to-ship offline workout tracker • v24</div></div></div></header>
+  <header><div class="brand"><img src="hercules_logo.svg" alt="Hercules logo" onerror="this.style.display='none'"><div><h1>Hercules</h1><div class="sub">Ready-to-ship offline workout tracker • v27.4</div></div></div></header>
   <section class="screen active" id="screen-home">
-    <div class="hero"><div class="hero-kicker">Today’s focus</div><h2 id="heroWorkout">No active program</h2><p id="heroSub">Set up a program, choose today’s body parts, and start logging.</p><div class="row" style="margin-top:14px"><button class="primary" onclick="startTodayWorkout()">Start workout</button></div></div>
+    <div class="hero"><div class="hero-kicker">Today’s focus</div><h2 id="heroWorkout">No active program</h2><p id="heroSub">Set up a program, choose today’s body parts, and start logging.</p><div class="row" style="margin-top:14px"><button id="startWorkoutBtn" class="primary" onclick="startTodayWorkout()">Start workout</button></div></div>
     <div class="summary"><div class="metric"><div class="k">This week</div><div class="v" id="metricWorkouts">0</div><div class="s">workouts</div></div><div class="metric"><div class="k">Volume</div><div class="v" id="metricVolume">0</div><div class="s">kg</div></div><div class="metric"><div class="k">Recent PRs</div><div class="v" id="metricPRs">0</div><div class="s">hits</div></div></div>
     <div class="card"><div class="row between"><h3>Quick status</h3><span class="badge" id="activeProgramBadge">No active program</span></div><div class="helper" id="homeStatus">Create a program and assign a day to today’s weekday to get going.</div></div>
+    <div id="homeWorkoutFlow" style="display:none">
+      <div class="rest-banner" id="restBanner"></div>
+      <div class="card"><div class="row between"><div><h3 id="loggerTitle">Workout Logger</h3><div class="small muted" id="loggerSubtitle">Log your sets clearly and fast.</div></div><span class="pill" id="elapsedPill">00:00</span></div><textarea id="sessionNotes" placeholder="Session notes"></textarea></div>
+      <div id="loggerExercises"></div>
+      <div class="card"><h3>Add extra exercise</h3><select id="extraExerciseSelect"></select><div class="row" style="margin-top:8px"><button class="subtle" onclick="addExtraExercise()">Add to workout</button></div></div>
+      <div class="row"><button class="primary" onclick="finishWorkout()">Finish workout</button></div>
+    </div>
   </section>
   <section class="screen" id="screen-programs"><div class="card"><h3>Create program</h3><input id="newProgramName" placeholder="Program name, e.g. Monday or Upper A"><div class="row" style="margin-top:8px"><button id="createProgramBtn" class="primary" onclick="createProgram(); return false;">Create program</button></div></div><div class="card"><div class="row between"><h3>Your programs</h3><span class="pill" id="programCount">0</span></div><div id="programList"></div></div></section>
-  <section class="screen" id="screen-logger"><div class="rest-banner" id="restBanner"></div><div class="card"><div class="row between"><div><h3 id="loggerTitle">Workout Logger</h3><div class="small muted" id="loggerSubtitle">Log your sets clearly and fast.</div></div><span class="pill" id="elapsedPill">00:00</span></div><textarea id="sessionNotes" placeholder="Session notes"></textarea></div><div id="loggerExercises"></div><div class="card"><h3>Add extra exercise</h3><select id="extraExerciseSelect"></select><div class="row" style="margin-top:8px"><button class="subtle" onclick="addExtraExercise()">Add to workout</button></div></div><div class="row"><button class="primary" onclick="finishWorkout()">Finish workout</button></div></section>
   <section class="screen" id="screen-progress"><div class="card"><h3>Progress</h3><select id="progressExerciseSelect" onchange="renderProgress()"></select><div class="helper" style="margin-top:8px">Tap a chart point to view the related session details.</div></div><div class="card"><canvas id="progressChart"></canvas></div><div class="card" id="progressInfo"></div></section>
   <section class="screen" id="screen-history"><div class="card"><div class="row between"><h3>History</h3><span class="pill" id="historyCount">0 sessions</span></div><div id="historyList"></div></div></section>
-  <section class="screen" id="screen-settings"><div class="card"><h3>Theme</h3><select id="themeSelect" onchange="changeTheme()"><option value="dark">Dark</option><option value="light">Light</option><option value="midnight">Midnight Blue</option><option value="forest">Forest Green</option></select></div><div class="card"><h3>Rest timer</h3><select id="restDefaultSelect" onchange="saveSettings()"><option value="30">30 seconds</option><option value="60">60 seconds</option><option value="90">90 seconds</option><option value="120">120 seconds</option><option value="180">180 seconds</option></select></div><div class="card"><h3>Exercise library</h3><div class="grid-2"><input id="customExerciseName" placeholder="Exercise name"><select id="customExerciseType"><option value="weighted">Weighted</option><option value="bodyweight">Bodyweight</option><option value="cardio">Cardio</option><option value="timed">Timed hold</option></select></div><div class="grid-2" style="margin-top:8px"><select id="customExerciseCategory"><option>Chest</option><option>Back</option><option>Legs</option><option>Shoulders</option><option>Arms</option><option>Core</option><option>Cardio</option><option>Other</option></select><button class="primary" onclick="addCustomExercise()">Add exercise</button></div><div id="exerciseLibraryList" style="margin-top:8px"></div></div><div class="card"><h3>Backup & restore</h3><div class="grid-2"><button class="subtle" onclick="exportJSON()">Export JSON</button><button class="subtle" onclick="document.getElementById('importJsonInput').click()">Import JSON</button></div><input id="importJsonInput" type="file" accept=".json,application/json" style="display:none" onchange="importJSON(event)"><div class="row" style="margin-top:8px"><button class="danger" onclick="clearAllData()">Clear all data</button></div></div><div class="card"><h3>App version</h3><div class="small muted">Current build: <strong>v24</strong></div></div><div class="card"><h3>Storage usage</h3><div class="small muted">Approximate browser storage used by this app on this device.</div><div class="row between" style="margin-top:10px"><div><div id="storageUsedText" style="font-weight:800;font-size:22px">0 KB</div><div class="tiny muted" id="storagePercentText">0% of 5 MB estimate</div></div><button class="inline-btn subtle" onclick="renderStorageUsage()">Refresh</button></div><div style="margin-top:10px;height:12px;border-radius:999px;background:var(--panel-3);border:1px solid var(--line);overflow:hidden"><div id="storageBar" style="height:100%;width:0%;background:linear-gradient(180deg,var(--accent-2),var(--accent));border-radius:999px"></div></div></div><div class="card"><h3>View JSON</h3><div class="small muted">See the current saved data directly in the app.</div><div class="row wrap" style="margin-top:8px"><button class="inline-btn subtle" onclick="renderJsonView()">Refresh JSON</button></div><textarea id="jsonViewBox" readonly style="margin-top:8px;min-height:220px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace"></textarea></div></section>
+  <section class="screen" id="screen-settings"><div class="card"><h3>Theme</h3><select id="themeSelect" onchange="changeTheme()"><option value="dark">Dark</option><option value="light">Light</option><option value="midnight">Midnight Blue</option><option value="forest">Forest Green</option></select></div><div class="card"><h3>Rest timer</h3><select id="restDefaultSelect" onchange="saveSettings()"><option value="30">30 seconds</option><option value="60">60 seconds</option><option value="90">90 seconds</option><option value="120">120 seconds</option><option value="180">180 seconds</option></select></div><div class="card"><h3>Exercise library</h3><div class="grid-2"><input id="customExerciseName" placeholder="Exercise name"><select id="customExerciseType"><option value="weighted">Weighted</option><option value="bodyweight">Bodyweight</option><option value="cardio">Cardio</option><option value="timed">Timed hold</option></select></div><div class="grid-2" style="margin-top:8px"><select id="customExerciseCategory"><option>Chest</option><option>Back</option><option>Legs</option><option>Shoulders</option><option>Arms</option><option>Core</option><option>Cardio</option><option>Other</option></select><button class="primary" onclick="addCustomExercise()">Add exercise</button></div><div id="exerciseLibraryList" style="margin-top:8px"></div></div><div class="card"><h3>Backup & restore</h3><div class="grid-2"><button class="subtle" onclick="exportJSON()">Export JSON</button><button class="subtle" onclick="document.getElementById('importJsonInput').click()">Import JSON</button></div><input id="importJsonInput" type="file" accept=".json,application/json" style="display:none" onchange="importJSON(event)"><div class="row" style="margin-top:8px"><button class="danger" onclick="clearAllData()">Clear all data</button></div></div><div class="card"><h3>App version</h3><div class="small muted">Current build: <strong>v27.4</strong></div></div><div class="card"><h3>Storage usage</h3><div class="small muted">Approximate browser storage used by this app on this device.</div><div class="row between" style="margin-top:10px"><div><div id="storageUsedText" style="font-weight:800;font-size:22px">0 KB</div><div class="tiny muted" id="storagePercentText">0% of 5 MB estimate</div></div><button class="inline-btn subtle" onclick="renderStorageUsage()">Refresh</button></div><div style="margin-top:10px;height:12px;border-radius:999px;background:var(--panel-3);border:1px solid var(--line);overflow:hidden"><div id="storageBar" style="height:100%;width:0%;background:linear-gradient(180deg,var(--accent-2),var(--accent));border-radius:999px"></div></div></div><div class="card"><h3>View JSON</h3><div class="small muted">See the current saved data directly in the app.</div><div class="row wrap" style="margin-top:8px"><button class="inline-btn subtle" onclick="renderJsonView()">Refresh JSON</button></div><textarea id="jsonViewBox" readonly style="margin-top:8px;min-height:220px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace"></textarea></div></section>
 
   <section class="screen" id="screen-edit-session">
     <div class="card">
@@ -55,39 +61,46 @@
     </div>
   </section>
 
-  <nav class="tabs"><div class="tab active" onclick="showScreen('home', this)"><span class="icon">🏠</span>Home</div><div class="tab" onclick="showScreen('programs', this)"><span class="icon">📋</span>Programs</div><div class="tab" onclick="showScreen('logger', this)"><span class="icon">🏋️</span>Logger</div><div class="tab" onclick="showScreen('progress', this)"><span class="icon">📈</span>Progress</div><div class="tab" onclick="showScreen('history', this)"><span class="icon">🕘</span>History</div><div class="tab" onclick="showScreen('settings', this)"><span class="icon">⚙️</span>Settings</div></nav>
+  <nav class="tabs"><div class="tab active" onclick="showScreen('home', this)"><span class="icon">🏠</span>Home</div><div class="tab" onclick="showScreen('programs', this)"><span class="icon">📋</span>Programs</div><div class="tab" onclick="showScreen('progress', this)"><span class="icon">📈</span>Progress</div><div class="tab" onclick="showScreen('history', this)"><span class="icon">🕘</span>History</div><div class="tab" onclick="showScreen('settings', this)"><span class="icon">⚙️</span>Settings</div></nav>
 </div>
 <script>
-const STORAGE_KEYS={exercises:'gym_exercises',programs:'gym_programs',sessions:'gym_sessions',settings:'gym_settings',activeProgram:'gym_active_program'},BODY_PARTS=['Chest','Back','Legs','Shoulders','Arms','Core','Cardio','Other'],DEFAULT_EXERCISES=[{name:'Bench Press',category:'Chest',type:'weighted'},{name:'Incline Bench Press',category:'Chest',type:'weighted'},{name:'Cable Fly',category:'Chest',type:'weighted'},{name:'Push-ups',category:'Chest',type:'bodyweight'},{name:'Dips',category:'Chest',type:'bodyweight'},{name:'Deadlift',category:'Back',type:'weighted'},{name:'Barbell Row',category:'Back',type:'weighted'},{name:'Cable Row',category:'Back',type:'weighted'},{name:'Lat Pulldown',category:'Back',type:'weighted'},{name:'Pull-ups',category:'Back',type:'bodyweight'},{name:'Inverted Row',category:'Back',type:'bodyweight'},{name:'Squat',category:'Legs',type:'weighted'},{name:'Romanian Deadlift',category:'Legs',type:'weighted'},{name:'Leg Press',category:'Legs',type:'weighted'},{name:'Walking Lunges',category:'Legs',type:'weighted'},{name:'Leg Extension',category:'Legs',type:'weighted'},{name:'Hamstring Curl',category:'Legs',type:'weighted'},{name:'Calf Raise',category:'Legs',type:'weighted'},{name:'Overhead Press',category:'Shoulders',type:'weighted'},{name:'Dumbbell Lateral Raise',category:'Shoulders',type:'weighted'},{name:'Rear Delt Fly',category:'Shoulders',type:'weighted'},{name:'Arnold Press',category:'Shoulders',type:'weighted'},{name:'Dumbbell Curl',category:'Arms',type:'weighted'},{name:'Hammer Curl',category:'Arms',type:'weighted'},{name:'Tricep Pushdown',category:'Arms',type:'weighted'},{name:'Skullcrusher',category:'Arms',type:'weighted'},{name:'Close-Grip Bench Press',category:'Arms',type:'weighted'},{name:'Plank',category:'Core',type:'timed'},{name:'Hanging Leg Raise',category:'Core',type:'bodyweight'},{name:'Cable Crunch',category:'Core',type:'weighted'},{name:'Russian Twist',category:'Core',type:'bodyweight'},{name:'Running',category:'Cardio',type:'cardio'},{name:'Cycling',category:'Cardio',type:'cardio'},{name:'Rowing',category:'Cardio',type:'cardio'},{name:'Assault Bike',category:'Cardio',type:'cardio'}];
+const STORAGE_KEYS={exercises:'gym_exercises',programs:'gym_programs',sessions:'gym_sessions',settings:'gym_settings',activeProgram:'gym_active_program',activeWorkout:'gym_active_workout'},BODY_PARTS=['Chest','Back','Legs','Shoulders','Arms','Core','Cardio','Other'],DEFAULT_EXERCISES=[{name:'Bench Press',category:'Chest',type:'weighted'},{name:'Incline Bench Press',category:'Chest',type:'weighted'},{name:'Cable Fly',category:'Chest',type:'weighted'},{name:'Push-ups',category:'Chest',type:'bodyweight'},{name:'Dips',category:'Chest',type:'bodyweight'},{name:'Deadlift',category:'Back',type:'weighted'},{name:'Barbell Row',category:'Back',type:'weighted'},{name:'Cable Row',category:'Back',type:'weighted'},{name:'Lat Pulldown',category:'Back',type:'weighted'},{name:'Pull-ups',category:'Back',type:'bodyweight'},{name:'Inverted Row',category:'Back',type:'bodyweight'},{name:'Squat',category:'Legs',type:'weighted'},{name:'Romanian Deadlift',category:'Legs',type:'weighted'},{name:'Leg Press',category:'Legs',type:'weighted'},{name:'Walking Lunges',category:'Legs',type:'weighted'},{name:'Leg Extension',category:'Legs',type:'weighted'},{name:'Hamstring Curl',category:'Legs',type:'weighted'},{name:'Calf Raise',category:'Legs',type:'weighted'},{name:'Overhead Press',category:'Shoulders',type:'weighted'},{name:'Dumbbell Lateral Raise',category:'Shoulders',type:'weighted'},{name:'Rear Delt Fly',category:'Shoulders',type:'weighted'},{name:'Arnold Press',category:'Shoulders',type:'weighted'},{name:'Dumbbell Curl',category:'Arms',type:'weighted'},{name:'Hammer Curl',category:'Arms',type:'weighted'},{name:'Tricep Pushdown',category:'Arms',type:'weighted'},{name:'Skullcrusher',category:'Arms',type:'weighted'},{name:'Close-Grip Bench Press',category:'Arms',type:'weighted'},{name:'Plank',category:'Core',type:'timed'},{name:'Hanging Leg Raise',category:'Core',type:'bodyweight'},{name:'Cable Crunch',category:'Core',type:'weighted'},{name:'Russian Twist',category:'Core',type:'bodyweight'},{name:'Running',category:'Cardio',type:'cardio'},{name:'Cycling',category:'Cardio',type:'cardio'},{name:'Rowing',category:'Cardio',type:'cardio'},{name:'Assault Bike',category:'Cardio',type:'cardio'}];
 let state={},currentWorkout=null,workoutTimer=null,restTimer=null,progressChart=null;
+const WEEKDAYS=['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'];
 const escapeHtml=(s='')=>s.replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m])),uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,8),formatExerciseType=t=>({weighted:'Weighted',bodyweight:'Bodyweight',cardio:'Cardio',timed:'Timed hold'})[t]||t;
 function saveState(){localStorage.setItem(STORAGE_KEYS.exercises,JSON.stringify(state.exercises));localStorage.setItem(STORAGE_KEYS.programs,JSON.stringify(state.programs));localStorage.setItem(STORAGE_KEYS.sessions,JSON.stringify(state.sessions));localStorage.setItem(STORAGE_KEYS.settings,JSON.stringify(state.settings));localStorage.setItem(STORAGE_KEYS.activeProgram,state.activeProgram||'')}
-function loadState(){const safeParse=(key,fallback)=>{try{const raw=localStorage.getItem(key);if(raw===null)return fallback;const parsed=JSON.parse(raw);return parsed??fallback}catch{return fallback}};const defaultExercises=DEFAULT_EXERCISES.map(e=>({...e,id:uid(),custom:false}));const parsedExercises=safeParse(STORAGE_KEYS.exercises,null);state.exercises=Array.isArray(parsedExercises)?parsedExercises.filter(ex=>ex&&typeof ex==='object').map(ex=>({...ex,id:ex.id||uid(),name:typeof ex.name==='string'?ex.name:'Unnamed exercise',category:typeof ex.category==='string'?ex.category:'Other',type:typeof ex.type==='string'?ex.type:'weighted',custom:!!ex.custom})):defaultExercises;if(!state.exercises.length)state.exercises=defaultExercises;state.programs=safeParse(STORAGE_KEYS.programs,[]);state.sessions=safeParse(STORAGE_KEYS.sessions,[]);state.settings=safeParse(STORAGE_KEYS.settings,{theme:'dark',restDefault:90});state.activeProgram=localStorage.getItem(STORAGE_KEYS.activeProgram)||'';state.programs=Array.isArray(state.programs)?state.programs.filter(program=>program&&typeof program==='object').map(program=>({...program,id:program.id||uid(),name:typeof program.name==='string'&&program.name.trim()?program.name:'Untitled program',days:Array.isArray(program.days)?program.days.filter(day=>day&&typeof day==='object').map(day=>({id:day.id||uid(),name:typeof day.name==='string'&&day.name.trim()?day.name:'Untitled day',weekday:typeof day.weekday==='string'?day.weekday:'',bodyParts:Array.isArray(day.bodyParts)?day.bodyParts.filter(bp=>typeof bp==='string'):[],exercises:Array.isArray(day.exercises)?day.exercises.filter(exId=>typeof exId==='string'):[]})):[]})):[];state.sessions=Array.isArray(state.sessions)?state.sessions:[];state.settings=(state.settings&&typeof state.settings==='object')?state.settings:{theme:'dark',restDefault:90};if(!['dark','light','midnight','forest'].includes(state.settings.theme))state.settings.theme='dark';state.settings.restDefault=Number(state.settings.restDefault)||90;if(state.programs.length&&!state.programs.find(p=>p.id===state.activeProgram))state.activeProgram=state.programs[0].id;state.ui=state.ui||{collapsedDays:{}};state.ui.collapsedDays=(state.ui.collapsedDays&&typeof state.ui.collapsedDays==='object')?state.ui.collapsedDays:{};state.programs.forEach(program=>{program.days.forEach(day=>{if(typeof state.ui.collapsedDays[day.id]==='undefined')state.ui.collapsedDays[day.id]=true;});});}
+function saveActiveWorkout(){if(currentWorkout)localStorage.setItem(STORAGE_KEYS.activeWorkout,JSON.stringify(currentWorkout));else localStorage.removeItem(STORAGE_KEYS.activeWorkout);}
+function loadState(){const safeParse=(key,fallback)=>{try{const raw=localStorage.getItem(key);if(raw===null)return fallback;const parsed=JSON.parse(raw);return parsed??fallback}catch{return fallback}};const defaultExercises=DEFAULT_EXERCISES.map(e=>({...e,id:uid(),custom:false}));const parsedExercises=safeParse(STORAGE_KEYS.exercises,null);state.exercises=Array.isArray(parsedExercises)?parsedExercises.filter(ex=>ex&&typeof ex==='object').map(ex=>({...ex,id:ex.id||uid(),name:typeof ex.name==='string'?ex.name:'Unnamed exercise',category:typeof ex.category==='string'?ex.category:'Other',type:typeof ex.type==='string'?ex.type:'weighted',custom:!!ex.custom})):defaultExercises;if(!state.exercises.length)state.exercises=defaultExercises;state.programs=safeParse(STORAGE_KEYS.programs,[]);state.sessions=safeParse(STORAGE_KEYS.sessions,[]);state.settings=safeParse(STORAGE_KEYS.settings,{theme:'dark',restDefault:90});state.activeProgram=localStorage.getItem(STORAGE_KEYS.activeProgram)||'';state.programs=Array.isArray(state.programs)?state.programs.filter(program=>program&&typeof program==='object').map(program=>({...program,id:program.id||uid(),name:typeof program.name==='string'&&program.name.trim()?program.name:'Untitled program',days:Array.isArray(program.days)?program.days.filter(day=>day&&typeof day==='object').map(day=>({id:day.id||uid(),name:typeof day.name==='string'&&day.name.trim()?day.name:'Untitled day',weekday:typeof day.weekday==='string'?day.weekday:'',bodyParts:Array.isArray(day.bodyParts)?day.bodyParts.filter(bp=>typeof bp==='string'):[],exercises:Array.isArray(day.exercises)?day.exercises.filter(exId=>typeof exId==='string'):[]})):[]})):[];state.sessions=Array.isArray(state.sessions)?state.sessions:[];state.settings=(state.settings&&typeof state.settings==='object')?state.settings:{theme:'dark',restDefault:90};if(!['dark','light','midnight','forest'].includes(state.settings.theme))state.settings.theme='dark';state.settings.restDefault=Number(state.settings.restDefault)||90;if(state.programs.length&&!state.programs.find(p=>p.id===state.activeProgram))state.activeProgram=state.programs[0].id;state.ui=state.ui||{collapsedDays:{},collapsedPrograms:{},collapsedWorkoutExercises:{},newDayWeekdays:{}};state.ui.collapsedDays=(state.ui.collapsedDays&&typeof state.ui.collapsedDays==='object')?state.ui.collapsedDays:{};state.ui.collapsedPrograms=(state.ui.collapsedPrograms&&typeof state.ui.collapsedPrograms==='object')?state.ui.collapsedPrograms:{};state.ui.collapsedWorkoutExercises=(state.ui.collapsedWorkoutExercises&&typeof state.ui.collapsedWorkoutExercises==='object')?state.ui.collapsedWorkoutExercises:{};state.ui.newDayWeekdays=(state.ui.newDayWeekdays&&typeof state.ui.newDayWeekdays==='object')?state.ui.newDayWeekdays:{};state.programs.forEach(program=>{program.days.forEach(day=>{if(typeof state.ui.collapsedDays[day.id]==='undefined')state.ui.collapsedDays[day.id]=true;});if(typeof state.ui.collapsedPrograms[program.id]==='undefined')state.ui.collapsedPrograms[program.id]=true;if(!Array.isArray(state.ui.newDayWeekdays[program.id]))state.ui.newDayWeekdays[program.id]=[];});const savedWorkout=safeParse(STORAGE_KEYS.activeWorkout,null);if(savedWorkout&&Array.isArray(savedWorkout.exercises)){currentWorkout=savedWorkout;currentWorkout.exercises.forEach(ex=>{if(typeof state.ui.collapsedWorkoutExercises[ex.uid]==='undefined')state.ui.collapsedWorkoutExercises[ex.uid]=true;});}else currentWorkout=null;}
 function isDayCollapsed(dayId){return !!(state.ui&&state.ui.collapsedDays&&state.ui.collapsedDays[dayId]);}
 function toggleDayCollapsed(dayId){state.ui=state.ui||{collapsedDays:{}};state.ui.collapsedDays=state.ui.collapsedDays||{};state.ui.collapsedDays[dayId]=!state.ui.collapsedDays[dayId];renderPrograms();}
-function setDayCollapsed(dayId, collapsed){state.ui=state.ui||{collapsedDays:{}};state.ui.collapsedDays=state.ui.collapsedDays||{};state.ui.collapsedDays[dayId]=collapsed;}
+function isProgramCollapsed(programId){const value=state.ui?.collapsedPrograms?.[programId];return typeof value==='boolean'?value:true;}
+function toggleProgramCollapsed(programId){state.ui=state.ui||{collapsedPrograms:{}};state.ui.collapsedPrograms=state.ui.collapsedPrograms||{};state.ui.collapsedPrograms[programId]=!isProgramCollapsed(programId);renderPrograms();}
+function expandAllPrograms(){state.ui=state.ui||{collapsedPrograms:{}};state.ui.collapsedPrograms=state.ui.collapsedPrograms||{};(state.programs||[]).forEach(program=>{state.ui.collapsedPrograms[program.id]=false;});}
+function isWorkoutExerciseCollapsed(exerciseUid){const value=state.ui?.collapsedWorkoutExercises?.[exerciseUid];return typeof value==='boolean'?value:true;}
+function toggleWorkoutExerciseCollapsed(exerciseUid){state.ui=state.ui||{collapsedWorkoutExercises:{}};state.ui.collapsedWorkoutExercises=state.ui.collapsedWorkoutExercises||{};state.ui.collapsedWorkoutExercises[exerciseUid]=!isWorkoutExerciseCollapsed(exerciseUid);renderLogger();}
+function toggleNewDayWeekday(pid, weekday){state.ui=state.ui||{collapsedDays:{},newDayWeekdays:{}};state.ui.newDayWeekdays=state.ui.newDayWeekdays||{};const selected=Array.isArray(state.ui.newDayWeekdays[pid])?state.ui.newDayWeekdays[pid]:[];state.ui.newDayWeekdays[pid]=selected.includes(weekday)?selected.filter(d=>d!==weekday):[...selected,weekday];renderPrograms();}
+function getSelectedNewDayWeekdays(pid){const selected=state.ui?.newDayWeekdays?.[pid];return Array.isArray(selected)?selected.filter(day=>WEEKDAYS.includes(day)):[];}
 
-function showScreen(name,el){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById('screen-'+name).classList.add('active');document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));if(el)el.classList.add('active');if(name==='home')renderHome();if(name==='programs')renderPrograms();if(name==='progress'){renderProgressExerciseOptions();renderProgress()}if(name==='history')renderHistory();if(name==='settings')renderSettings()}
+function showScreen(name,el){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById('screen-'+name).classList.add('active');document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));if(el)el.classList.add('active');if(name==='home')renderHome();if(name==='programs'){expandAllPrograms();renderPrograms();}if(name==='progress'){renderProgressExerciseOptions();renderProgress()}if(name==='history')renderHistory();if(name==='settings')renderSettings()}
 const getActiveProgram=()=>state.programs.find(p=>p.id===state.activeProgram)||null,getTodayWeekday=()=>['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'][new Date().getDay()],getTodaysDayFromActiveProgram=()=>{const p=getActiveProgram();return !p?null:(p.days||[]).find(d=>d.weekday===getTodayWeekday())||p.days?.[0]||null};
 function calculateWeeklyStats(){const now=new Date(),weekAgo=new Date(now);weekAgo.setDate(now.getDate()-7);const recent=state.sessions.filter(s=>new Date(s.timestamp)>=weekAgo);return{workouts:recent.length,volume:Math.round(recent.reduce((sum,s)=>sum+(s.totalVolume||0),0)),prs:recent.reduce((sum,s)=>sum+(s.prCount||0),0)}}
-function renderHome(){const program=getActiveProgram(),day=getTodaysDayFromActiveProgram(),stats=calculateWeeklyStats();document.getElementById('metricWorkouts').textContent=stats.workouts;document.getElementById('metricVolume').textContent=stats.volume;document.getElementById('metricPRs').textContent=stats.prs;document.getElementById('activeProgramBadge').textContent=program?'Active: '+program.name:'No active program';if(!program){document.getElementById('heroWorkout').textContent='No active program';document.getElementById('heroSub').textContent='Create a program, choose body parts, and start logging.';document.getElementById('homeStatus').textContent='Nothing is active yet. Head to Programs and build your first day.';return}if(!day){document.getElementById('heroWorkout').textContent=program.name;document.getElementById('heroSub').textContent='This program is active, but no day matches today yet.';document.getElementById('homeStatus').textContent='Assign a day to '+getTodayWeekday()+' to make Home smarter.';return}document.getElementById('heroWorkout').textContent=day.name;document.getElementById('heroSub').textContent=`${day.bodyParts.length?day.bodyParts.join(' • '):'General session'} • ${day.exercises.length} exercises`;document.getElementById('homeStatus').textContent=`${program.name} is active. Today is set to ${day.name}.`}
+function updateHomeWorkoutVisibility(){const flow=document.getElementById('homeWorkoutFlow');const startBtn=document.getElementById('startWorkoutBtn');if(flow)flow.style.display=currentWorkout?'block':'none';if(startBtn)startBtn.style.display=currentWorkout?'none':'block';}
+function renderHome(){const program=getActiveProgram(),day=getTodaysDayFromActiveProgram(),stats=calculateWeeklyStats();document.getElementById('metricWorkouts').textContent=stats.workouts;document.getElementById('metricVolume').textContent=stats.volume;document.getElementById('metricPRs').textContent=stats.prs;document.getElementById('activeProgramBadge').textContent=program?'Active: '+program.name:'No active program';updateHomeWorkoutVisibility();if(!program){document.getElementById('heroWorkout').textContent='No active program';document.getElementById('heroSub').textContent='Create a program, choose body parts, and start logging.';document.getElementById('homeStatus').textContent='Nothing is active yet. Head to Programs and build your first day.';return}if(!day){document.getElementById('heroWorkout').textContent=program.name;document.getElementById('heroSub').textContent='This program is active, but no day matches today yet.';document.getElementById('homeStatus').textContent='Assign a day to '+getTodayWeekday()+' to make Home smarter.';return}document.getElementById('heroWorkout').textContent=day.name;document.getElementById('heroSub').textContent=`${day.bodyParts.length?day.bodyParts.join(' • '):'General session'} • ${day.exercises.length} exercises`;document.getElementById('homeStatus').textContent=`${program.name} is active. Today is set to ${day.name}.`}
 function createProgram(){const input=document.getElementById('newProgramName');if(!input){alert('Program input not found.');return false;}const name=(input.value||'').trim();if(!name){alert('Please enter a program name.');return false;}state.programs=Array.isArray(state.programs)?state.programs:[];const p={id:uid(),name,days:[]};state.programs.push(p);if(!state.activeProgram)state.activeProgram=p.id;input.value='';saveState();try{renderPrograms();}catch(err){console.error('renderPrograms failed after createProgram',err);}try{renderHome();}catch(err){console.error('renderHome failed after createProgram',err);}return true;}
 function updateProgramName(pid,name){const p=state.programs.find(x=>x.id===pid);if(!p)return;p.name=name.trim()||p.name;saveState();renderPrograms();renderHome()}
 function setActiveProgram(pid){state.activeProgram=pid;saveState();renderPrograms();renderHome()}
 function deleteProgram(pid){const p=state.programs.find(x=>x.id===pid);if(!p||!confirm(`Delete program "${p.name}"?`))return;state.programs=state.programs.filter(x=>x.id!==pid);if(state.activeProgram===pid)state.activeProgram=state.programs[0]?.id||'';saveState();renderPrograms();renderHome()}
-function addDay(pid){const nameInput=document.getElementById(`dayName-${pid}`);const weekdayInput=document.getElementById(`dayWeekday-${pid}`);if(!nameInput){console.error('Day name input not found for program',pid);alert('Day field could not be found.');return false;}const name=(nameInput.value||'').trim();const weekday=weekdayInput?weekdayInput.value:'';if(!name){alert('Please enter a day name.');return false;}const p=(state.programs||[]).find(x=>x.id===pid);if(!p){console.error('Program not found for addDay',pid);alert('Program could not be found.');return false;}const newDay={id:uid(),name,weekday,bodyParts:[],exercises:[]};p.days=Array.isArray(p.days)?p.days:[];p.days.unshift(newDay);state.ui=state.ui||{collapsedDays:{}};state.ui.collapsedDays=state.ui.collapsedDays||{};state.ui.collapsedDays[newDay.id]=false;nameInput.value='';if(weekdayInput) weekdayInput.value='';saveState();renderPrograms();renderHome();setTimeout(()=>{const el=document.getElementById(`day-card-${newDay.id}`);if(el) el.scrollIntoView({behavior:'smooth', block:'nearest'});},50);return false;}
-function deleteDay(pid,did){const p=state.programs.find(x=>x.id===pid),day=p?.days.find(d=>d.id===did);if(!day||!confirm(`Delete day "${day.name}"?`))return;p.days=p.days.filter(d=>d.id!==did);saveState();renderPrograms();renderHome()}
-function updateDayMeta(pid,did,field,value){const day=state.programs.find(p=>p.id===pid)?.days.find(d=>d.id===did);if(!day)return;day[field]=value;saveState();if(field==='weekday'||field==='name')renderHome()}
+function sortProgramDays(program){program.days=[...(program.days||[])].sort((a,b)=>weekdaySortValue(a.weekday)-weekdaySortValue(b.weekday)||String(a.name||'').localeCompare(String(b.name||'')));}
+function addDay(pid){const nameInput=document.getElementById(`dayName-${pid}`);if(!nameInput){console.error('Day name input not found for program',pid);alert('Day field could not be found.');return false;}const name=(nameInput.value||'').trim();if(!name){alert('Please enter a day name.');return false;}const p=(state.programs||[]).find(x=>x.id===pid);if(!p){console.error('Program not found for addDay',pid);alert('Program could not be found.');return false;}const selectedWeekdays=getSelectedNewDayWeekdays(pid);const weekdaysToCreate=selectedWeekdays.length?selectedWeekdays:[''];const template={name,bodyParts:[],exercises:[]};const newDays=weekdaysToCreate.map(weekday=>({...JSON.parse(JSON.stringify(template)),id:uid(),weekday}));p.days=Array.isArray(p.days)?p.days:[];p.days.unshift(...newDays);sortProgramDays(p);state.ui=state.ui||{collapsedDays:{},newDayWeekdays:{}};state.ui.collapsedDays=state.ui.collapsedDays||{};state.ui.newDayWeekdays=state.ui.newDayWeekdays||{};newDays.forEach(newDay=>{state.ui.collapsedDays[newDay.id]=true;});state.ui.newDayWeekdays[pid]=[];nameInput.value='';saveState();renderPrograms();renderHome();setTimeout(()=>{const el=document.getElementById(`day-card-${newDays[0].id}`);if(el) el.scrollIntoView({behavior:'smooth', block:'nearest'});},50);return false;}
+function deleteDay(pid,did){const program=state.programs.find(p=>p.id===pid);const day=program?.days.find(d=>d.id===did);if(!day)return;if(!confirm(`Delete "${day.name}" from this program?`))return;program.days=program.days.filter(d=>d.id!==did);saveState();renderPrograms();renderHome();}
+function duplicateDay(pid,did){const program=state.programs.find(p=>p.id===pid);const day=program?.days.find(d=>d.id===did);if(!day)return;if(!confirm(`Duplicate "${day.name}" in this program?`))return;const copy=JSON.parse(JSON.stringify(day));copy.id=uid();copy.name=`${day.name} Copy`;program.days.unshift(copy);sortProgramDays(program);state.ui=state.ui||{collapsedDays:{}};state.ui.collapsedDays=state.ui.collapsedDays||{};state.ui.collapsedDays[copy.id]=true;saveState();renderPrograms();renderHome();}
+function updateDayMeta(pid,did,field,value){const program=state.programs.find(p=>p.id===pid);const day=program?.days.find(d=>d.id===did);if(!day)return;day[field]=value;if(field==='weekday'||field==='name')sortProgramDays(program);saveState();if(field==='weekday'||field==='name')renderHome()}
 function toggleBodyPart(pid,did,bp){const day=state.programs.find(p=>p.id===pid)?.days.find(d=>d.id===did);if(!day)return;if(day.bodyParts.includes(bp)){day.bodyParts=day.bodyParts.filter(x=>x!==bp);const allowed=new Set(day.bodyParts);day.exercises=day.exercises.filter(exId=>{const ex=state.exercises.find(e=>e.id===exId);return ex&&(allowed.size===0||allowed.has(ex.category)||ex.category==='Other')})}else day.bodyParts.push(bp);saveState();renderPrograms();renderHome()}
 const getExercisesForBodyParts=bodyParts=>!bodyParts?.length?[]:state.exercises.filter(e=>bodyParts.includes(e.category)||(bodyParts.includes('Other')&&e.category==='Other'));
 function toggleExerciseOnDay(pid,did,exId){const day=state.programs.find(p=>p.id===pid)?.days.find(d=>d.id===did);if(!day)return;day.exercises=day.exercises.includes(exId)?day.exercises.filter(id=>id!==exId):[...day.exercises,exId];saveState();renderPrograms()}
-function addInlineOtherExercise(pid,did){const name=document.getElementById(`otherName-${did}`).value.trim(),type=document.getElementById(`otherType-${did}`).value;if(!name)return alert('Enter a custom exercise name.');const ex={id:uid(),name,category:'Other',type,custom:true};state.exercises.push(ex);const day=state.programs.find(p=>p.id===pid)?.days.find(d=>d.id===did);if(day&&!day.exercises.includes(ex.id))day.exercises.push(ex.id);document.getElementById(`otherName-${did}`).value='';saveState();renderPrograms();renderSettings();updateGlobalExerciseSelects()}
+function addInlineOtherExercise(pid,did){const name=document.getElementById(`otherName-${did}`).value.trim(),type=document.getElementById(`otherType-${did}`).value;if(!name)return alert('Enter a custom exercise name.');const ex={id:uid(),name,category:'Other',type,custom:true};state.exercises.push(ex);const day=state.programs.find(p=>p.id===pid)?.days.find(d=>d.id===did);if(day&&!day.exercises.includes(ex.id))day.exercises.push(ex.id);document.getElementById(`otherName-${did}`).value='';saveState();renderPrograms();renderSettings();updateGlobalExerciseSelects();renderProgressExerciseOptions()}
 function addExerciseForSelectedBodyPart(pid,did){const name=document.getElementById(`newExName-${did}`).value.trim(),category=document.getElementById(`newExBodyPart-${did}`).value,type=document.getElementById(`newExType-${did}`).value;if(!name)return alert('Enter an exercise name.');const ex={id:uid(),name,category,type,custom:true};state.exercises.push(ex);const day=state.programs.find(p=>p.id===pid)?.days.find(d=>d.id===did);if(day&&!day.exercises.includes(ex.id))day.exercises.push(ex.id);document.getElementById(`newExName-${did}`).value='';saveState();renderPrograms();renderSettings();updateGlobalExerciseSelects();renderProgressExerciseOptions()}
-function duplicateDay(pid,did){const program=state.programs.find(p=>p.id===pid);const day=program?.days.find(d=>d.id===did);if(!day)return;const copy=JSON.parse(JSON.stringify(day));copy.id=uid();copy.name=`${day.name} Copy`;program.days.unshift(copy);state.ui=state.ui||{collapsedDays:{}};state.ui.collapsedDays=state.ui.collapsedDays||{};state.ui.collapsedDays[copy.id]=false;saveState();renderPrograms();renderHome();setTimeout(()=>{const el=document.getElementById(`day-card-${copy.id}`);if(el) el.scrollIntoView({behavior:'smooth', block:'nearest'});},50)}
-
-function renderDaySummary(day){
-  return `<div class="day-summary"><div><div><strong>${escapeHtml(day.name||'Untitled day')}</strong></div><div class="tiny muted">${day.weekday||'No weekday selected yet'}</div></div><span class="badge">${(Array.isArray(day.exercises)?day.exercises.length:0)} exercises</span></div>`;
-}
+function weekdaySortValue(weekday){const idx=WEEKDAYS.indexOf(weekday);return idx===-1?999:idx;}
 
 function makeButton(text, className, onClick){
   const btn = document.createElement('button');
@@ -114,12 +127,22 @@ function renderDayCard(program, day){
 
   const headerBtns = document.createElement('div');
   headerBtns.className = 'row wrap';
-  headerBtns.appendChild(makeButton('Duplicate', 'inline-btn subtle', () => duplicateDay(program.id, day.id)));
-  headerBtns.appendChild(makeButton('Delete', 'inline-btn danger', () => deleteDay(program.id, day.id)));
+  const toggleBtn = makeButton(isDayCollapsed(day.id) ? '+' : '−', 'accordion-toggle subtle', () => toggleDayCollapsed(day.id));
+  toggleBtn.title = isDayCollapsed(day.id) ? 'Expand day' : 'Collapse day';
+  headerBtns.appendChild(toggleBtn);
+  const duplicateBtn = makeButton('⧉', 'inline-btn subtle', () => duplicateDay(program.id, day.id));
+  duplicateBtn.title = 'Duplicate day';
+  headerBtns.appendChild(duplicateBtn);
+  const deleteBtn = makeButton('🗑️', 'inline-btn danger', () => deleteDay(program.id, day.id));
+  deleteBtn.title = 'Delete day';
+  headerBtns.appendChild(deleteBtn);
 
   header.appendChild(titleWrap);
   header.appendChild(headerBtns);
   card.appendChild(header);
+
+  const content = document.createElement('div');
+  content.className = `accordion-content ${isDayCollapsed(day.id) ? 'collapsed' : ''}`;
 
   const metaGrid = document.createElement('div');
   metaGrid.className = 'grid-2';
@@ -127,7 +150,8 @@ function renderDayCard(program, day){
 
   const nameInput = document.createElement('input');
   nameInput.value = day.name || '';
-  nameInput.onchange = () => updateDayMeta(program.id, day.id, 'name', nameInput.value);
+  nameInput.placeholder = 'Workout name';
+  nameInput.oninput = () => updateDayMeta(program.id, day.id, 'name', nameInput.value);
 
   const weekdaySelect = document.createElement('select');
   weekdaySelect.innerHTML = `<option value="">Weekday</option>` + ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday']
@@ -136,12 +160,12 @@ function renderDayCard(program, day){
 
   metaGrid.appendChild(nameInput);
   metaGrid.appendChild(weekdaySelect);
-  card.appendChild(metaGrid);
+  content.appendChild(metaGrid);
 
   const label1 = document.createElement('div');
   label1.className = 'section-label';
   label1.textContent = 'Body parts';
-  card.appendChild(label1);
+  content.appendChild(label1);
 
   const bpWrap = document.createElement('div');
   bpWrap.className = 'row wrap';
@@ -152,12 +176,12 @@ function renderDayCard(program, day){
     chip.onclick = (e) => { e.preventDefault(); toggleBodyPart(program.id, day.id, bp); return false; };
     bpWrap.appendChild(chip);
   });
-  card.appendChild(bpWrap);
+  content.appendChild(bpWrap);
 
   const label2 = document.createElement('div');
   label2.className = 'section-label';
   label2.textContent = 'Create exercise for this day';
-  card.appendChild(label2);
+  content.appendChild(label2);
 
   const createGrid1 = document.createElement('div');
   createGrid1.className = 'grid-2';
@@ -175,7 +199,7 @@ function renderDayCard(program, day){
   }
   createGrid1.appendChild(newExName);
   createGrid1.appendChild(newExBodyPart);
-  card.appendChild(createGrid1);
+  content.appendChild(createGrid1);
 
   const createGrid2 = document.createElement('div');
   createGrid2.className = 'grid-2';
@@ -192,12 +216,12 @@ function renderDayCard(program, day){
   const createBtn = makeButton('Create & add', 'subtle', () => addExerciseForSelectedBodyPart(program.id, day.id));
   createGrid2.appendChild(newExType);
   createGrid2.appendChild(createBtn);
-  card.appendChild(createGrid2);
+  content.appendChild(createGrid2);
 
   const label3 = document.createElement('div');
   label3.className = 'section-label';
   label3.textContent = 'Exercises';
-  card.appendChild(label3);
+  content.appendChild(label3);
 
   if(bodyParts.length){
     if(filtered.length){
@@ -209,29 +233,29 @@ function renderDayCard(program, day){
         const btn = makeButton(exercises.includes(ex.id) ? 'Added' : 'Add', `inline-btn ${exercises.includes(ex.id) ? 'primary' : 'subtle'}`, () => toggleExerciseOnDay(program.id, day.id, ex.id));
         row.appendChild(left);
         row.appendChild(btn);
-        card.appendChild(row);
+        content.appendChild(row);
       });
     } else {
       const helper = document.createElement('div');
       helper.className = 'helper';
       helper.textContent = 'No exercises exist yet for the selected body parts.';
-      card.appendChild(helper);
+      content.appendChild(helper);
     }
   } else {
     const helper = document.createElement('div');
     helper.className = 'helper';
     helper.textContent = 'Select one or more body parts above. Then the matching exercises will appear here.';
-    card.appendChild(helper);
+    content.appendChild(helper);
   }
 
   const divider1 = document.createElement('div');
   divider1.className = 'divider';
-  card.appendChild(divider1);
+  content.appendChild(divider1);
 
   const label4 = document.createElement('div');
   label4.className = 'section-label';
   label4.textContent = 'Other / custom exercise';
-  card.appendChild(label4);
+  content.appendChild(label4);
 
   const otherGrid1 = document.createElement('div');
   otherGrid1.className = 'grid-2';
@@ -250,23 +274,23 @@ function renderDayCard(program, day){
   `;
   otherGrid1.appendChild(otherName);
   otherGrid1.appendChild(otherType);
-  card.appendChild(otherGrid1);
+  content.appendChild(otherGrid1);
 
   const otherRow = document.createElement('div');
   otherRow.className = 'row';
   otherRow.style.marginTop = '8px';
   otherRow.appendChild(makeButton('Add custom exercise', 'subtle', () => addInlineOtherExercise(program.id, day.id)));
-  card.appendChild(otherRow);
+  content.appendChild(otherRow);
 
   if(exercises.length){
     const divider2 = document.createElement('div');
     divider2.className = 'divider';
-    card.appendChild(divider2);
+    content.appendChild(divider2);
 
     const label5 = document.createElement('div');
     label5.className = 'section-label';
     label5.textContent = 'Selected exercises';
-    card.appendChild(label5);
+    content.appendChild(label5);
 
     const selectedWrap = document.createElement('div');
     selectedWrap.className = 'row wrap';
@@ -279,8 +303,9 @@ function renderDayCard(program, day){
         selectedWrap.appendChild(span);
       }
     });
-    card.appendChild(selectedWrap);
+    content.appendChild(selectedWrap);
   }
+  card.appendChild(content);
 
   return card;
 }
@@ -308,79 +333,98 @@ function renderPrograms(){
     programInput.value = program.name || '';
     programInput.onchange = () => updateProgramName(program.id, programInput.value);
     headWrap.appendChild(programInput);
+    const programToggleBtn = makeButton(isProgramCollapsed(program.id) ? '+' : '−', 'accordion-toggle subtle', () => toggleProgramCollapsed(program.id));
+    programToggleBtn.title = isProgramCollapsed(program.id) ? 'Expand program' : 'Collapse program';
     head.appendChild(headWrap);
+    head.appendChild(programToggleBtn);
     card.appendChild(head);
+
+    const programContent = document.createElement('div');
+    programContent.className = `accordion-content ${isProgramCollapsed(program.id) ? 'collapsed' : ''}`;
 
     const btnRow = document.createElement('div');
     btnRow.className = 'row wrap';
     btnRow.style.marginTop = '8px';
     btnRow.appendChild(makeButton(state.activeProgram===program.id ? 'Active program' : 'Set active', `inline-btn ${state.activeProgram===program.id ? 'primary' : 'subtle'}`, () => setActiveProgram(program.id)));
     btnRow.appendChild(makeButton('Delete program', 'inline-btn danger', () => deleteProgram(program.id)));
-    card.appendChild(btnRow);
+    programContent.appendChild(btnRow);
 
     const addLabel = document.createElement('div');
     addLabel.className = 'section-label';
     addLabel.textContent = 'Add day';
-    card.appendChild(addLabel);
+    programContent.appendChild(addLabel);
 
     const addGrid = document.createElement('div');
     addGrid.className = 'grid-2';
     const dayName = document.createElement('input');
     dayName.id = `dayName-${program.id}`;
     dayName.placeholder = 'Day name';
-    const dayWeekday = document.createElement('select');
-    dayWeekday.id = `dayWeekday-${program.id}`;
-    dayWeekday.innerHTML = `
-      <option value="">Weekday</option>
-      <option>Monday</option><option>Tuesday</option><option>Wednesday</option>
-      <option>Thursday</option><option>Friday</option><option>Saturday</option><option>Sunday</option>
-    `;
     addGrid.appendChild(dayName);
-    addGrid.appendChild(dayWeekday);
-    card.appendChild(addGrid);
+    const weekdayHint = document.createElement('div');
+    weekdayHint.className = 'helper';
+    weekdayHint.textContent = 'Select one or more weekdays (optional):';
+    addGrid.appendChild(weekdayHint);
+    programContent.appendChild(addGrid);
+
+    const weekdayWrap = document.createElement('div');
+    weekdayWrap.className = 'row wrap';
+    weekdayWrap.style.marginTop = '8px';
+    const selectedWeekdays = getSelectedNewDayWeekdays(program.id);
+    WEEKDAYS.forEach(weekday => {
+      const chip = document.createElement('button');
+      chip.className = `chip ${selectedWeekdays.includes(weekday) ? 'active' : ''}`;
+      chip.textContent = weekday.slice(0,3);
+      chip.title = weekday;
+      chip.onclick = (e) => { e.preventDefault(); toggleNewDayWeekday(program.id, weekday); return false; };
+      weekdayWrap.appendChild(chip);
+    });
+    programContent.appendChild(weekdayWrap);
 
     const addRow = document.createElement('div');
     addRow.className = 'row';
     addRow.style.marginTop = '8px';
     addRow.appendChild(makeButton('Add day', 'primary', () => addDay(program.id)));
-    card.appendChild(addRow);
+    programContent.appendChild(addRow);
 
     if((program.days||[]).length){
       const daysLabel = document.createElement('div');
       daysLabel.className = 'section-label';
       daysLabel.textContent = 'Days';
-      card.appendChild(daysLabel);
+      programContent.appendChild(daysLabel);
 
-      (program.days || []).forEach(day => {
-        card.appendChild(renderDayCard(program, day));
+      const sortedDays=[...(program.days||[])].sort((a,b)=>weekdaySortValue(a.weekday)-weekdaySortValue(b.weekday)||String(a.name||'').localeCompare(String(b.name||'')));
+      sortedDays.forEach(day => {
+        programContent.appendChild(renderDayCard(program, day));
       });
     }
+
+    card.appendChild(programContent);
 
     root.appendChild(card);
   });
 }
 function buildDefaultSetsForType(type,count=3){return Array.from({length:count},(_,i)=>type==='weighted'?{set:i+1,weight:'',reps:'',warmup:false,isPR:false,completed:false}:type==='bodyweight'?{set:i+1,reps:'',warmup:false,isPR:false,completed:false}:type==='cardio'?{set:i+1,distance:'',duration:'',warmup:false,isPR:false,completed:false}:{set:i+1,duration:'',warmup:false,isPR:false,completed:false})}
-function startTodayWorkout(){const day=getTodaysDayFromActiveProgram();if(!day){alert('No day is ready for today yet. Set one up in Programs.');showScreen('programs',document.querySelectorAll('.tab')[1]);return}if(!day.exercises.length){alert('Today’s day has no exercises yet.');showScreen('programs',document.querySelectorAll('.tab')[1]);return}currentWorkout={id:uid(),name:day.name,startedAt:Date.now(),notes:'',exercises:day.exercises.map(exId=>{const ex=state.exercises.find(e=>e.id===exId);return{uid:uid(),exerciseId:ex.id,name:ex.name,category:ex.category,type:ex.type,notes:'',sets:buildDefaultSetsForType(ex.type,3)}})};sessionNotes.value='';renderLogger();showScreen('logger',document.querySelectorAll('.tab')[2]);if(workoutTimer)clearInterval(workoutTimer);workoutTimer=setInterval(()=>{const s=Math.floor((Date.now()-currentWorkout.startedAt)/1000);elapsedPill.textContent=`${String(Math.floor(s/60)).padStart(2,'0')}:${String(s%60).padStart(2,'0')}`},1000)}
+function startTodayWorkout(){const day=getTodaysDayFromActiveProgram();if(!day){alert('No day is ready for today yet. Set one up in Programs.');showScreen('programs',document.querySelectorAll('.tab')[1]);return}if(!day.exercises.length){alert('Today’s day has no exercises yet.');showScreen('programs',document.querySelectorAll('.tab')[1]);return}currentWorkout={id:uid(),name:day.name,startedAt:Date.now(),notes:'',exercises:day.exercises.map(exId=>{const ex=state.exercises.find(e=>e.id===exId);return{uid:uid(),exerciseId:ex.id,name:ex.name,category:ex.category,type:ex.type,notes:'',sets:buildDefaultSetsForType(ex.type,3)}})};state.ui=state.ui||{collapsedWorkoutExercises:{}};state.ui.collapsedWorkoutExercises={};currentWorkout.exercises.forEach(ex=>{state.ui.collapsedWorkoutExercises[ex.uid]=true;});sessionNotes.value='';saveActiveWorkout();showScreen('home',document.querySelectorAll('.tab')[0]);renderLogger();if(workoutTimer)clearInterval(workoutTimer);workoutTimer=setInterval(()=>{const s=Math.floor((Date.now()-currentWorkout.startedAt)/1000);elapsedPill.textContent=`${String(Math.floor(s/60)).padStart(2,'0')}:${String(s%60).padStart(2,'0')}`},1000)}
 function previousExerciseSession(exId){for(const s of [...state.sessions].reverse()){const ex=s.exercises.find(e=>e.exerciseId===exId);if(ex)return ex}return null}
 function summarisePreviousExercise(ex){if(ex.type==='weighted')return ex.sets.map(s=>`${s.weight||0}×${s.reps||0}`).join(', ');if(ex.type==='bodyweight')return ex.sets.map(s=>`${s.reps||0} reps`).join(', ');if(ex.type==='cardio')return ex.sets.map(s=>`${s.distance||0} km / ${s.duration||0} min`).join(', ');return ex.sets.map(s=>`${s.duration||0} sec`).join(', ')}
-function renderSetRow(ex,exIndex,set,setIndex){const warm=set.warmup?'warmup':'',done=set.completed?'set-complete':'',pr=set.isPR?'<span class="pr">🏆</span>':'',btn=`<button class="inline-btn ${set.warmup?'subtle':'ghost'}" onclick="toggleWarmup(${exIndex},${setIndex})">${set.warmup?'Warm-up':'Work'}</button>`,complete=`<button class="inline-btn complete-btn ${set.completed?'done':'subtle'}" onclick="completeSet(${exIndex},${setIndex})">${set.completed?'✓':'⏱'}</button>`;if(ex.type==='weighted')return `<div class="set-row ${warm} ${done}"><div>${set.set}</div><input type="number" placeholder="kg" value="${set.weight}" oninput="updateSet(${exIndex},${setIndex},'weight',this.value)"><input type="number" placeholder="reps" value="${set.reps}" oninput="updateSet(${exIndex},${setIndex},'reps',this.value)"><div>${btn}${complete}${pr}</div></div>`;if(ex.type==='bodyweight')return `<div class="set-row bodyweight ${warm} ${done}"><div>${set.set}</div><input type="number" placeholder="reps" value="${set.reps}" oninput="updateSet(${exIndex},${setIndex},'reps',this.value)"><div>${btn}${complete}${pr}</div></div>`;if(ex.type==='cardio')return `<div class="set-row cardio ${warm} ${done}"><div>${set.set}</div><input type="number" step="0.01" placeholder="km" value="${set.distance}" oninput="updateSet(${exIndex},${setIndex},'distance',this.value)"><input type="number" placeholder="min" value="${set.duration}" oninput="updateSet(${exIndex},${setIndex},'duration',this.value)"><div>${btn}${complete}${pr}</div></div>`;return `<div class="set-row timed ${warm} ${done}"><div>${set.set}</div><input type="number" placeholder="sec" value="${set.duration}" oninput="updateSet(${exIndex},${setIndex},'duration',this.value)"><div>${btn}${complete}${pr}</div></div>`}
+function renderSetRow(ex,exIndex,set,setIndex){const warm=set.warmup?'warmup':'',done=set.completed?'set-complete':'',pr=set.isPR?'<span class="pr">🏆</span>':'',btn=`<button class="inline-btn ${set.warmup?'subtle':'ghost'}" onclick="toggleWarmup(${exIndex},${setIndex})">${set.warmup?'Warm-up':'Work'}</button>`,complete=`<button class="inline-btn complete-btn ${set.completed?'done':'subtle'}" onclick="completeSet(${exIndex},${setIndex})">${set.completed?'✓':'⏱'}</button>`;if(ex.type==='weighted')return `<div class="set-row ${warm} ${done}"><div>${set.set}</div><input data-input-key="${exIndex}-${setIndex}-weight" type="number" step="0.01" placeholder="kg" value="${set.weight}" oninput="updateSet(${exIndex},${setIndex},'weight',this.value,this)"><input data-input-key="${exIndex}-${setIndex}-reps" type="number" placeholder="reps" value="${set.reps}" oninput="updateSet(${exIndex},${setIndex},'reps',this.value,this)"><div>${btn}${complete}${pr}</div></div>`;if(ex.type==='bodyweight')return `<div class="set-row bodyweight ${warm} ${done}"><div>${set.set}</div><input data-input-key="${exIndex}-${setIndex}-reps" type="number" placeholder="reps" value="${set.reps}" oninput="updateSet(${exIndex},${setIndex},'reps',this.value,this)"><div>${btn}${complete}${pr}</div></div>`;if(ex.type==='cardio')return `<div class="set-row cardio ${warm} ${done}"><div>${set.set}</div><input data-input-key="${exIndex}-${setIndex}-distance" type="number" step="0.01" placeholder="km" value="${set.distance}" oninput="updateSet(${exIndex},${setIndex},'distance',this.value,this)"><input data-input-key="${exIndex}-${setIndex}-duration" type="number" placeholder="min" value="${set.duration}" oninput="updateSet(${exIndex},${setIndex},'duration',this.value,this)"><div>${btn}${complete}${pr}</div></div>`;return `<div class="set-row timed ${warm} ${done}"><div>${set.set}</div><input data-input-key="${exIndex}-${setIndex}-duration" type="number" placeholder="sec" value="${set.duration}" oninput="updateSet(${exIndex},${setIndex},'duration',this.value,this)"><div>${btn}${complete}${pr}</div></div>`}
 function bestHistoricPerformance(exId){let bestWeight=0,best1RM=0,bestReps=0,bestDuration=0,bestDistance=0;for(const session of state.sessions){const ex=session.exercises.find(e=>e.exerciseId===exId);if(!ex)continue;for(const set of ex.sets.filter(s=>!s.warmup)){if(ex.type==='weighted'){bestWeight=Math.max(bestWeight,Number(set.weight)||0);const orm=(Number(set.weight)&&Number(set.reps)&&Number(set.reps)<37)?Number(set.weight)*36/(37-Number(set.reps)):0;best1RM=Math.max(best1RM,orm)}if(ex.type==='bodyweight')bestReps=Math.max(bestReps,Number(set.reps)||0);if(ex.type==='timed')bestDuration=Math.max(bestDuration,Number(set.duration)||0);if(ex.type==='cardio')bestDistance=Math.max(bestDistance,Number(set.distance)||0)}}return{bestWeight,best1RM,bestReps,bestDuration,bestDistance}}
 function checkPR(exIndex,setIndex){const ex=currentWorkout.exercises[exIndex],set=ex.sets[setIndex];if(set.warmup){set.isPR=false;return}const h=bestHistoricPerformance(ex.exerciseId);if(ex.type==='weighted'){const w=Number(set.weight)||0,r=Number(set.reps)||0,orm=(w&&r&&r<37)?w*36/(37-r):0;set.isPR=!!((w&&w>h.bestWeight)||(orm&&orm>h.best1RM))}else if(ex.type==='bodyweight')set.isPR=(Number(set.reps)||0)>h.bestReps;else if(ex.type==='timed')set.isPR=(Number(set.duration)||0)>h.bestDuration;else if(ex.type==='cardio')set.isPR=(Number(set.distance)||0)>h.bestDistance}
-function renderLogger(){loggerTitle.textContent=currentWorkout.name;loggerSubtitle.textContent=`${currentWorkout.exercises.length} exercises • fast logging flow`;loggerExercises.innerHTML=currentWorkout.exercises.map((ex,exIndex)=>{const prev=previousExerciseSession(ex.exerciseId);return `<div class="exercise-block"><div class="row between"><div><h4>${escapeHtml(ex.name)}</h4><div class="tiny muted">${ex.category} • ${formatExerciseType(ex.type)}</div></div><span class="badge">${ex.sets.length} sets</span></div>${prev?`<div class="card flat" style="margin-top:10px;background:rgba(255,255,255,.03)"><div class="tiny muted">Last session</div><div class="small" style="margin-top:4px">${escapeHtml(summarisePreviousExercise(prev))}</div><div class="row" style="margin-top:8px"><button class="inline-btn subtle" onclick="copyLastSession(${exIndex})">Copy last session</button></div></div>`:''}<textarea placeholder="Exercise notes" onchange="currentWorkout.exercises[${exIndex}].notes=this.value">${escapeHtml(ex.notes||'')}</textarea><div style="margin-top:8px">${ex.sets.map((set,setIndex)=>renderSetRow(ex,exIndex,set,setIndex)).join('')}</div><div class="row wrap" style="margin-top:8px"><button class="inline-btn subtle" onclick="addSet(${exIndex})">Add set</button></div></div>`}).join('');updateGlobalExerciseSelects()}
-function updateSet(exIndex,setIndex,key,value){currentWorkout.exercises[exIndex].sets[setIndex][key]=value;checkPR(exIndex,setIndex);renderLogger()}
-function toggleWarmup(exIndex,setIndex){currentWorkout.exercises[exIndex].sets[setIndex].warmup=!currentWorkout.exercises[exIndex].sets[setIndex].warmup;checkPR(exIndex,setIndex);renderLogger()}
-function completeSet(exIndex,setIndex){const set=currentWorkout.exercises[exIndex].sets[setIndex];set.completed=true;checkPR(exIndex,setIndex);renderLogger();startRestBanner()}
-function addSet(exIndex){const ex=currentWorkout.exercises[exIndex],n=ex.sets.length+1;ex.sets.push(ex.type==='weighted'?{set:n,weight:'',reps:'',warmup:false,isPR:false,completed:false}:ex.type==='bodyweight'?{set:n,reps:'',warmup:false,isPR:false,completed:false}:ex.type==='cardio'?{set:n,distance:'',duration:'',warmup:false,isPR:false,completed:false}:{set:n,duration:'',warmup:false,isPR:false,completed:false});renderLogger()}
-function copyLastSession(exIndex){const prev=previousExerciseSession(currentWorkout.exercises[exIndex].exerciseId);if(!prev)return;currentWorkout.exercises[exIndex].sets=prev.sets.map((s,i)=>({...s,set:i+1,isPR:false,completed:false}));renderLogger()}
+function renderLogger(){loggerTitle.textContent=currentWorkout.name;loggerSubtitle.textContent=`${currentWorkout.exercises.length} exercises • fast logging flow`;loggerExercises.innerHTML=currentWorkout.exercises.map((ex,exIndex)=>{const prev=previousExerciseSession(ex.exerciseId);const collapsed=isWorkoutExerciseCollapsed(ex.uid);return `<div class="exercise-block"><div class="row between"><div><h4>${escapeHtml(ex.name)}</h4><div class="tiny muted">${ex.category} • ${formatExerciseType(ex.type)}</div></div><div class="row" style="width:auto"><span class="badge">${ex.sets.length} sets</span><button class="inline-btn subtle" onclick="toggleWorkoutExerciseCollapsed('${ex.uid}')">${collapsed?'+':'−'}</button></div></div><div class="accordion-content ${collapsed?'collapsed':''}">${prev?`<div class="card flat" style="margin-top:10px;background:rgba(255,255,255,.03)"><div class="tiny muted">Last session</div><div class="small" style="margin-top:4px">${escapeHtml(summarisePreviousExercise(prev))}</div><div class="row" style="margin-top:8px"><button class="inline-btn subtle" onclick="copyLastSession(${exIndex})">Copy last session</button></div></div>`:''}<textarea placeholder="Exercise notes" onchange="currentWorkout.exercises[${exIndex}].notes=this.value;saveActiveWorkout()">${escapeHtml(ex.notes||'')}</textarea><div style="margin-top:8px">${ex.sets.map((set,setIndex)=>renderSetRow(ex,exIndex,set,setIndex)).join('')}</div><div class="row wrap" style="margin-top:8px"><button class="inline-btn subtle" onclick="addSet(${exIndex})">Add set</button></div></div></div>`}).join('');updateGlobalExerciseSelects()}
+function updateSet(exIndex,setIndex,key,value,inputEl){currentWorkout.exercises[exIndex].sets[setIndex][key]=value;checkPR(exIndex,setIndex);saveActiveWorkout();const focusKey=inputEl?.dataset?.inputKey;const start=inputEl?.selectionStart;const end=inputEl?.selectionEnd;renderLogger();if(focusKey){const next=document.querySelector(`[data-input-key="${focusKey}"]`);if(next){next.focus();if(typeof start==='number'&&typeof end==='number'){try{next.setSelectionRange(start,end)}catch{}}}}}
+function toggleWarmup(exIndex,setIndex){currentWorkout.exercises[exIndex].sets[setIndex].warmup=!currentWorkout.exercises[exIndex].sets[setIndex].warmup;checkPR(exIndex,setIndex);saveActiveWorkout();renderLogger()}
+function completeSet(exIndex,setIndex){const set=currentWorkout.exercises[exIndex].sets[setIndex];set.completed=true;checkPR(exIndex,setIndex);saveActiveWorkout();renderLogger();startRestBanner()}
+function addSet(exIndex){const ex=currentWorkout.exercises[exIndex],n=ex.sets.length+1;ex.sets.push(ex.type==='weighted'?{set:n,weight:'',reps:'',warmup:false,isPR:false,completed:false}:ex.type==='bodyweight'?{set:n,reps:'',warmup:false,isPR:false,completed:false}:ex.type==='cardio'?{set:n,distance:'',duration:'',warmup:false,isPR:false,completed:false}:{set:n,duration:'',warmup:false,isPR:false,completed:false});saveActiveWorkout();renderLogger()}
+function copyLastSession(exIndex){const prev=previousExerciseSession(currentWorkout.exercises[exIndex].exerciseId);if(!prev)return;currentWorkout.exercises[exIndex].sets=prev.sets.map((s,i)=>({...s,set:i+1,isPR:false,completed:false}));saveActiveWorkout();renderLogger()}
 function updateGlobalExerciseSelects(){const el=document.getElementById('extraExerciseSelect');if(el)el.innerHTML=state.exercises.map(ex=>`<option value="${ex.id}">${escapeHtml(ex.name)} (${formatExerciseType(ex.type)})</option>`).join('')}
-function addExtraExercise(){const select=document.getElementById('extraExerciseSelect');const ex=state.exercises.find(e=>e.id===select.value);if(!ex||!currentWorkout)return;currentWorkout.exercises.push({uid:uid(),exerciseId:ex.id,name:ex.name,category:ex.category,type:ex.type,notes:'',sets:buildDefaultSetsForType(ex.type,3)});renderLogger()}
+function addExtraExercise(){const select=document.getElementById('extraExerciseSelect');const ex=state.exercises.find(e=>e.id===select.value);if(!ex||!currentWorkout)return;const added={uid:uid(),exerciseId:ex.id,name:ex.name,category:ex.category,type:ex.type,notes:'',sets:buildDefaultSetsForType(ex.type,3)};currentWorkout.exercises.push(added);state.ui=state.ui||{collapsedWorkoutExercises:{}};state.ui.collapsedWorkoutExercises=state.ui.collapsedWorkoutExercises||{};state.ui.collapsedWorkoutExercises[added.uid]=true;saveActiveWorkout();renderLogger()}
 function startRestBanner(){let remaining=Number(state.settings.restDefault||90);if(restTimer)clearInterval(restTimer);restBanner.classList.add('show');restBanner.textContent=`Rest timer • ${remaining}s`;restTimer=setInterval(()=>{remaining--;if(remaining>0)restBanner.textContent=`Rest timer • ${remaining}s`;else{restBanner.textContent='Rest complete';clearInterval(restTimer);setTimeout(()=>restBanner.classList.remove('show'),1400)}},1000)}
-function finishWorkout(){if(!currentWorkout)return;currentWorkout.notes=sessionNotes.value;const durationSec=Math.floor((Date.now()-currentWorkout.startedAt)/1000);let totalVolume=0,prCount=0;currentWorkout.exercises.forEach(ex=>ex.sets.forEach(set=>{if(set.warmup)return;if(ex.type==='weighted')totalVolume+=(Number(set.weight)||0)*(Number(set.reps)||0);if(set.isPR)prCount++}));state.sessions.push({id:currentWorkout.id,name:currentWorkout.name,timestamp:new Date(currentWorkout.startedAt).toISOString(),durationSec,exercises:currentWorkout.exercises,notes:currentWorkout.notes,totalVolume,prCount});currentWorkout=null;if(workoutTimer)clearInterval(workoutTimer);sessionNotes.value='';saveState();renderHome();renderHistory();renderProgressExerciseOptions();renderProgress();alert('Workout saved.');showScreen('history',document.querySelectorAll('.tab')[4])}
+function finishWorkout(){if(!currentWorkout)return;currentWorkout.notes=sessionNotes.value;const durationSec=Math.floor((Date.now()-currentWorkout.startedAt)/1000);let totalVolume=0,prCount=0;currentWorkout.exercises.forEach(ex=>ex.sets.forEach(set=>{if(set.warmup)return;if(ex.type==='weighted')totalVolume+=(Number(set.weight)||0)*(Number(set.reps)||0);if(set.isPR)prCount++}));state.sessions.push({id:currentWorkout.id,name:currentWorkout.name,timestamp:new Date(currentWorkout.startedAt).toISOString(),durationSec,exercises:currentWorkout.exercises,notes:currentWorkout.notes,totalVolume,prCount});currentWorkout=null;saveActiveWorkout();if(workoutTimer)clearInterval(workoutTimer);sessionNotes.value='';saveState();renderHome();renderHistory();renderProgressExerciseOptions();renderProgress();alert('Workout saved.');showScreen('history',document.querySelectorAll('.tab')[3])}
 const formatSetLine=(type,set)=>type==='weighted'?`${set.weight||0} kg × ${set.reps||0}`:type==='bodyweight'?`${set.reps||0} reps`:type==='cardio'?`${set.distance||0} km in ${set.duration||0} min`:`${set.duration||0} sec`;
 function renderHistory(){document.getElementById('historyCount').textContent=`${state.sessions.length} sessions`;document.getElementById('historyList').innerHTML=!state.sessions.length?'<div class="helper">No workouts saved yet.</div>':[...state.sessions].reverse().map(session=>`<div class="session-card"><div class="row between"><div><div><strong>${escapeHtml(session.name)}</strong></div><div class="tiny muted">${new Date(session.timestamp).toLocaleDateString()} • ${Math.round(session.durationSec/60)} min</div></div><span class="badge">${Math.round(session.totalVolume||0)} kg</span></div><div class="row wrap" style="margin-top:8px"><span class="pill">${session.exercises.length} exercises</span><span class="pill">${session.prCount||0} PRs</span></div><details style="margin-top:10px"><summary>View details</summary>${(session.exercises||[]).map(ex=>`<div class="card flat" style="margin-top:8px;background:rgba(255,255,255,.02)"><div><strong>${escapeHtml(ex.name)}</strong></div><div class="tiny muted">${formatExerciseType(ex.type)}</div><div style="margin-top:6px">${(ex.sets||[]).map(set=>`<div class="small">${formatSetLine(ex.type,set)} ${set.warmup?'<span class="muted">(warm-up)</span>':''} ${set.isPR?'🏆':''}</div>`).join('')}</div>${ex.notes?`<div class="small muted" style="margin-top:6px">Notes: ${escapeHtml(ex.notes)}</div>`:''}</div>`).join('')}${session.notes?`<div class="small muted" style="margin-top:8px">Session notes: ${escapeHtml(session.notes)}</div>`:''}</details><div class="row wrap" style="margin-top:8px"><button class="inline-btn subtle" onclick="openEditSession('${session.id}')">Edit workout</button><button class="inline-btn danger" onclick="deleteSession('${session.id}')">Delete session</button></div></div>`).join('')}
 function deleteSession(id){if(!confirm('Delete this session?'))return;state.sessions=state.sessions.filter(s=>s.id!==id);saveState();renderHistory();renderHome();renderProgress()}
 function renderProgressExerciseOptions(){document.getElementById('progressExerciseSelect').innerHTML=state.exercises.map(ex=>`<option value="${ex.id}">${escapeHtml(ex.name)} (${formatExerciseType(ex.type)})</option>`).join('')}
-function renderProgress(){const progressSelect=document.getElementById('progressExerciseSelect');const progressInfo=document.getElementById('progressInfo');const chartCanvas=document.getElementById('progressChart');const exerciseId=progressSelect.value||state.exercises[0]?.id;if(!exerciseId){progressInfo.innerHTML='<div class="helper">No exercise data yet.</div>';return}progressSelect.value=exerciseId;const exercise=state.exercises.find(e=>e.id===exerciseId);const points=state.sessions.map(session=>{const ex=session.exercises.find(e=>e.exerciseId===exerciseId);if(!ex)return null;let value=0;if(exercise.type==='weighted')value=Math.max(...ex.sets.filter(s=>!s.warmup).map(s=>Number(s.weight)||0),0);else if(exercise.type==='bodyweight')value=Math.max(...ex.sets.filter(s=>!s.warmup).map(s=>Number(s.reps)||0),0);else if(exercise.type==='cardio')value=Math.max(...ex.sets.filter(s=>!s.warmup).map(s=>Number(s.distance)||0),0);else value=Math.max(...ex.sets.filter(s=>!s.warmup).map(s=>Number(s.duration)||0),0);return{label:new Date(session.timestamp).toLocaleDateString(),value,session}}).filter(Boolean).slice(-30);const ctx=chartCanvas.getContext('2d');if(window._chart)window._chart.destroy();window._chart=new Chart(ctx,{type:'line',data:{labels:points.map(p=>p.label),datasets:[{label:exercise.name,data:points.map(p=>p.value),borderWidth:3,tension:.28,fill:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:true}},scales:{x:{ticks:{color:'#94a6bb'},grid:{color:'rgba(148,166,187,.12)'}},y:{ticks:{color:'#94a6bb'},grid:{color:'rgba(148,166,187,.12)'}}},onClick:(evt,elements)=>{if(!elements.length)return;const point=points[elements[0].index];progressInfo.innerHTML=`<h3>${escapeHtml(point.session.name)}</h3><div class="small muted">${point.label}</div><div style="margin-top:8px">${point.session.exercises.filter(e=>e.exerciseId===exerciseId).map(e=>`<div class="small">${e.sets.map(s=>formatSetLine(e.type,s)).join('<br>')}</div>`).join('')}</div>`}}});progressInfo.innerHTML=points.length?`<h3>${escapeHtml(exercise.name)}</h3><div class="small muted">${exercise.category} • ${formatExerciseType(exercise.type)}</div><div class="helper" style="margin-top:8px">Tap a point to see session details.</div>`:`<h3>${escapeHtml(exercise.name)}</h3><div class="helper">No logged data for this exercise yet.</div>`}
+function renderProgress(){const progressSelect=document.getElementById('progressExerciseSelect');const progressInfo=document.getElementById('progressInfo');const chartCanvas=document.getElementById('progressChart');const exerciseId=progressSelect.value||state.exercises[0]?.id;if(!exerciseId){progressInfo.innerHTML='<div class="helper">No exercise data yet.</div>';return}progressSelect.value=exerciseId;const exercise=state.exercises.find(e=>e.id===exerciseId);const points=state.sessions.map(session=>{const ex=session.exercises.find(e=>e.exerciseId===exerciseId);if(!ex)return null;let value=0;if(exercise.type==='weighted')value=Math.max(...ex.sets.filter(s=>!s.warmup).map(s=>Number(s.weight)||0),0);else if(exercise.type==='bodyweight')value=Math.max(...ex.sets.filter(s=>!s.warmup).map(s=>Number(s.reps)||0),0);else if(exercise.type==='cardio')value=Math.max(...ex.sets.filter(s=>!s.warmup).map(s=>Number(s.distance)||0),0);else value=Math.max(...ex.sets.filter(s=>!s.warmup).map(s=>Number(s.duration)||0),0);return{label:new Date(session.timestamp).toLocaleDateString(),value,session}}).filter(Boolean).slice(-30);if(typeof Chart==='undefined'){progressInfo.innerHTML='<div class="helper">Progress chart is unavailable offline right now.</div>';return}const ctx=chartCanvas.getContext('2d');if(window._chart)window._chart.destroy();window._chart=new Chart(ctx,{type:'line',data:{labels:points.map(p=>p.label),datasets:[{label:exercise.name,data:points.map(p=>p.value),borderWidth:3,tension:.28,fill:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:true}},scales:{x:{ticks:{color:'#94a6bb'},grid:{color:'rgba(148,166,187,.12)'}},y:{ticks:{color:'#94a6bb'},grid:{color:'rgba(148,166,187,.12)'}}},onClick:(evt,elements)=>{if(!elements.length)return;const point=points[elements[0].index];progressInfo.innerHTML=`<h3>${escapeHtml(point.session.name)}</h3><div class="small muted">${point.label}</div><div style="margin-top:8px">${point.session.exercises.filter(e=>e.exerciseId===exerciseId).map(e=>`<div class="small">${e.sets.map(s=>formatSetLine(e.type,s)).join('<br>')}</div>`).join('')}</div>`}}});progressInfo.innerHTML=points.length?`<h3>${escapeHtml(exercise.name)}</h3><div class="small muted">${exercise.category} • ${formatExerciseType(exercise.type)}</div><div class="helper" style="margin-top:8px">Tap a point to see session details.</div>`:`<h3>${escapeHtml(exercise.name)}</h3><div class="helper">No logged data for this exercise yet.</div>`}
 
 let editingSessionId=null, editingSessionDraft=null;
 function openEditSession(sessionId){
@@ -397,7 +441,7 @@ function openEditSession(sessionId){
 function closeEditSession(){
   editingSessionId = null;
   editingSessionDraft = null;
-  showScreen('history', document.querySelectorAll('.tab')[4]);
+  showScreen('history', document.querySelectorAll('.tab')[3]);
 }
 function renderEditSession(){
   const root = document.getElementById('editSessionExercises');
@@ -487,7 +531,10 @@ function renderJsonView(){
 }
 function boot(){document.getElementById('app').dataset.theme=state.settings.theme||'dark';document.getElementById('themeSelect').value=state.settings.theme||'dark';document.getElementById('restDefaultSelect').value=String(state.settings.restDefault||90);renderHome();renderPrograms();renderProgressExerciseOptions();renderProgress();renderHistory();renderSettings();updateGlobalExerciseSelects();renderStorageUsage();renderJsonView();
 const input=document.getElementById('newProgramName');
-if(input&&!input.dataset.enterBound){input.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();createProgram();}});input.dataset.enterBound='1';}}
+if(input&&!input.dataset.enterBound){input.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();createProgram();}});input.dataset.enterBound='1';}
+const notes=document.getElementById('sessionNotes');
+if(notes&&!notes.dataset.persistBound){notes.addEventListener('input',()=>{if(currentWorkout){currentWorkout.notes=notes.value;saveActiveWorkout();}});notes.dataset.persistBound='1';}
+if(currentWorkout){if(notes)notes.value=currentWorkout.notes||'';renderLogger();if(workoutTimer)clearInterval(workoutTimer);workoutTimer=setInterval(()=>{const s=Math.floor((Date.now()-currentWorkout.startedAt)/1000);elapsedPill.textContent=`${String(Math.floor(s/60)).padStart(2,'0')}:${String(s%60).padStart(2,'0')}`},1000);}}
 loadState();boot();
 </script>
 </body></html>
