@@ -26,7 +26,7 @@
 </head>
 <body>
 <div class="app" id="app" data-theme="dark">
-  <header><div class="brand"><img src="hercules_logo.svg" alt="Hercules logo" onerror="this.style.display='none'"><div><h1>Hercules</h1><div class="sub">Ready-to-ship offline workout tracker • v27.5</div></div></div></header>
+  <header><div class="brand"><img src="hercules_logo.svg" alt="Hercules logo" onerror="this.style.display='none'"><div><h1>Hercules</h1><div class="sub">Ready-to-ship offline workout tracker • v26.7</div></div></div></header>
   <section class="screen active" id="screen-home">
     <div class="hero"><div class="hero-kicker">Today’s focus</div><h2 id="heroWorkout">No active program</h2><p id="heroSub">Set up a program, choose today’s body parts, and start logging.</p><div class="row" style="margin-top:14px"><button id="startWorkoutBtn" class="primary" onclick="startTodayWorkout()">Start workout</button></div></div>
     <div class="summary"><div class="metric"><div class="k">This week</div><div class="v" id="metricWorkouts">0</div><div class="s">workouts</div></div><div class="metric"><div class="k">Volume</div><div class="v" id="metricVolume">0</div><div class="s">kg</div></div><div class="metric"><div class="k">Recent PRs</div><div class="v" id="metricPRs">0</div><div class="s">hits</div></div></div>
@@ -98,8 +98,7 @@ function updateDayMeta(pid,did,field,value){const program=state.programs.find(p=
 function toggleBodyPart(pid,did,bp){const day=state.programs.find(p=>p.id===pid)?.days.find(d=>d.id===did);if(!day)return;if(day.bodyParts.includes(bp)){day.bodyParts=day.bodyParts.filter(x=>x!==bp);const allowed=new Set(day.bodyParts);day.exercises=day.exercises.filter(exId=>{const ex=state.exercises.find(e=>e.id===exId);return ex&&(allowed.size===0||allowed.has(ex.category)||ex.category==='Other')})}else day.bodyParts.push(bp);saveState();renderPrograms();renderHome()}
 const getExercisesForBodyParts=bodyParts=>!bodyParts?.length?[]:state.exercises.filter(e=>bodyParts.includes(e.category)||(bodyParts.includes('Other')&&e.category==='Other'));
 function toggleExerciseOnDay(pid,did,exId){const day=state.programs.find(p=>p.id===pid)?.days.find(d=>d.id===did);if(!day)return;day.exercises=day.exercises.includes(exId)?day.exercises.filter(id=>id!==exId):[...day.exercises,exId];saveState();renderPrograms()}
-function addInlineOtherExercise(pid,did){const name=document.getElementById(`otherName-${did}`).value.trim(),type=document.getElementById(`otherType-${did}`).value;if(!name)return alert('Enter a custom exercise name.');const ex={id:uid(),name,category:'Other',type,custom:true};state.exercises.push(ex);const day=state.programs.find(p=>p.id===pid)?.days.find(d=>d.id===did);if(day&&!day.exercises.includes(ex.id))day.exercises.push(ex.id);document.getElementById(`otherName-${did}`).value='';saveState();renderPrograms();renderSettings();updateGlobalExerciseSelects();renderProgressExerciseOptions()}
-function addExerciseForSelectedBodyPart(pid,did){const name=document.getElementById(`newExName-${did}`).value.trim(),category=document.getElementById(`newExBodyPart-${did}`).value,type=document.getElementById(`newExType-${did}`).value;if(!name)return alert('Enter an exercise name.');const ex={id:uid(),name,category,type,custom:true};state.exercises.push(ex);const day=state.programs.find(p=>p.id===pid)?.days.find(d=>d.id===did);if(day&&!day.exercises.includes(ex.id))day.exercises.push(ex.id);document.getElementById(`newExName-${did}`).value='';saveState();renderPrograms();renderSettings();updateGlobalExerciseSelects();renderProgressExerciseOptions()}
+function addExerciseForSelectedBodyPart(pid,did){const name=document.getElementById(`newExName-${did}`).value.trim(),categoryRaw=document.getElementById(`newExBodyPart-${did}`).value,type=document.getElementById(`newExType-${did}`).value;if(!name)return alert('Enter an exercise name.');const category=categoryRaw&&BODY_PARTS.includes(categoryRaw)?categoryRaw:'Other';const ex={id:uid(),name,category,type,custom:true};state.exercises.push(ex);const day=state.programs.find(p=>p.id===pid)?.days.find(d=>d.id===did);if(day&&!day.exercises.includes(ex.id))day.exercises.push(ex.id);document.getElementById(`newExName-${did}`).value='';saveState();renderPrograms();renderSettings();updateGlobalExerciseSelects();renderProgressExerciseOptions()}
 function weekdaySortValue(weekday){const idx=WEEKDAYS.indexOf(weekday);return idx===-1?999:idx;}
 
 function makeButton(text, className, onClick){
@@ -267,40 +266,6 @@ function renderDayCard(program, day){
     helper.textContent = 'Select one or more body parts above. Then the matching exercises will appear here.';
     content.appendChild(helper);
   }
-
-  const divider1 = document.createElement('div');
-  divider1.className = 'divider';
-  content.appendChild(divider1);
-
-  const label4 = document.createElement('div');
-  label4.className = 'section-label';
-  label4.textContent = 'Other / custom exercise';
-  content.appendChild(label4);
-
-  const otherGrid1 = document.createElement('div');
-  otherGrid1.className = 'grid-2';
-
-  const otherName = document.createElement('input');
-  otherName.id = `otherName-${day.id}`;
-  otherName.placeholder = 'Custom exercise name';
-
-  const otherType = document.createElement('select');
-  otherType.id = `otherType-${day.id}`;
-  otherType.innerHTML = `
-    <option value="weighted">Weighted</option>
-    <option value="bodyweight">Bodyweight</option>
-    <option value="cardio">Cardio</option>
-    <option value="timed">Timed hold</option>
-  `;
-  otherGrid1.appendChild(otherName);
-  otherGrid1.appendChild(otherType);
-  content.appendChild(otherGrid1);
-
-  const otherRow = document.createElement('div');
-  otherRow.className = 'row';
-  otherRow.style.marginTop = '8px';
-  otherRow.appendChild(makeButton('Add custom exercise', 'subtle', () => addInlineOtherExercise(program.id, day.id)));
-  content.appendChild(otherRow);
 
   if(exercises.length){
     const divider2 = document.createElement('div');
