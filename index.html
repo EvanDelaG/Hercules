@@ -28,7 +28,7 @@
 </head>
 <body>
 <div class="app" id="app" data-theme="dark">
-  <header><div class="brand"><img id="brandLogo" src="hercules_logo.svg" alt="Hercules logo" onerror="handleLogoError()"><div id="brandLogoFallback" class="brand-logo-fallback" aria-hidden="true">🏋️</div><div><h1>Hercules</h1><div class="sub">Ready-to-ship offline workout tracker • v1.15</div></div></div></header>
+  <header><div class="brand"><img id="brandLogo" src="hercules_logo.svg" alt="Hercules logo" onerror="handleLogoError()"><div id="brandLogoFallback" class="brand-logo-fallback" aria-hidden="true">🏋️</div><div><h1>Hercules</h1><div class="sub">Ready-to-ship offline workout tracker • v1.16</div></div></div></header>
   <section class="screen active" id="screen-home">
     <div class="hero"><div class="hero-kicker">Today’s focus</div><h2 id="heroWorkout">No active programs</h2><p id="heroSub">Set up programs, choose today’s body parts, and start logging.</p><div class="row" style="margin-top:14px"><button id="startWorkoutBtn" class="primary" onclick="startTodayWorkout()">Start workout</button></div></div>
     <div class="summary"><div class="metric"><div class="k">This week</div><div class="v" id="metricWorkouts">0</div><div class="s">workouts</div></div><div class="metric"><div class="k">Weighted tonnage</div><div class="v" id="metricVolume">0</div><div class="s" id="metricVolumeUnit">kg</div></div><div class="metric"><div class="k">Recent PRs</div><div class="v" id="metricPRs">0</div><div class="s">hits</div></div></div>
@@ -43,7 +43,7 @@
   <section class="screen" id="screen-programs"><div class="card"><h3>Create program</h3><input id="newProgramName" placeholder="Program name, e.g. Monday or Upper A"><div class="row" style="margin-top:8px"><button id="createProgramBtn" class="primary" onclick="createProgram(); return false;">Create program</button></div></div><div class="card"><div class="row between"><h3>Your programs</h3><span class="pill" id="programCount">0</span></div><div id="programList"></div></div></section>
   <section class="screen" id="screen-progress"><div class="card"><h3>Progress</h3><select id="progressExerciseSelect" onchange="renderProgress()"></select><div class="helper" style="margin-top:8px">Tap a chart point to view the related session details.</div></div><div class="card"><svg id="progressChart" class="chart-wrap" viewBox="0 0 360 220" role="img" aria-label="Progress chart"></svg></div><div class="card" id="progressInfo"></div></section>
   <section class="screen" id="screen-history"><div class="card"><div class="row between"><h3>History</h3><span class="pill" id="historyCount">0 sessions</span></div><div id="historyList"></div></div></section>
-  <section class="screen" id="screen-settings"><div class="card"><h3>Theme</h3><select id="themeSelect" onchange="changeTheme()"><option value="dark">Dark</option><option value="light">Light</option><option value="midnight">Midnight Blue</option><option value="forest">Forest Green</option></select></div><div class="card"><h3>Appearance</h3><div class="appearance-group-title">Style controls</div><div class="option-row"><div><div class="small muted" style="margin-bottom:6px">Accent colour</div><select id="accentSelect" onchange="saveSettings()"><option value="teal">Teal</option><option value="blue">Blue</option><option value="green">Green</option><option value="purple">Purple</option><option value="orange">Orange</option><option value="red">Red</option></select></div><div><div class="small muted" style="margin-bottom:6px">Corner style</div><select id="radiusSelect" onchange="saveSettings()"><option value="soft">Soft</option><option value="rounded">Rounded</option><option value="sharp">Sharp</option></select></div></div><div class="option-row" style="margin-top:8px"><div><div class="small muted" style="margin-bottom:6px">Density</div><select id="densitySelect" onchange="saveSettings()"><option value="compact">Compact</option><option value="comfortable">Comfortable</option><option value="large">Large</option></select></div><div><div class="small muted" style="margin-bottom:6px">Background style</div><select id="backgroundStyleSelect" onchange="saveSettings()"><option value="gradient">Gradient</option><option value="flat">Flat</option><option value="glow">Soft glow</option><option value="minimal">Minimal</option></select></div></div><div class="helper" style="margin-top:10px">Personalise the interface while keeping your current theme.</div></div><div class="card"><h3>Weight unit</h3><select id="weightUnitSelect" onchange="saveSettings()"><option value="kg">Kilograms (kg)</option><option value="lb">Pounds (lb)</option></select></div><div class="card"><h3>Rest timer</h3><select id="restDefaultSelect" onchange="saveSettings()"><option value="30">30 seconds</option><option value="60">60 seconds</option><option value="90">90 seconds</option><option value="120">120 seconds</option><option value="180">180 seconds</option></select></div><div class="card"><h3>Exercise library</h3><div class="grid-2"><input id="customExerciseName" placeholder="Exercise name"><select id="customExerciseType"><option value="weighted">Weighted</option><option value="bodyweight">Bodyweight</option><option value="cardio">Cardio</option><option value="timed">Timed hold</option></select></div><div class="grid-2" style="margin-top:8px"><select id="customExerciseCategory"><option>Chest</option><option>Back</option><option>Legs</option><option>Shoulders</option><option>Arms</option><option>Core</option><option>Cardio</option><option>Other</option></select><button class="primary" onclick="addCustomExercise()">Add exercise</button></div><div class="grid-2" style="margin-top:8px"><input id="exerciseSearchInput" placeholder="Search exercises" oninput="renderSettings()"><select id="exerciseSortSelect" onchange="renderSettings()"><option value="name">Sort: A–Z</option><option value="category">Sort: Category</option></select></div><div id="exerciseLibraryList" style="margin-top:8px"></div></div><div class="card"><h3>Backup & restore</h3><div class="grid-2"><button class="subtle" onclick="exportJSON()">Export JSON</button><button class="subtle" onclick="document.getElementById('importJsonInput').click()">Import JSON</button></div><input id="importJsonInput" type="file" accept=".json,application/json" style="display:none" onchange="importJSON(event)"><div class="row" style="margin-top:8px"><button class="danger" onclick="clearAllData()">Clear all data</button></div></div><div class="card"><h3>App version</h3><div class="small muted">Current build: <strong>v1.15</strong></div></div><div class="card"><h3>Storage usage</h3><div class="small muted">Approximate browser storage used by this app on this device.</div><div class="row between" style="margin-top:10px"><div><div id="storageUsedText" style="font-weight:800;font-size:22px">0 KB</div><div class="tiny muted" id="storagePercentText">0% of 5 MB estimate</div></div><button class="inline-btn subtle" onclick="renderStorageUsage()">Refresh</button></div><div style="margin-top:10px;height:12px;border-radius:999px;background:var(--panel-3);border:1px solid var(--line);overflow:hidden"><div id="storageBar" style="height:100%;width:0%;background:linear-gradient(180deg,var(--accent-2),var(--accent));border-radius:999px"></div></div></div><div class="card"><h3>View JSON</h3><div class="small muted">See the current saved data directly in the app.</div><div class="row wrap" style="margin-top:8px"><button class="inline-btn subtle" onclick="renderJsonView()">Refresh JSON</button></div><textarea id="jsonViewBox" readonly style="margin-top:8px;min-height:220px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace"></textarea></div></section>
+  <section class="screen" id="screen-settings"><div class="card"><h3>Theme</h3><select id="themeSelect" onchange="changeTheme()"><option value="dark">Dark</option><option value="light">Light</option><option value="midnight">Midnight Blue</option><option value="forest">Forest Green</option></select></div><div class="card"><h3>Appearance</h3><div class="appearance-group-title">Style controls</div><div class="option-row"><div><div class="small muted" style="margin-bottom:6px">Accent colour</div><select id="accentSelect" onchange="saveSettings()"><option value="teal">Teal</option><option value="blue">Blue</option><option value="green">Green</option><option value="purple">Purple</option><option value="orange">Orange</option><option value="red">Red</option></select></div><div><div class="small muted" style="margin-bottom:6px">Corner style</div><select id="radiusSelect" onchange="saveSettings()"><option value="soft">Soft</option><option value="rounded">Rounded</option><option value="sharp">Sharp</option></select></div></div><div class="option-row" style="margin-top:8px"><div><div class="small muted" style="margin-bottom:6px">Density</div><select id="densitySelect" onchange="saveSettings()"><option value="compact">Compact</option><option value="comfortable">Comfortable</option><option value="large">Large</option></select></div><div><div class="small muted" style="margin-bottom:6px">Background style</div><select id="backgroundStyleSelect" onchange="saveSettings()"><option value="gradient">Gradient</option><option value="flat">Flat</option><option value="glow">Soft glow</option><option value="minimal">Minimal</option></select></div></div><div class="helper" style="margin-top:10px">Personalise the interface while keeping your current theme.</div></div><div class="card"><h3>Weight unit</h3><select id="weightUnitSelect" onchange="saveSettings()"><option value="kg">Kilograms (kg)</option><option value="lb">Pounds (lb)</option></select></div><div class="card"><h3>Rest timer</h3><select id="restDefaultSelect" onchange="saveSettings()"><option value="30">30 seconds</option><option value="60">60 seconds</option><option value="90">90 seconds</option><option value="120">120 seconds</option><option value="180">180 seconds</option></select></div><div class="card"><h3>Exercise library</h3><div class="grid-2"><input id="customExerciseName" placeholder="Exercise name"><select id="customExerciseType"><option value="weighted">Weighted</option><option value="bodyweight">Bodyweight</option><option value="cardio">Cardio</option><option value="timed">Timed hold</option></select></div><div class="grid-2" style="margin-top:8px"><select id="customExerciseCategory"><option>Chest</option><option>Back</option><option>Legs</option><option>Shoulders</option><option>Arms</option><option>Core</option><option>Cardio</option><option>Other</option></select><button class="primary" onclick="addCustomExercise()">Add exercise</button></div><div class="grid-2" style="margin-top:8px"><input id="exerciseSearchInput" placeholder="Search exercises" oninput="renderSettings()"><select id="exerciseSortSelect" onchange="renderSettings()"><option value="name">Sort: A–Z</option><option value="category">Sort: Category</option></select></div><div id="exerciseLibraryList" style="margin-top:8px"></div></div><div class="card"><h3>Backup & restore</h3><div class="grid-2"><button class="subtle" onclick="exportJSON()">Export JSON</button><button class="subtle" onclick="document.getElementById('importJsonInput').click()">Import JSON</button></div><input id="importJsonInput" type="file" accept=".json,application/json" style="display:none" onchange="importJSON(event)"><div class="row" style="margin-top:8px"><button class="danger" onclick="clearAllData()">Clear all data</button></div></div><div class="card"><h3>App version</h3><div class="small muted">Current build: <strong>v1.16</strong></div></div><div class="card"><h3>Storage usage</h3><div class="small muted">Approximate browser storage used by this app on this device.</div><div class="row between" style="margin-top:10px"><div><div id="storageUsedText" style="font-weight:800;font-size:22px">0 KB</div><div class="tiny muted" id="storagePercentText">0% of 5 MB estimate</div></div><button class="inline-btn subtle" onclick="renderStorageUsage()">Refresh</button></div><div style="margin-top:10px;height:12px;border-radius:999px;background:var(--panel-3);border:1px solid var(--line);overflow:hidden"><div id="storageBar" style="height:100%;width:0%;background:linear-gradient(180deg,var(--accent-2),var(--accent));border-radius:999px"></div></div></div><div class="card"><h3>View JSON</h3><div class="small muted">See the current saved data directly in the app.</div><div class="row wrap" style="margin-top:8px"><button class="inline-btn subtle" onclick="renderJsonView()">Refresh JSON</button></div><textarea id="jsonViewBox" readonly style="margin-top:8px;min-height:220px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace"></textarea></div></section>
 
   <section class="screen" id="screen-edit-session">
     <div class="card">
@@ -564,6 +564,12 @@ function openEditSession(sessionId){
   renderEditSession();
   showScreen('edit-session', null);
 }
+function getEditSessionWeightUnitContext(session){
+  if(!session||typeof session!=='object')return weightUnit();
+  if(isKnownWeightUnit(session.weightUnit))return session.weightUnit;
+  const inferredUnit=(session.exercises||[]).flatMap(ex=>Array.isArray(ex?.sets)?ex.sets:[]).map(set=>set?.weightUnit).find(isKnownWeightUnit);
+  return isKnownWeightUnit(inferredUnit)?inferredUnit:weightUnit();
+}
 function hasUnsavedEditSessionChanges(){if(!editingSessionDraft)return false;const notesEl=document.getElementById('editSessionNotes');if(notesEl)editingSessionDraft.notes=notesEl.value||'';return JSON.stringify(editingSessionDraft)!==editingSessionOriginalSnapshot;}
 function confirmDiscardEditSessionChanges(){if(!editingSessionDraft||!isScreenActive('edit-session'))return true;if(!hasUnsavedEditSessionChanges())return true;return confirm('You have unsaved session edits. Discard changes and leave?');}
 function closeEditSession(forceDiscard=false){
@@ -597,18 +603,25 @@ function renderEditSession(){
 function renderEditSetRow(ex, exIndex, set, setIndex){
   const warmBtn = `<button class="inline-btn ${set.warmup?'subtle':'ghost'}" onclick="toggleEditWarmup(${exIndex},${setIndex})">${set.warmup?'Warm-up':'Work'}</button>`;
   const delBtn = `<button class="inline-btn danger" onclick="deleteEditSet(${exIndex},${setIndex})">Delete</button>`;
-  if(ex.type==='weighted') return `<div class="set-row"><div>${set.set}</div><input type="number" placeholder="${resolveDraftWeightUnit(set,editingSessionDraft,editingSessionDraft.weightUnit)}" value="${set.weight===undefined||set.weight===null?'':set.weight}" oninput="updateEditSet(${exIndex},${setIndex},'weight',this.value)"><input type="number" placeholder="reps" value="${set.reps||''}" oninput="updateEditSet(${exIndex},${setIndex},'reps',this.value)"><div>${warmBtn}${delBtn}</div></div>`;
+  if(ex.type==='weighted') return `<div class="set-row"><div>${set.set}</div><input type="number" placeholder="${resolveDraftWeightUnit(set,editingSessionDraft,getEditSessionWeightUnitContext(editingSessionDraft))}" value="${set.weight===undefined||set.weight===null?'':set.weight}" oninput="updateEditSet(${exIndex},${setIndex},'weight',this.value)"><input type="number" placeholder="reps" value="${set.reps||''}" oninput="updateEditSet(${exIndex},${setIndex},'reps',this.value)"><div>${warmBtn}${delBtn}</div></div>`;
   if(ex.type==='bodyweight') return `<div class="set-row bodyweight"><div>${set.set}</div><input type="number" placeholder="reps" value="${set.reps||''}" oninput="updateEditSet(${exIndex},${setIndex},'reps',this.value)"><div>${warmBtn}${delBtn}</div></div>`;
   if(ex.type==='cardio') return `<div class="set-row cardio"><div>${set.set}</div><input type="number" step="0.01" placeholder="km" value="${set.distance||''}" oninput="updateEditSet(${exIndex},${setIndex},'distance',this.value)"><input type="number" placeholder="min" value="${set.duration||''}" oninput="updateEditSet(${exIndex},${setIndex},'duration',this.value)"><div>${warmBtn}${delBtn}</div></div>`;
   return `<div class="set-row timed"><div>${set.set}</div><input type="number" placeholder="sec" value="${set.duration||''}" oninput="updateEditSet(${exIndex},${setIndex},'duration',this.value)"><div>${warmBtn}${delBtn}</div></div>`;
 }
-function updateEditSet(exIndex,setIndex,key,value){const ex=editingSessionDraft.exercises[exIndex],set=ex.sets[setIndex];set[key]=value;if(ex.type==='weighted'&&key==='weight')set.weightUnit=resolveDraftWeightUnit(set,editingSessionDraft,editingSessionDraft.weightUnit);}
+function updateEditSet(exIndex,setIndex,key,value){
+  const ex=editingSessionDraft.exercises[exIndex],set=ex.sets[setIndex];
+  set[key]=value;
+  if(ex.type!=='weighted')return;
+  if(isKnownWeightUnit(set.weightUnit))return;
+  set.weightUnit=resolveDraftWeightUnit(set,editingSessionDraft,getEditSessionWeightUnitContext(editingSessionDraft));
+}
 function toggleEditWarmup(exIndex,setIndex){ editingSessionDraft.exercises[exIndex].sets[setIndex].warmup=!editingSessionDraft.exercises[exIndex].sets[setIndex].warmup; renderEditSession(); }
 function deleteEditSet(exIndex,setIndex){ editingSessionDraft.exercises[exIndex].sets.splice(setIndex,1); editingSessionDraft.exercises[exIndex].sets.forEach((s,i)=>s.set=i+1); renderEditSession(); }
 function addEditSet(exIndex){
   const ex = editingSessionDraft.exercises[exIndex];
   const n = ex.sets.length + 1;
-  ex.sets.push(ex.type==='weighted'?{set:n,weight:'',reps:'',weightUnit:isKnownWeightUnit(editingSessionDraft.weightUnit)?editingSessionDraft.weightUnit:weightUnit(),warmup:false,isPR:false,completed:false}:ex.type==='bodyweight'?{set:n,reps:'',warmup:false,isPR:false,completed:false}:ex.type==='cardio'?{set:n,distance:'',duration:'',warmup:false,isPR:false,completed:false}:{set:n,duration:'',warmup:false,isPR:false,completed:false});
+  const draftUnit=getEditSessionWeightUnitContext(editingSessionDraft);
+  ex.sets.push(ex.type==='weighted'?{set:n,weight:'',reps:'',weightUnit:draftUnit,warmup:false,isPR:false,completed:false}:ex.type==='bodyweight'?{set:n,reps:'',warmup:false,isPR:false,completed:false}:ex.type==='cardio'?{set:n,distance:'',duration:'',warmup:false,isPR:false,completed:false}:{set:n,duration:'',warmup:false,isPR:false,completed:false});
   renderEditSession();
 }
 function historicalBestForExercise(exerciseId,sessions){let bestWeight=0,best1RM=0,bestReps=0,bestDuration=0,bestDistance=0;(sessions||[]).forEach(session=>{(session.exercises||[]).forEach(ex=>{if(ex.exerciseId!==exerciseId)return;(ex.sets||[]).forEach(set=>{if(set.warmup)return;if(ex.type==='weighted'){const unit=resolveStoredWeightUnit(set,session);if(!isKnownWeightUnit(unit))return;const w=convertWeightValue(Number(set.weight)||0,unit,PR_COMPARISON_UNIT)||0,r=Number(set.reps)||0,orm=(w&&r&&r<37)?w*36/(37-r):0;bestWeight=Math.max(bestWeight,w);best1RM=Math.max(best1RM,orm);}else if(ex.type==='bodyweight')bestReps=Math.max(bestReps,Number(set.reps)||0);else if(ex.type==='timed')bestDuration=Math.max(bestDuration,Number(set.duration)||0);else if(ex.type==='cardio')bestDistance=Math.max(bestDistance,Number(set.distance)||0);});});});return{bestWeight,best1RM,bestReps,bestDuration,bestDistance};}
@@ -632,8 +645,8 @@ function recalcSessionMetrics(session,excludeSessionId,baselineSessionsOverride)
 function saveEditedSession(){
   if(!editingSessionDraft || !editingSessionId) return;
   editingSessionDraft.notes = document.getElementById('editSessionNotes').value;
-  editingSessionDraft.weightUnit=isKnownWeightUnit(editingSessionDraft.weightUnit)?editingSessionDraft.weightUnit:weightUnit();
-  editingSessionDraft.exercises.forEach(ex=>{if(ex.type!=='weighted')return;(ex.sets||[]).forEach(set=>{if((Number(set.weight)||0)>0&&!isKnownWeightUnit(set.weightUnit))set.weightUnit=editingSessionDraft.weightUnit;});});
+  editingSessionDraft.weightUnit=getEditSessionWeightUnitContext(editingSessionDraft);
+  editingSessionDraft.exercises.forEach(ex=>{if(ex.type!=='weighted')return;(ex.sets||[]).forEach(set=>{if(!isKnownWeightUnit(set.weightUnit))set.weightUnit=resolveDraftWeightUnit(set,editingSessionDraft,editingSessionDraft.weightUnit);});});
   recalcSessionMetrics(editingSessionDraft, editingSessionId);
   const idx = state.sessions.findIndex(s=>s.id===editingSessionId);
   if(idx === -1) return;
@@ -672,7 +685,60 @@ function renderJsonView(){
   const box=document.getElementById('jsonViewBox');
   if(box) box.value=JSON.stringify(payload,null,2);
 }
-async function registerAppServiceWorker(){if(!('serviceWorker' in navigator))return;try{const registration=await navigator.serviceWorker.register('./sw.js');registration.addEventListener('updatefound',()=>{const installing=registration.installing;if(!installing)return;installing.addEventListener('statechange',()=>{if(installing.state==='installed'&&navigator.serviceWorker.controller)showToast('App update ready. Reload to use v1.15.',3500);});});}catch(err){console.warn('Service worker registration failed',err);}}
+async function registerAppServiceWorker(){
+  if(!('serviceWorker' in navigator))return;
+  const swCode=`
+const CACHE_NAME = 'hercules-v1.16-shell';
+const APP_SHELL = ['./', './index.html', './hercules_logo.svg'];
+self.addEventListener('install', (event) => {
+  event.waitUntil(
+    caches.open(CACHE_NAME)
+      .then((cache) => cache.addAll(APP_SHELL))
+      .then(() => self.skipWaiting())
+  );
+});
+self.addEventListener('activate', (event) => {
+  event.waitUntil(
+    caches.keys().then((keys) => Promise.all(
+      keys.filter((key) => key !== CACHE_NAME).map((key) => caches.delete(key))
+    )).then(() => self.clients.claim())
+  );
+});
+self.addEventListener('fetch', (event) => {
+  if (event.request.method !== 'GET') return;
+  const requestUrl = new URL(event.request.url);
+  if (requestUrl.origin !== self.location.origin) return;
+  if (event.request.mode === 'navigate') {
+    event.respondWith(
+      fetch(event.request)
+        .then((response) => {
+          const copy = response.clone();
+          caches.open(CACHE_NAME).then((cache) => cache.put('./index.html', copy));
+          return response;
+        })
+        .catch(() => caches.match('./index.html'))
+    );
+    return;
+  }
+  const isShellAsset = ['/index.html', '/', '/hercules_logo.svg'].includes(requestUrl.pathname);
+  if (!isShellAsset) return;
+  event.respondWith(caches.match(event.request).then((cached) => cached || fetch(event.request)));
+});
+`;
+  const blob = new Blob([swCode], { type: 'text/javascript' });
+  const swUrl = URL.createObjectURL(blob);
+  try{
+    const registration=await navigator.serviceWorker.register(swUrl);
+    registration.addEventListener('updatefound',()=>{
+      const installing=registration.installing;
+      if(!installing)return;
+      installing.addEventListener('statechange',()=>{
+        if(installing.state==='installed'&&navigator.serviceWorker.controller)showToast('App update ready. Reload to use v1.16.',3500);
+      });
+    });
+  }catch(err){console.warn('Service worker registration failed',err);}
+  finally{setTimeout(()=>URL.revokeObjectURL(swUrl),0);}
+}
 function handleStaleActiveWorkout(){if(!currentWorkout)return;const startedAt=Number(currentWorkout.startedAt)||Date.now();const ageHours=(Date.now()-startedAt)/36e5;if(ageHours<=ACTIVE_WORKOUT_STALE_HOURS)return;const keep=confirm(`An in-progress workout from ${new Date(startedAt).toLocaleString()} was found. Resume it?`);if(!keep){currentWorkout=null;saveActiveWorkout();showToast('Stale workout discarded.');}}
 function boot(){document.getElementById('app').dataset.theme=state.settings.theme||'dark';document.getElementById('themeSelect').value=state.settings.theme||'dark';document.getElementById('weightUnitSelect').value=state.settings.weightUnit||'kg';document.getElementById('restDefaultSelect').value=String(state.settings.restDefault||90);const appearance=normalizeAppearanceSettings(state.settings);Object.assign(state.settings,appearance);if(document.getElementById('accentSelect'))document.getElementById('accentSelect').value=appearance.accent;if(document.getElementById('radiusSelect'))document.getElementById('radiusSelect').value=appearance.radius;if(document.getElementById('densitySelect'))document.getElementById('densitySelect').value=appearance.density;if(document.getElementById('backgroundStyleSelect'))document.getElementById('backgroundStyleSelect').value=appearance.backgroundStyle;applyAppearanceSettings();renderHome();renderPrograms();renderProgressExerciseOptions();renderProgress();renderHistory();renderSettings();updateGlobalExerciseSelects();renderStorageUsage();renderJsonView();
 const input=document.getElementById('newProgramName');
