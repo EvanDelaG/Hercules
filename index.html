@@ -29,7 +29,7 @@
 </head>
 <body>
 <div class="app" id="app" data-theme="dark">
-  <header><div class="brand"><img id="brandLogo" src="hercules_logo.svg" alt="Hercules logo" onerror="handleLogoError()"><div id="brandLogoFallback" class="brand-logo-fallback" aria-hidden="true">🏋️</div><div><h1>Hercules</h1><div class="sub">Ready-to-ship offline workout tracker • v1.25</div></div></div></header>
+  <header><div class="brand"><img id="brandLogo" src="hercules_logo.svg" alt="Hercules logo" onerror="handleLogoError()"><div id="brandLogoFallback" class="brand-logo-fallback" aria-hidden="true">🏋️</div><div><h1>Hercules</h1><div class="sub">Ready-to-ship offline workout tracker • v1.26</div></div></div></header>
   <section class="screen active" id="screen-home">
     <div class="hero"><div class="hero-kicker">Today’s focus</div><h2 id="heroWorkout">No active programs</h2><p id="heroSub">Set up programs, choose today’s body parts, and start logging.</p><div class="row" style="margin-top:14px"><button id="startWorkoutBtn" class="primary" onclick="startTodayWorkout()">Start workout</button></div></div>
     <div class="summary"><div class="metric"><div class="k">This week</div><div class="v" id="metricWorkouts">0</div><div class="s">workouts</div></div><div class="metric"><div class="k">Weighted tonnage</div><div class="v" id="metricVolume">0</div><div class="s" id="metricVolumeUnit">kg</div></div><div class="metric"><div class="k">Recent PRs</div><div class="v" id="metricPRs">0</div><div class="s">hits</div></div><div class="metric" id="metricCurrentStreakCard"><div class="k">Current streak</div><div class="v" id="metricCurrentStreak">0</div><div class="s">days</div><div class="metric-streak-flag" id="metricCurrentStreakFlag">Tied best</div></div><div class="metric"><div class="k">Best streak</div><div class="v" id="metricBestStreak">0</div><div class="s">days</div></div></div>
@@ -44,7 +44,7 @@
   <section class="screen" id="screen-programs"><div class="card"><h3>Create program</h3><input id="newProgramName" placeholder="Program name, e.g. Monday or Upper A"><div class="row" style="margin-top:8px"><button id="createProgramBtn" class="primary" onclick="createProgram(); return false;">Create program</button></div></div><div class="card"><div class="row between"><h3>Your programs</h3><span class="pill" id="programCount">0</span></div><div id="programList"></div></div></section>
   <section class="screen" id="screen-progress"><div class="card"><h3>Progress</h3><select id="progressExerciseSelect" onchange="renderProgress()"></select><div class="helper" style="margin-top:8px">Tap a chart point to view the related session details.</div></div><div class="card"><svg id="progressChart" class="chart-wrap" viewBox="0 0 360 220" role="img" aria-label="Progress chart"></svg></div><div class="card" id="progressInfo"></div></section>
   <section class="screen" id="screen-history"><div class="card"><div class="row between"><h3>History</h3><span class="pill" id="historyCount">0 sessions</span></div><div id="historyList"></div></div></section>
-  <section class="screen" id="screen-settings"><div class="card"><h3>Theme</h3><select id="themeSelect" onchange="changeTheme()"><option value="dark">Dark</option><option value="light">Light</option><option value="midnight">Midnight Blue</option><option value="forest">Forest Green</option></select></div><div class="card"><h3>Appearance</h3><div class="appearance-group-title">Style controls</div><div class="option-row"><div><div class="small muted" style="margin-bottom:6px">Accent colour</div><select id="accentSelect" onchange="saveSettings()"><option value="teal">Teal</option><option value="blue">Blue</option><option value="green">Green</option><option value="purple">Purple</option><option value="orange">Orange</option><option value="red">Red</option></select></div><div><div class="small muted" style="margin-bottom:6px">Corner style</div><select id="radiusSelect" onchange="saveSettings()"><option value="soft">Soft</option><option value="rounded">Rounded</option><option value="sharp">Sharp</option></select></div></div><div class="option-row" style="margin-top:8px"><div><div class="small muted" style="margin-bottom:6px">Density</div><select id="densitySelect" onchange="saveSettings()"><option value="compact">Compact</option><option value="comfortable">Comfortable</option><option value="large">Large</option></select></div><div><div class="small muted" style="margin-bottom:6px">Background style</div><select id="backgroundStyleSelect" onchange="saveSettings()"><option value="gradient">Gradient</option><option value="flat">Flat</option><option value="glow">Soft glow</option><option value="minimal">Minimal</option></select></div></div><div class="helper" style="margin-top:10px">Personalise the interface while keeping your current theme.</div></div><div class="card"><h3>Weight unit</h3><select id="weightUnitSelect" onchange="saveSettings()"><option value="kg">Kilograms (kg)</option><option value="lb">Pounds (lb)</option></select></div><div class="card"><h3>Rest timer</h3><select id="restDefaultSelect" onchange="saveSettings()"><option value="30">30 seconds</option><option value="60">60 seconds</option><option value="90">90 seconds</option><option value="120">120 seconds</option><option value="180">180 seconds</option></select></div><div class="card"><h3>Keep awake during workouts</h3><div class="small muted" id="wakeLockSupportText">Checking support…</div></div><div class="card"><h3>Exercise library</h3><div class="grid-2"><input id="customExerciseName" placeholder="Exercise name"><select id="customExerciseType"><option value="weighted">Weighted</option><option value="bodyweight">Bodyweight</option><option value="cardio">Cardio</option><option value="timed">Timed hold</option></select></div><div class="grid-2" style="margin-top:8px"><select id="customExerciseCategory"><option>Chest</option><option>Back</option><option>Legs</option><option>Shoulders</option><option>Arms</option><option>Core</option><option>Cardio</option><option>Other</option></select><button class="primary" onclick="addCustomExercise()">Add exercise</button></div><div class="grid-2" style="margin-top:8px"><input id="exerciseSearchInput" placeholder="Search exercises" oninput="renderSettings()"><select id="exerciseSortSelect" onchange="renderSettings()"><option value="name">Sort: A–Z</option><option value="category">Sort: Category</option></select></div><div id="exerciseLibraryList" style="margin-top:8px"></div></div><div class="card"><h3>Backup & restore</h3><div class="grid-2"><button class="subtle" onclick="exportJSON()">Export JSON</button><button class="subtle" onclick="document.getElementById('importJsonInput').click()">Import JSON</button></div><input id="importJsonInput" type="file" accept=".json,application/json" style="display:none" onchange="importJSON(event)"><div class="row" style="margin-top:8px"><button class="danger" onclick="clearAllData()">Clear all data</button></div></div><div class="card"><h3>App version</h3><div class="small muted">Current build: <strong>v1.25</strong></div></div><div class="card"><h3>Storage usage</h3><div class="small muted">Approximate browser storage used by this app on this device.</div><div class="row between" style="margin-top:10px"><div><div id="storageUsedText" style="font-weight:800;font-size:22px">0 KB</div><div class="tiny muted" id="storagePercentText">0% of 5 MB estimate</div></div><button class="inline-btn subtle" onclick="renderStorageUsage()">Refresh</button></div><div style="margin-top:10px;height:12px;border-radius:999px;background:var(--panel-3);border:1px solid var(--line);overflow:hidden"><div id="storageBar" style="height:100%;width:0%;background:linear-gradient(180deg,var(--accent-2),var(--accent));border-radius:999px"></div></div></div><div class="card"><h3>View JSON</h3><div class="small muted">See the current saved data directly in the app.</div><div class="row wrap" style="margin-top:8px"><button class="inline-btn subtle" onclick="renderJsonView()">Refresh JSON</button></div><textarea id="jsonViewBox" readonly style="margin-top:8px;min-height:220px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace"></textarea></div></section>
+  <section class="screen" id="screen-settings"><div class="card"><h3>Theme</h3><select id="themeSelect" onchange="changeTheme()"><option value="dark">Dark</option><option value="light">Light</option><option value="midnight">Midnight Blue</option><option value="forest">Forest Green</option></select></div><div class="card"><h3>Appearance</h3><div class="appearance-group-title">Style controls</div><div class="option-row"><div><div class="small muted" style="margin-bottom:6px">Accent colour</div><select id="accentSelect" onchange="saveSettings()"><option value="teal">Teal</option><option value="blue">Blue</option><option value="green">Green</option><option value="purple">Purple</option><option value="orange">Orange</option><option value="red">Red</option></select></div><div><div class="small muted" style="margin-bottom:6px">Corner style</div><select id="radiusSelect" onchange="saveSettings()"><option value="soft">Soft</option><option value="rounded">Rounded</option><option value="sharp">Sharp</option></select></div></div><div class="option-row" style="margin-top:8px"><div><div class="small muted" style="margin-bottom:6px">Density</div><select id="densitySelect" onchange="saveSettings()"><option value="compact">Compact</option><option value="comfortable">Comfortable</option><option value="large">Large</option></select></div><div><div class="small muted" style="margin-bottom:6px">Background style</div><select id="backgroundStyleSelect" onchange="saveSettings()"><option value="gradient">Gradient</option><option value="flat">Flat</option><option value="glow">Soft glow</option><option value="minimal">Minimal</option></select></div></div><div class="helper" style="margin-top:10px">Personalise the interface while keeping your current theme.</div></div><div class="card"><h3>Weight unit</h3><select id="weightUnitSelect" onchange="saveSettings()"><option value="kg">Kilograms (kg)</option><option value="lb">Pounds (lb)</option></select></div><div class="card"><h3>Rest timer</h3><select id="restDefaultSelect" onchange="saveSettings()"><option value="30">30 seconds</option><option value="60">60 seconds</option><option value="90">90 seconds</option><option value="120">120 seconds</option><option value="180">180 seconds</option></select></div><div class="card"><h3>Keep awake during workouts</h3><div class="small muted" id="wakeLockSupportText">Checking support…</div></div><div class="card"><h3>Exercise library</h3><div class="grid-2"><input id="customExerciseName" placeholder="Exercise name"><select id="customExerciseType"><option value="weighted">Weighted</option><option value="bodyweight">Bodyweight</option><option value="cardio">Cardio</option><option value="timed">Timed hold</option></select></div><div class="grid-2" style="margin-top:8px"><select id="customExerciseCategory"><option>Chest</option><option>Back</option><option>Legs</option><option>Shoulders</option><option>Arms</option><option>Core</option><option>Cardio</option><option>Other</option></select><button class="primary" onclick="addCustomExercise()">Add exercise</button></div><div class="grid-2" style="margin-top:8px"><input id="exerciseSearchInput" placeholder="Search exercises" oninput="renderSettings()"><select id="exerciseSortSelect" onchange="renderSettings()"><option value="name">Sort: A–Z</option><option value="category">Sort: Category</option></select></div><div id="exerciseLibraryList" style="margin-top:8px"></div></div><div class="card"><h3>Backup & restore</h3><div class="grid-2"><button class="subtle" onclick="exportJSON()">Export JSON</button><button class="subtle" onclick="document.getElementById('importJsonInput').click()">Import JSON</button></div><input id="importJsonInput" type="file" accept=".json,application/json" style="display:none" onchange="importJSON(event)"><div class="row" style="margin-top:8px"><button class="danger" onclick="clearAllData()">Clear all data</button></div></div><div class="card"><h3>App version</h3><div class="small muted">Current build: <strong>v1.26</strong></div></div><div class="card"><h3>Storage usage</h3><div class="small muted">Approximate browser storage used by this app on this device.</div><div class="row between" style="margin-top:10px"><div><div id="storageUsedText" style="font-weight:800;font-size:22px">0 KB</div><div class="tiny muted" id="storagePercentText">0% of 5 MB estimate</div></div><button class="inline-btn subtle" onclick="renderStorageUsage()">Refresh</button></div><div style="margin-top:10px;height:12px;border-radius:999px;background:var(--panel-3);border:1px solid var(--line);overflow:hidden"><div id="storageBar" style="height:100%;width:0%;background:linear-gradient(180deg,var(--accent-2),var(--accent));border-radius:999px"></div></div></div><div class="card"><h3>View JSON</h3><div class="small muted">See the current saved data directly in the app.</div><div class="row wrap" style="margin-top:8px"><button class="inline-btn subtle" onclick="renderJsonView()">Refresh JSON</button></div><textarea id="jsonViewBox" readonly style="margin-top:8px;min-height:220px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace"></textarea></div></section>
 
   <section class="screen" id="screen-edit-session">
     <div class="card">
@@ -114,52 +114,11 @@
 <script>
 // ===== Constants / config =====
 const STORAGE_KEYS={exercises:'gym_exercises',programs:'gym_programs',sessions:'gym_sessions',settings:'gym_settings',activeProgram:'gym_active_program',activePrograms:'gym_active_programs',activeWorkout:'gym_active_workout',ui:'gym_ui'},BODY_PARTS=['Chest','Back','Legs','Shoulders','Arms','Core','Cardio','Other'],EXERCISE_TYPES=['weighted','bodyweight','cardio','timed'],DEFAULT_EXERCISES=[{name:'Bench Press',category:'Chest',type:'weighted'},{name:'Incline Bench Press',category:'Chest',type:'weighted'},{name:'Cable Fly',category:'Chest',type:'weighted'},{name:'Push-ups',category:'Chest',type:'bodyweight'},{name:'Dips',category:'Chest',type:'bodyweight'},{name:'Deadlift',category:'Back',type:'weighted'},{name:'Barbell Row',category:'Back',type:'weighted'},{name:'Cable Row',category:'Back',type:'weighted'},{name:'Lat Pulldown',category:'Back',type:'weighted'},{name:'Pull-ups',category:'Back',type:'bodyweight'},{name:'Inverted Row',category:'Back',type:'bodyweight'},{name:'Squat',category:'Legs',type:'weighted'},{name:'Romanian Deadlift',category:'Legs',type:'weighted'},{name:'Leg Press',category:'Legs',type:'weighted'},{name:'Walking Lunges',category:'Legs',type:'weighted'},{name:'Leg Extension',category:'Legs',type:'weighted'},{name:'Hamstring Curl',category:'Legs',type:'weighted'},{name:'Calf Raise',category:'Legs',type:'weighted'},{name:'Overhead Press',category:'Shoulders',type:'weighted'},{name:'Dumbbell Lateral Raise',category:'Shoulders',type:'weighted'},{name:'Rear Delt Fly',category:'Shoulders',type:'weighted'},{name:'Arnold Press',category:'Shoulders',type:'weighted'},{name:'Dumbbell Curl',category:'Arms',type:'weighted'},{name:'Hammer Curl',category:'Arms',type:'weighted'},{name:'Tricep Pushdown',category:'Arms',type:'weighted'},{name:'Skullcrusher',category:'Arms',type:'weighted'},{name:'Close-Grip Bench Press',category:'Arms',type:'weighted'},{name:'Plank',category:'Core',type:'timed'},{name:'Hanging Leg Raise',category:'Core',type:'bodyweight'},{name:'Cable Crunch',category:'Core',type:'weighted'},{name:'Russian Twist',category:'Core',type:'bodyweight'},{name:'Running',category:'Cardio',type:'cardio'},{name:'Cycling',category:'Cardio',type:'cardio'},{name:'Rowing',category:'Cardio',type:'cardio'},{name:'Assault Bike',category:'Cardio',type:'cardio'}];
-const EXERCISE_SPRITE_MAP = {
-  "Bench Press": { col: 0, row: 0 },
-  "Incline Bench Press": { col: 1, row: 0 },
-  "Cable Fly": { col: 2, row: 0 },
-  "Push-ups": { col: 3, row: 0 },
-  "Dips": { col: 4, row: 0 },
-  "Deadlift": { col: 5, row: 0 },
-
-  "Barbell Row": { col: 0, row: 1 },
-  "Cable Row": { col: 1, row: 1 },
-  "Lat Pulldown": { col: 2, row: 1 },
-  "Pull-ups": { col: 3, row: 1 },
-  "Inverted Row": { col: 4, row: 1 },
-  "Squat": { col: 5, row: 1 },
-
-  "Romanian Deadlift": { col: 0, row: 2 },
-  "Leg Press": { col: 1, row: 2 },
-  "Walking Lunges": { col: 2, row: 2 },
-  "Leg Extension": { col: 3, row: 2 },
-  "Hamstring Curl": { col: 4, row: 2 },
-  "Calf Raise": { col: 5, row: 2 },
-
-  "Overhead Press": { col: 0, row: 3 },
-  "Dumbbell Lateral Raise": { col: 1, row: 3 },
-  "Rear Delt Fly": { col: 2, row: 3 },
-  "Arnold Press": { col: 3, row: 3 },
-  "Dumbbell Curl": { col: 4, row: 3 },
-  "Hammer Curl": { col: 5, row: 3 },
-
-  "Tricep Pushdown": { col: 0, row: 4 },
-  "Skullcrusher": { col: 1, row: 4 },
-  "Close-Grip Bench Press": { col: 2, row: 4 },
-  "Plank": { col: 3, row: 4 },
-  "Hanging Leg Raise": { col: 4, row: 4 },
-  "Cable Crunch": { col: 5, row: 4 },
-
-  "Russian Twist": { col: 0, row: 5 },
-  "Running": { col: 1, row: 5 },
-  "Cycling": { col: 2, row: 5 },
-  "Rowing": { col: 3, row: 5 },
-  "Assault Bike": { col: 4, row: 5 },
-
-  "__fallback__": { col: 5, row: 5 }
-};
-let spriteSheetImage = null;
-let spriteSheetImagePromise = null;
+const EXERCISE_IMAGE_BASE_URL='https://evandelag.github.io/Hercules/';
+const exerciseImageAvailabilityCache=new Map();
+const exerciseImageAvailabilityPending=new Map();
+let previewRefreshTimer=null;
+let activePreviewRequestId=0;
 let state={},currentWorkout=null,workoutTimer=null,restTimer=null,progressChart=null,toastTimer=null,lastDeletedSession=null,lastDeletedSessionTimer=null;
 let editingSessionId=null,editingSessionDraft=null,editingSessionOriginalSnapshot='';
 const WEEKDAYS=['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'];
@@ -245,82 +204,90 @@ function toggleNewDayWeekday(pid, weekday){state.ui=state.ui||{collapsedDays:{},
 function getSelectedNewDayWeekdays(pid){const selected=state.ui?.newDayWeekdays?.[pid];return Array.isArray(selected)?selected.filter(day=>WEEKDAYS.includes(day)):[];}
 function showToast(message,ms=1800,action){const toast=document.getElementById('appToast');if(!toast)return;toast.innerHTML=`<span>${escapeHtml(message)}</span>`;if(action?.onClick){const btn=document.createElement('button');btn.className='inline-btn subtle';btn.style.width='auto';btn.textContent=action.label||'Undo';btn.onclick=()=>action.onClick();toast.appendChild(btn);}toast.classList.add('show');if(toastTimer)clearTimeout(toastTimer);toastTimer=setTimeout(()=>toast.classList.remove('show'),ms);}
 function handleLogoError(){const logo=document.getElementById('brandLogo');const fallback=document.getElementById('brandLogoFallback');if(logo)logo.style.display='none';if(fallback)fallback.style.display='flex';}
-function loadSpriteSheetImage() {
-  if (spriteSheetImage) return Promise.resolve(spriteSheetImage);
-  if (spriteSheetImagePromise) return spriteSheetImagePromise;
-
-  spriteSheetImagePromise = new Promise((resolve, reject) => {
-    const img = new Image();
-    img.onload = () => {
-      spriteSheetImage = img;
-      resolve(img);
-    };
-    img.onerror = reject;
-    img.src = 'https://evandelag.github.io/Hercules/ExerciseSheet1.png';
-  });
-
-  return spriteSheetImagePromise;
+function getExerciseImageFilename(exerciseName){
+  const normalized=String(exerciseName||'').toLowerCase().replace(/[^a-z0-9]/g,'');
+  return normalized?`${normalized}.png`:'';
 }
-async function getExerciseSpriteDataUrl(exerciseName) {
-  const map = EXERCISE_SPRITE_MAP[exerciseName] || EXERCISE_SPRITE_MAP["__fallback__"];
-  const img = await loadSpriteSheetImage();
-
-  const cols = 6;
-  const rows = 6;
-  const cellWidth = img.naturalWidth / cols;
-  const cellHeight = img.naturalHeight / rows;
-
-  const sx = map.col * cellWidth;
-  const sy = map.row * cellHeight;
-
-  const canvas = document.createElement('canvas');
-  canvas.width = Math.round(cellWidth);
-  canvas.height = Math.round(cellHeight);
-
-  const ctx = canvas.getContext('2d');
-  ctx.imageSmoothingEnabled = true;
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-  ctx.drawImage(
-    img,
-    sx, sy, cellWidth, cellHeight,
-    0, 0, canvas.width, canvas.height
-  );
-
-  return canvas.toDataURL('image/png');
+function getExerciseImageUrl(exerciseName){
+  const filename=getExerciseImageFilename(exerciseName);
+  return filename?`${EXERCISE_IMAGE_BASE_URL}${filename}`:'';
+}
+function checkImageExists(url){
+  if(!url)return Promise.resolve(false);
+  if(exerciseImageAvailabilityCache.has(url))return Promise.resolve(exerciseImageAvailabilityCache.get(url));
+  if(exerciseImageAvailabilityPending.has(url))return exerciseImageAvailabilityPending.get(url);
+  const pending=new Promise(resolve=>{
+    const img=new Image();
+    img.onload=()=>{exerciseImageAvailabilityCache.set(url,true);exerciseImageAvailabilityPending.delete(url);resolve(true);};
+    img.onerror=()=>{exerciseImageAvailabilityCache.set(url,false);exerciseImageAvailabilityPending.delete(url);resolve(false);};
+    img.src=url;
+  });
+  exerciseImageAvailabilityPending.set(url,pending);
+  return pending;
+}
+function getCachedExerciseImageAvailability(exerciseName){
+  const url=getExerciseImageUrl(exerciseName);
+  if(!url)return false;
+  if(!exerciseImageAvailabilityCache.has(url))return null;
+  return exerciseImageAvailabilityCache.get(url)===true;
+}
+function queueExerciseImageAvailabilityCheck(exerciseName){
+  const url=getExerciseImageUrl(exerciseName);
+  if(!url||exerciseImageAvailabilityCache.has(url)||exerciseImageAvailabilityPending.has(url))return;
+  checkImageExists(url).then(()=>scheduleExercisePreviewRefresh());
+}
+function scheduleExercisePreviewRefresh(){
+  if(previewRefreshTimer)return;
+  previewRefreshTimer=setTimeout(()=>{
+    previewRefreshTimer=null;
+    if(isScreenActive('programs'))renderPrograms();
+    if(isScreenActive('home')&&currentWorkout)renderLogger();
+    if(isScreenActive('history'))renderHistory();
+    if(isScreenActive('edit-session')&&editingSessionDraft)renderEditSession();
+  },0);
+}
+function getExercisePreviewButtonHtml(exerciseName){
+  const exists=getCachedExerciseImageAvailability(exerciseName);
+  if(exists===true)return `<button class="exercise-preview-btn" type="button" aria-label="Preview exercise image" data-exercise-name="${escapeHtml(exerciseName)}">👁</button>`;
+  if(exists===null)queueExerciseImageAvailabilityCheck(exerciseName);
+  return '';
 }
 async function openSpriteModal(exerciseName) {
   const modal = document.getElementById('spriteModal');
   const imageEl = document.getElementById('spriteModalImage');
   const titleEl = document.getElementById('spriteModalTitle');
-
   if (!modal || !imageEl || !titleEl) return;
 
+  const imageUrl=getExerciseImageUrl(exerciseName);
+  if(!imageUrl){showToast('Preview unavailable.');return;}
+  const exists=await checkImageExists(imageUrl);
+  if(!exists){showToast('Preview unavailable.');scheduleExercisePreviewRefresh();return;}
+
+  const requestId=++activePreviewRequestId;
   titleEl.textContent = exerciseName || 'Exercise preview';
   imageEl.removeAttribute('src');
   imageEl.alt = `${exerciseName || 'Exercise'} preview`;
-
+  imageEl.onerror=()=>{
+    if(requestId!==activePreviewRequestId)return;
+    exerciseImageAvailabilityCache.set(imageUrl,false);
+    closeSpriteModal();
+    showToast('Preview unavailable.');
+    scheduleExercisePreviewRefresh();
+  };
   modal.classList.add('show');
   modal.setAttribute('aria-hidden', 'false');
-
-  try {
-    const dataUrl = await getExerciseSpriteDataUrl(exerciseName);
-    imageEl.src = dataUrl;
-  } catch (err) {
-    console.error('Failed to load sprite preview', err);
-    titleEl.textContent = 'Preview unavailable';
-  }
+  imageEl.src=imageUrl;
 }
 function closeSpriteModal() {
   const modal = document.getElementById('spriteModal');
   const imageEl = document.getElementById('spriteModalImage');
-
+  activePreviewRequestId++;
   if (modal) {
     modal.classList.remove('show');
     modal.setAttribute('aria-hidden', 'true');
   }
-
   if (imageEl) {
+    imageEl.onerror=null;
     imageEl.removeAttribute('src');
   }
 }
@@ -493,7 +460,7 @@ function renderDayCard(program, day){
         row.className = 'exercise-choice';
         const left = document.createElement('div');
         left.className = 'exercise-name-row';
-        left.innerHTML = `<button class="exercise-preview-btn" type="button" aria-label="Preview exercise image" data-exercise-name="${escapeHtml(ex.name)}">👁</button><div><div><strong>${escapeHtml(ex.name)}</strong></div><div class="tiny muted">${escapeHtml(ex.category)} • ${formatExerciseType(ex.type)}</div></div>`;
+        left.innerHTML = `${getExercisePreviewButtonHtml(ex.name)}<div><div><strong>${escapeHtml(ex.name)}</strong></div><div class="tiny muted">${escapeHtml(ex.category)} • ${formatExerciseType(ex.type)}</div></div>`;
         const btn = makeButton(exercises.includes(ex.id) ? 'Added' : 'Add', `inline-btn ${exercises.includes(ex.id) ? 'primary' : 'subtle'}`, () => toggleExerciseOnDay(program.id, day.id, ex.id));
         row.appendChild(left);
         row.appendChild(btn);
@@ -684,7 +651,7 @@ function renderSetRow(ex,exIndex,set,setIndex){const warm=set.warmup?'warmup':''
 function bestHistoricPerformance(exId,sessionsOverride){let bestWeight=0,best1RM=0,bestReps=0,bestDuration=0,bestDistance=0;for(const session of (sessionsOverride||state.sessions||[])){for(const ex of (session.exercises||[])){if(ex.exerciseId!==exId)continue;for(const set of (ex.sets||[])){if(set.warmup)continue;if(ex.type==='weighted'){const unit=resolveStoredWeightUnit(set,session);if(!isKnownWeightUnit(unit))continue;const w=convertWeightValue(Number(set.weight)||0,unit,PR_COMPARISON_UNIT)||0,r=Number(set.reps)||0;const orm=(w&&r&&r<37)?w*36/(37-r):0;bestWeight=Math.max(bestWeight,w);best1RM=Math.max(best1RM,orm);}else if(ex.type==='bodyweight')bestReps=Math.max(bestReps,Number(set.reps)||0);else if(ex.type==='timed')bestDuration=Math.max(bestDuration,Number(set.duration)||0);else if(ex.type==='cardio')bestDistance=Math.max(bestDistance,Number(set.distance)||0);}}}return{bestWeight,best1RM,bestReps,bestDuration,bestDistance};}
 function recalcExercisePRs(exercise,baselineBest,session){if(!exercise||!Array.isArray(exercise.sets))return;const runningBest={...baselineBest};exercise.sets.forEach((set,index)=>{set.set=index+1;set.isPR=false;if(set.warmup)return;if(exercise.type==='weighted'){const unit=resolveStoredWeightUnit(set,session);if(!isKnownWeightUnit(unit))return;const w=convertWeightValue(Number(set.weight)||0,unit,PR_COMPARISON_UNIT)||0,r=Number(set.reps)||0,orm=(w&&r&&r<37)?w*36/(37-r):0;const hasValidInput=w>0||orm>0;set.isPR=hasValidInput&&((w>runningBest.bestWeight)||(orm>runningBest.best1RM));if(hasValidInput){runningBest.bestWeight=Math.max(runningBest.bestWeight,w);runningBest.best1RM=Math.max(runningBest.best1RM,orm);}}else if(exercise.type==='bodyweight'){const reps=Number(set.reps)||0;set.isPR=reps>runningBest.bestReps;if(reps>0)runningBest.bestReps=Math.max(runningBest.bestReps,reps);}else if(exercise.type==='timed'){const duration=Number(set.duration)||0;set.isPR=duration>runningBest.bestDuration;if(duration>0)runningBest.bestDuration=Math.max(runningBest.bestDuration,duration);}else if(exercise.type==='cardio'){const distance=Number(set.distance)||0;set.isPR=distance>runningBest.bestDistance;if(distance>0)runningBest.bestDistance=Math.max(runningBest.bestDistance,distance);}});}
 function recalcCurrentWorkoutExercisePRs(exIndex){const ex=currentWorkout?.exercises?.[exIndex];if(!ex)return;const baseline=bestHistoricPerformance(ex.exerciseId,getBaselineSessionsBefore(new Date(currentWorkout.startedAt).toISOString()));recalcExercisePRs(ex,baseline,{weightUnit:getWorkoutWeightUnit(currentWorkout)});}
-function renderLogger(){if(!currentWorkout)return;const loggerTitleEl=document.getElementById('loggerTitle'),loggerSubtitleEl=document.getElementById('loggerSubtitle'),loggerExercisesEl=document.getElementById('loggerExercises');if(!loggerTitleEl||!loggerSubtitleEl||!loggerExercisesEl)return;loggerTitleEl.textContent=currentWorkout.name;loggerSubtitleEl.textContent=`${currentWorkout.exercises.length} exercises • fast logging flow`;loggerExercisesEl.innerHTML=currentWorkout.exercises.map((ex,exIndex)=>{const prevSession=[...state.sessions].reverse().find(s=>(s.exercises||[]).some(item=>item.exerciseId===ex.exerciseId));const prev=prevSession?.exercises?.find(item=>item.exerciseId===ex.exerciseId);const collapsed=isWorkoutExerciseCollapsed(ex.uid);return `<div class="exercise-block"><div class="row between"><div class="exercise-name-row"><button class="exercise-preview-btn" type="button" aria-label="Preview exercise image" data-exercise-name="${escapeHtml(ex.name)}">👁</button><div><h4>${escapeHtml(ex.name)}</h4><div class="tiny muted">${ex.category} • ${formatExerciseType(ex.type)}</div></div></div><div class="row" style="width:auto"><span class="badge">${ex.sets.length} sets</span><button class="inline-btn subtle" onclick="toggleWorkoutExerciseCollapsed('${ex.uid}')">${collapsed?'+':'−'}</button></div></div><div class="accordion-content ${collapsed?'collapsed':''}">${prev?`<div class="card flat" style="margin-top:10px;background:rgba(255,255,255,.03)"><div class="tiny muted">Last session</div><div class="small" style="margin-top:4px">${escapeHtml(summarisePreviousExercise(prev,prevSession))}</div><div class="row" style="margin-top:8px"><button class="inline-btn subtle" onclick="copyLastSession(${exIndex})">Copy last session</button></div></div>`:''}<textarea placeholder="Exercise notes" onchange="currentWorkout.exercises[${exIndex}].notes=this.value;saveActiveWorkout()">${escapeHtml(ex.notes||'')}</textarea><div style="margin-top:8px">${ex.sets.map((set,setIndex)=>renderSetRow(ex,exIndex,set,setIndex)).join('')}</div><div class="row wrap" style="margin-top:8px"><button class="inline-btn subtle" onclick="addSet(${exIndex})">Add set</button></div></div></div>`}).join('');applyExercisePreviewButtons(loggerExercisesEl);updateGlobalExerciseSelects()}
+function renderLogger(){if(!currentWorkout)return;const loggerTitleEl=document.getElementById('loggerTitle'),loggerSubtitleEl=document.getElementById('loggerSubtitle'),loggerExercisesEl=document.getElementById('loggerExercises');if(!loggerTitleEl||!loggerSubtitleEl||!loggerExercisesEl)return;loggerTitleEl.textContent=currentWorkout.name;loggerSubtitleEl.textContent=`${currentWorkout.exercises.length} exercises • fast logging flow`;loggerExercisesEl.innerHTML=currentWorkout.exercises.map((ex,exIndex)=>{const prevSession=[...state.sessions].reverse().find(s=>(s.exercises||[]).some(item=>item.exerciseId===ex.exerciseId));const prev=prevSession?.exercises?.find(item=>item.exerciseId===ex.exerciseId);const collapsed=isWorkoutExerciseCollapsed(ex.uid);return `<div class="exercise-block"><div class="row between"><div class="exercise-name-row">${getExercisePreviewButtonHtml(ex.name)}<div><h4>${escapeHtml(ex.name)}</h4><div class="tiny muted">${ex.category} • ${formatExerciseType(ex.type)}</div></div></div><div class="row" style="width:auto"><span class="badge">${ex.sets.length} sets</span><button class="inline-btn subtle" onclick="toggleWorkoutExerciseCollapsed('${ex.uid}')">${collapsed?'+':'−'}</button></div></div><div class="accordion-content ${collapsed?'collapsed':''}">${prev?`<div class="card flat" style="margin-top:10px;background:rgba(255,255,255,.03)"><div class="tiny muted">Last session</div><div class="small" style="margin-top:4px">${escapeHtml(summarisePreviousExercise(prev,prevSession))}</div><div class="row" style="margin-top:8px"><button class="inline-btn subtle" onclick="copyLastSession(${exIndex})">Copy last session</button></div></div>`:''}<textarea placeholder="Exercise notes" onchange="currentWorkout.exercises[${exIndex}].notes=this.value;saveActiveWorkout()">${escapeHtml(ex.notes||'')}</textarea><div style="margin-top:8px">${ex.sets.map((set,setIndex)=>renderSetRow(ex,exIndex,set,setIndex)).join('')}</div><div class="row wrap" style="margin-top:8px"><button class="inline-btn subtle" onclick="addSet(${exIndex})">Add set</button></div></div></div>`}).join('');applyExercisePreviewButtons(loggerExercisesEl);updateGlobalExerciseSelects()}
 function syncSetRowPrBadge(exIndex,setIndex,inputEl){const ex=currentWorkout?.exercises?.[exIndex],set=ex?.sets?.[setIndex],row=inputEl?.closest?.('.set-row');if(!ex||!set||!row)return;const controls=row.lastElementChild;if(!controls)return;let badge=controls.querySelector('.pr');if(set.isPR){if(!badge){badge=document.createElement('span');badge.className='pr';badge.textContent='🏆';controls.appendChild(badge);}}else if(badge)badge.remove();}
 function updateSet(exIndex,setIndex,key,value,inputEl){const exercise=currentWorkout?.exercises?.[exIndex],set=exercise?.sets?.[setIndex];if(!set)return;set[key]=value;if(exercise?.type==='weighted')set.weightUnit=resolveActiveSetWeightUnit(set,currentWorkout);recalcCurrentWorkoutExercisePRs(exIndex);saveActiveWorkout();syncSetRowPrBadge(exIndex,setIndex,inputEl);}
 function toggleWarmup(exIndex,setIndex){currentWorkout.exercises[exIndex].sets[setIndex].warmup=!currentWorkout.exercises[exIndex].sets[setIndex].warmup;recalcCurrentWorkoutExercisePRs(exIndex);saveActiveWorkout();renderLogger()}
@@ -716,7 +683,7 @@ function setRestTimerDuration(seconds){startRestBanner(seconds);}
 function restartRestTimer(){startRestBanner();}
 function finishWorkout(){if(!currentWorkout)return;const sessionNotesEl=document.getElementById('sessionNotes');currentWorkout.notes=sessionNotesEl?.value||'';const timestamp=new Date(currentWorkout.startedAt).toISOString();const durationSec=Math.floor((Date.now()-currentWorkout.startedAt)/1000);const lockedWorkoutUnit=getWorkoutWeightUnit(currentWorkout);currentWorkout.exercises.forEach(ex=>{if(ex.type!=='weighted')return;(ex.sets||[]).forEach(set=>{if((Number(set.weight)||0)>0&&!isKnownWeightUnit(set.weightUnit))set.weightUnit=lockedWorkoutUnit;});});const savedSession=normalizeSession({id:currentWorkout.id,name:currentWorkout.name,timestamp,durationSec,weightUnit:lockedWorkoutUnit,exercises:currentWorkout.exercises,notes:currentWorkout.notes,totalVolume:0,prCount:0});if(!savedSession)return;state.sessions.push(savedSession);recalcAllSessionMetricsChronologically(state.sessions);currentWorkout=null;saveActiveWorkout();if(workoutTimer)clearInterval(workoutTimer);if(sessionNotesEl)sessionNotesEl.value='';clearRestTimerBanner();saveState();syncWakeLockState();renderHome();renderProgressExerciseOptions();refreshProgressIfVisible();showToast('Workout saved. Opening History...');setTimeout(()=>showScreen('history'),450)}
 const formatSetLine=(type,set,session)=>type==='weighted'?`${formatWeightWithResolvedUnit(set.weight??0,resolveStoredWeightUnit(set,session),weightUnit())} × ${set.reps||0}`:type==='bodyweight'?`${set.reps||0} reps`:type==='cardio'?`${set.distance||0} km in ${set.duration||0} min`:`${set.duration||0} sec`;
-function renderHistory(){const historyCount=document.getElementById('historyCount');const historyList=document.getElementById('historyList');if(historyCount)historyCount.textContent=`${getArray(state.sessions).length} sessions`;if(!historyList)return;historyList.innerHTML=!getArray(state.sessions).length?'<div class="helper">No workouts saved yet.</div>':[...getArray(state.sessions)].reverse().map(session=>`<div class="session-card"><div class="row between"><div><div><strong>${escapeHtml(session.name)}</strong></div><div class="tiny muted">${new Date(session.timestamp).toLocaleDateString()} • ${Math.round(session.durationSec/60)} min</div></div><span class="badge">${formatWeightedSessionVolume(session,weightUnit())}</span></div><div class="row wrap" style="margin-top:8px"><span class="pill">${session.exercises.length} exercises</span><span class="pill">${session.prCount||0} PRs</span></div><details style="margin-top:10px"><summary>View details</summary>${(session.exercises||[]).map(ex=>`<div class="card flat" style="margin-top:8px;background:rgba(255,255,255,.02)"><div class="exercise-name-row"><button class="exercise-preview-btn" type="button" aria-label="Preview exercise image" data-exercise-name="${escapeHtml(ex.name)}">👁</button><div><strong>${escapeHtml(ex.name)}</strong><div class="tiny muted">${formatExerciseType(ex.type)}</div></div></div><div style="margin-top:6px">${(ex.sets||[]).map(set=>`<div class="small">${formatSetLine(ex.type,set,session)} ${set.warmup?'<span class="muted">(warm-up)</span>':''} ${set.isPR?'🏆':''}</div>`).join('')}</div>${ex.notes?`<div class="small muted" style="margin-top:6px">Notes: ${escapeHtml(ex.notes)}</div>`:''}</div>`).join('')}${session.notes?`<div class="small muted" style="margin-top:8px">Session notes: ${escapeHtml(session.notes)}</div>`:''}</details><div class="row wrap" style="margin-top:8px"><button class="inline-btn subtle" onclick="openEditSession('${session.id}')">Edit workout</button><button class="inline-btn danger" onclick="deleteSession('${session.id}')">Delete session</button></div></div>`).join('');applyExercisePreviewButtons(historyList)}
+function renderHistory(){const historyCount=document.getElementById('historyCount');const historyList=document.getElementById('historyList');if(historyCount)historyCount.textContent=`${getArray(state.sessions).length} sessions`;if(!historyList)return;historyList.innerHTML=!getArray(state.sessions).length?'<div class="helper">No workouts saved yet.</div>':[...getArray(state.sessions)].reverse().map(session=>`<div class="session-card"><div class="row between"><div><div><strong>${escapeHtml(session.name)}</strong></div><div class="tiny muted">${new Date(session.timestamp).toLocaleDateString()} • ${Math.round(session.durationSec/60)} min</div></div><span class="badge">${formatWeightedSessionVolume(session,weightUnit())}</span></div><div class="row wrap" style="margin-top:8px"><span class="pill">${session.exercises.length} exercises</span><span class="pill">${session.prCount||0} PRs</span></div><details style="margin-top:10px"><summary>View details</summary>${(session.exercises||[]).map(ex=>`<div class="card flat" style="margin-top:8px;background:rgba(255,255,255,.02)"><div class="exercise-name-row">${getExercisePreviewButtonHtml(ex.name)}<div><strong>${escapeHtml(ex.name)}</strong><div class="tiny muted">${formatExerciseType(ex.type)}</div></div></div><div style="margin-top:6px">${(ex.sets||[]).map(set=>`<div class="small">${formatSetLine(ex.type,set,session)} ${set.warmup?'<span class="muted">(warm-up)</span>':''} ${set.isPR?'🏆':''}</div>`).join('')}</div>${ex.notes?`<div class="small muted" style="margin-top:6px">Notes: ${escapeHtml(ex.notes)}</div>`:''}</div>`).join('')}${session.notes?`<div class="small muted" style="margin-top:8px">Session notes: ${escapeHtml(session.notes)}</div>`:''}</details><div class="row wrap" style="margin-top:8px"><button class="inline-btn subtle" onclick="openEditSession('${session.id}')">Edit workout</button><button class="inline-btn danger" onclick="deleteSession('${session.id}')">Delete session</button></div></div>`).join('');applyExercisePreviewButtons(historyList)}
 function undoDeleteSession(){if(!lastDeletedSession)return;if(lastDeletedSessionTimer){clearTimeout(lastDeletedSessionTimer);lastDeletedSessionTimer=null;}state.sessions.push(lastDeletedSession);lastDeletedSession=null;recalcAllSessionMetricsChronologically(state.sessions);saveState();renderHistory();renderHome();renderProgress();showToast('Session restored.');}
 function deleteSession(id){const session=state.sessions.find(s=>s.id===id);if(!session)return;const dateText=new Date(session.timestamp).toLocaleDateString();if(!confirm(`Delete session "${session.name}" from ${dateText}? This cannot be undone.`))return;if(lastDeletedSessionTimer){clearTimeout(lastDeletedSessionTimer);lastDeletedSessionTimer=null;}lastDeletedSession=JSON.parse(JSON.stringify(session));state.sessions=state.sessions.filter(s=>s.id!==id);recalcAllSessionMetricsChronologically(state.sessions);saveState();renderHistory();renderHome();renderProgress();showToast('Session deleted.',5000,{label:'Undo',onClick:undoDeleteSession});lastDeletedSessionTimer=setTimeout(()=>{lastDeletedSession=null;lastDeletedSessionTimer=null;},5000)}
 function getProgressExerciseMeta(){const byId=new Map();(state.sessions||[]).forEach(session=>{(session.exercises||[]).forEach(ex=>{if(!ex||!Array.isArray(ex.sets))return;const type=normalizeExerciseType(ex.type);const meaningful=ex.sets.some(set=>{if(set?.warmup)return false;if(type==='weighted')return (Number(set?.weight)||0)>0||(Number(set?.reps)||0)>0;if(type==='bodyweight')return (Number(set?.reps)||0)>0;if(type==='cardio')return (Number(set?.distance)||0)>0||(Number(set?.duration)||0)>0;return (Number(set?.duration)||0)>0;});if(!meaningful)return;const key=isNonEmptyString(ex.exerciseId)?ex.exerciseId:`legacy:${String(ex.name||'').trim().toLowerCase()}|${type}`;if(!key)return;if(!byId.has(key)){const libraryMatch=isNonEmptyString(ex.exerciseId)?state.exercises.find(item=>item.id===ex.exerciseId):null;byId.set(key,{id:key,exerciseId:isNonEmptyString(ex.exerciseId)?ex.exerciseId:'',legacy:!isNonEmptyString(ex.exerciseId),name:libraryMatch?.name||ex.name||'Exercise',type:libraryMatch?.type||type,category:libraryMatch?.category||normalizeCategory(ex.category)});}});});return [...byId.values()];}
@@ -761,7 +728,7 @@ function renderEditSession(){
     <div class="exercise-block">
       <div class="row between">
         <div class="exercise-name-row">
-          <button class="exercise-preview-btn" type="button" aria-label="Preview exercise image" data-exercise-name="${escapeHtml(ex.name)}">👁</button>
+          ${getExercisePreviewButtonHtml(ex.name)}
           <div>
             <h4>${escapeHtml(ex.name)}</h4>
             <div class="tiny muted">${formatExerciseType(ex.type)}</div>
@@ -868,8 +835,8 @@ function renderJsonView(){
 async function registerAppServiceWorker(){
   if(!('serviceWorker' in navigator))return;
   const swCode=`
-const CACHE_NAME = 'hercules-v1.25-shell';
-const APP_SHELL = ['./', './index.html', './hercules_logo.svg', './ExerciseSheet1.png'];
+const CACHE_NAME = 'hercules-v1.26-shell';
+const APP_SHELL = ['./', './index.html', './hercules_logo.svg'];
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME)
@@ -900,7 +867,7 @@ self.addEventListener('fetch', (event) => {
     );
     return;
   }
-  const isShellAsset = ['/index.html', '/', '/hercules_logo.svg', '/ExerciseSheet1.png'].includes(requestUrl.pathname);
+  const isShellAsset = ['/index.html', '/', '/hercules_logo.svg'].includes(requestUrl.pathname);
   if (!isShellAsset) return;
   event.respondWith(caches.match(event.request).then((cached) => cached || fetch(event.request)));
 });
@@ -913,7 +880,7 @@ self.addEventListener('fetch', (event) => {
       const installing=registration.installing;
       if(!installing)return;
       installing.addEventListener('statechange',()=>{
-        if(installing.state==='installed'&&navigator.serviceWorker.controller)showToast('App update ready. Reload to use v1.25.',3500);
+        if(installing.state==='installed'&&navigator.serviceWorker.controller)showToast('App update ready. Reload to use v1.26.',3500);
       });
     });
   }catch(err){console.warn('Service worker registration failed',err);}
