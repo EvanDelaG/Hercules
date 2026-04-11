@@ -29,7 +29,7 @@
 </head>
 <body>
 <div class="app" id="app" data-theme="dark">
-  <header><div class="brand"><img id="brandLogo" src="hercules_logo.svg" alt="Hercules logo" onerror="handleLogoError()"><div id="brandLogoFallback" class="brand-logo-fallback" aria-hidden="true">🏋️</div><div><h1>Hercules</h1><div class="sub">Ready-to-ship offline workout tracker • v1.33</div></div></div></header>
+  <header><div class="brand"><img id="brandLogo" src="hercules_logo.svg" alt="Hercules logo" onerror="handleLogoError()"><div id="brandLogoFallback" class="brand-logo-fallback" aria-hidden="true">🏋️</div><div><h1>Hercules</h1><div class="sub">Ready-to-ship offline workout tracker • v1.34</div></div></div></header>
   <section class="screen active" id="screen-home">
     <div class="hero"><div class="hero-kicker">Today’s focus</div><h2 id="heroWorkout">No active programs</h2><p id="heroSub">Set up programs, choose today’s body parts, and start logging.</p><div class="row" style="margin-top:14px"><button id="startWorkoutBtn" class="primary" onclick="startTodayWorkout()">Start workout</button></div></div>
     <div class="summary"><div class="metric"><div class="k">This week</div><div class="v" id="metricWorkouts">0</div><div class="s">workouts</div></div><div class="metric"><div class="k">Weighted tonnage</div><div class="v" id="metricVolume">0</div><div class="s" id="metricVolumeUnit">kg</div></div><div class="metric"><div class="k">Recent PRs</div><div class="v" id="metricPRs">0</div><div class="s">hits</div></div><div class="metric" id="metricCurrentStreakCard"><div class="k">Current streak</div><div class="v" id="metricCurrentStreak">0</div><div class="s">days</div><div class="metric-streak-flag" id="metricCurrentStreakFlag">Tied best</div></div><div class="metric"><div class="k">Best streak</div><div class="v" id="metricBestStreak">0</div><div class="s">days</div></div></div>
@@ -44,7 +44,7 @@
   <section class="screen" id="screen-programs"><div class="card"><h3>Create program</h3><input id="newProgramName" placeholder="Program name, e.g. Monday or Upper A"><div class="row" style="margin-top:8px"><button id="createProgramBtn" class="primary" onclick="createProgram(); return false;">Create program</button></div></div><div class="card"><div class="row between"><h3>Your programs</h3><span class="pill" id="programCount">0</span></div><div id="programList"></div></div></section>
   <section class="screen" id="screen-progress"><div class="card"><h3>Progress</h3><select id="progressExerciseSelect" onchange="renderProgress()"></select><div class="helper" style="margin-top:8px">Tap a chart point to view the related session details.</div></div><div class="card"><svg id="progressChart" class="chart-wrap" viewBox="0 0 360 220" role="img" aria-label="Progress chart"></svg></div><div class="card" id="progressInfo"></div></section>
   <section class="screen" id="screen-history"><div class="card"><div class="row between"><h3>History</h3><span class="pill" id="historyCount">0 sessions</span></div><div id="historyList"></div></div></section>
-  <section class="screen" id="screen-settings"><div class="card"><h3>Theme</h3><select id="themeSelect" onchange="changeTheme()"><option value="dark">Dark</option><option value="light">Light</option><option value="midnight">Midnight Blue</option><option value="forest">Forest Green</option></select></div><div class="card"><h3>Appearance</h3><div class="appearance-group-title">Style controls</div><div class="option-row"><div><div class="small muted" style="margin-bottom:6px">Accent colour</div><select id="accentSelect" onchange="saveSettings()"><option value="teal">Teal</option><option value="blue">Blue</option><option value="green">Green</option><option value="purple">Purple</option><option value="orange">Orange</option><option value="red">Red</option></select></div><div><div class="small muted" style="margin-bottom:6px">Corner style</div><select id="radiusSelect" onchange="saveSettings()"><option value="soft">Soft</option><option value="rounded">Rounded</option><option value="sharp">Sharp</option></select></div></div><div class="option-row" style="margin-top:8px"><div><div class="small muted" style="margin-bottom:6px">Density</div><select id="densitySelect" onchange="saveSettings()"><option value="compact">Compact</option><option value="comfortable">Comfortable</option><option value="large">Large</option></select></div><div><div class="small muted" style="margin-bottom:6px">Background style</div><select id="backgroundStyleSelect" onchange="saveSettings()"><option value="gradient">Gradient</option><option value="flat">Flat</option><option value="glow">Soft glow</option><option value="minimal">Minimal</option></select></div></div><div class="helper" style="margin-top:10px">Personalise the interface while keeping your current theme.</div></div><div class="card"><h3>Weight unit</h3><select id="weightUnitSelect" onchange="saveSettings()"><option value="kg">Kilograms (kg)</option><option value="lb">Pounds (lb)</option></select></div><div class="card"><h3>Rest timer</h3><select id="restDefaultSelect" onchange="saveSettings()"><option value="30">30 seconds</option><option value="60">60 seconds</option><option value="90">90 seconds</option><option value="120">120 seconds</option><option value="180">180 seconds</option></select></div><div class="card"><h3>Keep awake during workouts</h3><div class="small muted" id="wakeLockSupportText">Checking support…</div></div><div class="card"><h3>Exercise library</h3><div class="grid-2"><input id="customExerciseName" placeholder="Exercise name"><select id="customExerciseType"><option value="weighted">Weighted</option><option value="bodyweight">Bodyweight</option><option value="cardio">Cardio</option><option value="timed">Timed hold</option></select></div><div class="grid-2" style="margin-top:8px"><select id="customExerciseCategory"><option>Chest</option><option>Back</option><option>Legs</option><option>Shoulders</option><option>Arms</option><option>Core</option><option>Cardio</option><option>Other</option></select><button class="primary" onclick="addCustomExercise()">Add exercise</button></div><div class="grid-2" style="margin-top:8px"><input id="exerciseSearchInput" placeholder="Search exercises" oninput="renderSettings()"><select id="exerciseSortSelect" onchange="renderSettings()"><option value="name">Sort: A–Z</option><option value="category">Sort: Category</option></select></div><div id="exerciseLibraryList" style="margin-top:8px"></div></div><div class="card"><h3>Backup & restore</h3><div class="grid-2"><button class="subtle" onclick="exportJSON()">Export JSON</button><button class="subtle" onclick="document.getElementById('importJsonInput').click()">Import JSON</button></div><input id="importJsonInput" type="file" accept=".json,application/json" style="display:none" onchange="importJSON(event)"><div class="row" style="margin-top:8px"><button class="danger" onclick="clearAllData()">Clear all data</button></div></div><div class="card"><h3>App version</h3><div class="small muted">Current build: <strong>v1.33</strong></div></div><div class="card"><h3>Storage usage</h3><div class="small muted">Approximate browser storage used by this app on this device.</div><div class="row between" style="margin-top:10px"><div><div id="storageUsedText" style="font-weight:800;font-size:22px">0 KB</div><div class="tiny muted" id="storagePercentText">0% of 5 MB estimate</div></div><button class="inline-btn subtle" onclick="renderStorageUsage()">Refresh</button></div><div style="margin-top:10px;height:12px;border-radius:999px;background:var(--panel-3);border:1px solid var(--line);overflow:hidden"><div id="storageBar" style="height:100%;width:0%;background:linear-gradient(180deg,var(--accent-2),var(--accent));border-radius:999px"></div></div></div><div class="card"><h3>View JSON</h3><div class="small muted">See the current saved data directly in the app.</div><div class="row wrap" style="margin-top:8px"><button class="inline-btn subtle" onclick="renderJsonView()">Refresh JSON</button></div><textarea id="jsonViewBox" readonly style="margin-top:8px;min-height:220px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace"></textarea></div></section>
+  <section class="screen" id="screen-settings"><div class="card"><h3>Theme</h3><select id="themeSelect" onchange="changeTheme()"><option value="dark">Dark</option><option value="light">Light</option><option value="midnight">Midnight Blue</option><option value="forest">Forest Green</option></select></div><div class="card"><h3>Appearance</h3><div class="appearance-group-title">Style controls</div><div class="option-row"><div><div class="small muted" style="margin-bottom:6px">Accent colour</div><select id="accentSelect" onchange="saveSettings()"><option value="teal">Teal</option><option value="blue">Blue</option><option value="green">Green</option><option value="purple">Purple</option><option value="orange">Orange</option><option value="red">Red</option></select></div><div><div class="small muted" style="margin-bottom:6px">Corner style</div><select id="radiusSelect" onchange="saveSettings()"><option value="soft">Soft</option><option value="rounded">Rounded</option><option value="sharp">Sharp</option></select></div></div><div class="option-row" style="margin-top:8px"><div><div class="small muted" style="margin-bottom:6px">Density</div><select id="densitySelect" onchange="saveSettings()"><option value="compact">Compact</option><option value="comfortable">Comfortable</option><option value="large">Large</option></select></div><div><div class="small muted" style="margin-bottom:6px">Background style</div><select id="backgroundStyleSelect" onchange="saveSettings()"><option value="gradient">Gradient</option><option value="flat">Flat</option><option value="glow">Soft glow</option><option value="minimal">Minimal</option></select></div></div><div class="helper" style="margin-top:10px">Personalise the interface while keeping your current theme.</div></div><div class="card"><h3>Weight unit</h3><select id="weightUnitSelect" onchange="saveSettings()"><option value="kg">Kilograms (kg)</option><option value="lb">Pounds (lb)</option></select></div><div class="card"><h3>Rest timer</h3><select id="restDefaultSelect" onchange="saveSettings()"><option value="30">30 seconds</option><option value="60">60 seconds</option><option value="90">90 seconds</option><option value="120">120 seconds</option><option value="180">180 seconds</option></select></div><div class="card"><h3>Keep awake during workouts</h3><div class="small muted" id="wakeLockSupportText">Checking support…</div></div><div class="card"><h3>Exercise library</h3><div class="grid-2"><input id="customExerciseName" placeholder="Exercise name"><select id="customExerciseType"><option value="weighted">Weighted</option><option value="bodyweight">Bodyweight</option><option value="cardio">Cardio</option><option value="timed">Timed hold</option></select></div><div class="grid-2" style="margin-top:8px"><select id="customExerciseCategory"><option>Chest</option><option>Back</option><option>Legs</option><option>Shoulders</option><option>Arms</option><option>Core</option><option>Cardio</option><option>Other</option></select><button class="primary" onclick="addCustomExercise()">Add exercise</button></div><div class="grid-2" style="margin-top:8px"><input id="exerciseSearchInput" placeholder="Search exercises" oninput="renderSettings()"><select id="exerciseSortSelect" onchange="renderSettings()"><option value="name">Sort: A–Z</option><option value="category">Sort: Category</option></select></div><div id="exerciseLibraryList" style="margin-top:8px"></div></div><div class="card"><h3>Backup & restore</h3><div class="grid-2"><button class="subtle" onclick="exportJSON()">Export JSON</button><button class="subtle" onclick="document.getElementById('importJsonInput').click()">Import JSON</button></div><input id="importJsonInput" type="file" accept=".json,application/json" style="display:none" onchange="importJSON(event)"><div class="row" style="margin-top:8px"><button class="danger" onclick="clearAllData()">Clear all data</button></div></div><div class="card"><h3>App version</h3><div class="small muted">Current build: <strong>v1.34</strong></div></div><div class="card"><h3>Storage usage</h3><div class="small muted">Approximate browser storage used by this app on this device.</div><div class="row between" style="margin-top:10px"><div><div id="storageUsedText" style="font-weight:800;font-size:22px">0 KB</div><div class="tiny muted" id="storagePercentText">0% of 5 MB estimate</div></div><button class="inline-btn subtle" onclick="renderStorageUsage()">Refresh</button></div><div style="margin-top:10px;height:12px;border-radius:999px;background:var(--panel-3);border:1px solid var(--line);overflow:hidden"><div id="storageBar" style="height:100%;width:0%;background:linear-gradient(180deg,var(--accent-2),var(--accent));border-radius:999px"></div></div></div><div class="card"><h3>View JSON</h3><div class="small muted">See the current saved data directly in the app.</div><div class="row wrap" style="margin-top:8px"><button class="inline-btn subtle" onclick="renderJsonView()">Refresh JSON</button></div><textarea id="jsonViewBox" readonly style="margin-top:8px;min-height:220px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace"></textarea></div></section>
 
   <section class="screen" id="screen-edit-session">
     <div class="card">
@@ -115,42 +115,56 @@
 <script>
 // ===== Constants / config =====
 const STORAGE_KEYS={exercises:'gym_exercises',programs:'gym_programs',sessions:'gym_sessions',settings:'gym_settings',activeProgram:'gym_active_program',activePrograms:'gym_active_programs',activeWorkout:'gym_active_workout',ui:'gym_ui'},BODY_PARTS=['Chest','Back','Legs','Shoulders','Arms','Core','Cardio','Other'],EXERCISE_TYPES=['weighted','bodyweight','cardio','timed'],DEFAULT_EXERCISES=[{name:'Bench Press',category:'Chest',type:'weighted'},{name:'Incline Bench Press',category:'Chest',type:'weighted'},{name:'Cable Fly',category:'Chest',type:'weighted'},{name:'Push-ups',category:'Chest',type:'bodyweight'},{name:'Dips',category:'Chest',type:'bodyweight'},{name:'Deadlift',category:'Back',type:'weighted'},{name:'Barbell Row',category:'Back',type:'weighted'},{name:'Cable Row',category:'Back',type:'weighted'},{name:'Lat Pulldown',category:'Back',type:'weighted'},{name:'Pull-ups',category:'Back',type:'bodyweight'},{name:'Inverted Row',category:'Back',type:'bodyweight'},{name:'Squat',category:'Legs',type:'weighted'},{name:'Romanian Deadlift',category:'Legs',type:'weighted'},{name:'Leg Press',category:'Legs',type:'weighted'},{name:'Walking Lunges',category:'Legs',type:'weighted'},{name:'Leg Extension',category:'Legs',type:'weighted'},{name:'Hamstring Curl',category:'Legs',type:'weighted'},{name:'Calf Raise',category:'Legs',type:'weighted'},{name:'Overhead Press',category:'Shoulders',type:'weighted'},{name:'Dumbbell Lateral Raise',category:'Shoulders',type:'weighted'},{name:'Rear Delt Fly',category:'Shoulders',type:'weighted'},{name:'Arnold Press',category:'Shoulders',type:'weighted'},{name:'Dumbbell Curl',category:'Arms',type:'weighted'},{name:'Hammer Curl',category:'Arms',type:'weighted'},{name:'Tricep Pushdown',category:'Arms',type:'weighted'},{name:'Skullcrusher',category:'Arms',type:'weighted'},{name:'Close-Grip Bench Press',category:'Arms',type:'weighted'},{name:'Plank',category:'Core',type:'timed'},{name:'Hanging Leg Raise',category:'Core',type:'bodyweight'},{name:'Cable Crunch',category:'Core',type:'weighted'},{name:'Russian Twist',category:'Core',type:'bodyweight'},{name:'Running',category:'Cardio',type:'cardio'},{name:'Cycling',category:'Cardio',type:'cardio'},{name:'Rowing',category:'Cardio',type:'cardio'},{name:'Assault Bike',category:'Cardio',type:'cardio'}];
-const EXERCISE_IMAGE_BASE_URL = 'https://evandelag.github.io/Hercules/';
 const EXERCISE_IMAGE_MAP = {
-  'Arnold Press': 'arnoldpress.png',
-  'Assault Bike': 'assaultbike.png',
-  'Barbell Row': 'barbellrow.png',
-  'Bench Press': 'benchpress.png',
-  'Cable Crunch': 'cablecrunch.png',
-  'Cable Fly': 'cableflys.png',
-  'Cable Row': 'cablerow.png',
-  'Calf Raise': 'calfraise.png',
-  'Close-Grip Bench Press': 'closegripbenchpress.png',
-  'Cycling': 'cycling.png',
-  'Dips': 'dips.png',
-  'Dumbbell Curl': 'dumbbellcurls.png',
-  'Dumbbell Lateral Raise': 'dumbbelllateralraises.png',
-  'Hammer Curl': 'hammercurl.png',
-  'Hamstring Curl': 'hamstringcurl.png',
-  'Hanging Leg Raise': 'hanginglegraises.png',
-  'Incline Bench Press': 'inclinebenchpress.png',
-  'Inverted Row': 'invertedrow.png',
-  'Lat Pulldown': 'latpulldowns.png',
-  'Leg Extension': 'legextensions.png',
-  'Leg Press': 'legpress.png',
-  'Overhead Press': 'overheadpress.png',
-  'Plank': 'plank.png',
-  'Pull-ups': 'pullups.png',
-  'Push-ups': 'pushups.png',
-  'Rear Delt Fly': 'reardeltflys.png',
-  'Romanian Deadlift': 'romaniandeadlift.png',
-  'Rowing': 'rowing.png',
-  'Running': 'running.png',
-  'Russian Twist': 'russiantwist.png',
-  'Skullcrusher': 'skullcrusher.png',
-  'Squat': 'squat.png',
-  'Tricep Pushdown': 'triceppushdown.png',
-  'Walking Lunges': 'walkinglunges.png'
+  'Arnold Press': 'https://evandelag.github.io/Hercules/arnoldpress.png',
+  'Assault Bike': 'https://evandelag.github.io/Hercules/assaultbike.png',
+  'Assult Bike': 'https://evandelag.github.io/Hercules/assaultbike.png',
+  'Barbell Row': 'https://evandelag.github.io/Hercules/barbellrow.png',
+  'Bench Press': 'https://evandelag.github.io/Hercules/benchpress.png',
+  'Cable Crunch': 'https://evandelag.github.io/Hercules/cablecrunch.png',
+  'Cable Fly': 'https://evandelag.github.io/Hercules/cableflys.png',
+  'Cable Flys': 'https://evandelag.github.io/Hercules/cableflys.png',
+  'Cable Row': 'https://evandelag.github.io/Hercules/cablerow.png',
+  'Calf Raise': 'https://evandelag.github.io/Hercules/calfraise.png',
+  'Close Grip Bench Press': 'https://evandelag.github.io/Hercules/closegripbenchpress.png',
+  'Close-Grip Bench Press': 'https://evandelag.github.io/Hercules/closegripbenchpress.png',
+  'Cycling': 'https://evandelag.github.io/Hercules/cycling.png',
+  'Dips': 'https://evandelag.github.io/Hercules/dips.png',
+  'Dumbbell Curl': 'https://evandelag.github.io/Hercules/dumbbellcurls.png',
+  'Dumbbell Curls': 'https://evandelag.github.io/Hercules/dumbbellcurls.png',
+  'Dumbbell Lateral Raise': 'https://evandelag.github.io/Hercules/dumbbelllateralraises.png',
+  'Dumbbell Lateral Raises': 'https://evandelag.github.io/Hercules/dumbbelllateralraises.png',
+  'Hammer Curl': 'https://evandelag.github.io/Hercules/hammercurl.png',
+  'Hammer Curls': 'https://evandelag.github.io/Hercules/hammercurl.png',
+  'Hamstring Curl': 'https://evandelag.github.io/Hercules/hamstringcurl.png',
+  'Hanging Leg Raise': 'https://evandelag.github.io/Hercules/hanginglegraises.png',
+  'Hanging Leg Raises': 'https://evandelag.github.io/Hercules/hanginglegraises.png',
+  'Incline Bench Press': 'https://evandelag.github.io/Hercules/inclinebenchpress.png',
+  'Inverted Row': 'https://evandelag.github.io/Hercules/invertedrow.png',
+  'Lat Pulldown': 'https://evandelag.github.io/Hercules/latpulldowns.png',
+  'Lat Pull Down': 'https://evandelag.github.io/Hercules/latpulldowns.png',
+  'Lat Pull Downs': 'https://evandelag.github.io/Hercules/latpulldowns.png',
+  'Leg Extension': 'https://evandelag.github.io/Hercules/legextensions.png',
+  'Leg Extensions': 'https://evandelag.github.io/Hercules/legextensions.png',
+  'Leg Press': 'https://evandelag.github.io/Hercules/legpress.png',
+  'Overhead Press': 'https://evandelag.github.io/Hercules/overheadpress.png',
+  'Plank': 'https://evandelag.github.io/Hercules/plank.png',
+  'Plang': 'https://evandelag.github.io/Hercules/plank.png',
+  'Pull-ups': 'https://evandelag.github.io/Hercules/pullups.png',
+  'Pull Ups': 'https://evandelag.github.io/Hercules/pullups.png',
+  'Push-ups': 'https://evandelag.github.io/Hercules/pushups.png',
+  'Pushups': 'https://evandelag.github.io/Hercules/pushups.png',
+  'Rear Delt Fly': 'https://evandelag.github.io/Hercules/reardeltflys.png',
+  'Rear Delt Flys': 'https://evandelag.github.io/Hercules/reardeltflys.png',
+  'Romanian Deadlift': 'https://evandelag.github.io/Hercules/romaniandeadlift.png',
+  'Rowing': 'https://evandelag.github.io/Hercules/rowing.png',
+  'Running': 'https://evandelag.github.io/Hercules/running.png',
+  'Russian Twist': 'https://evandelag.github.io/Hercules/russiantwist.png',
+  'Skull Crusher': 'https://evandelag.github.io/Hercules/skullcrusher.png',
+  'Skullcrusher': 'https://evandelag.github.io/Hercules/skullcrusher.png',
+  'Squat': 'https://evandelag.github.io/Hercules/squat.png',
+  'Tricep Pushdown': 'https://evandelag.github.io/Hercules/triceppushdown.png',
+  'Walking Lunges': 'https://evandelag.github.io/Hercules/walkinglunges.png'
 };
 let previewRefreshTimer=null;
 let activePreviewRequestId=0;
@@ -239,27 +253,14 @@ function toggleNewDayWeekday(pid, weekday){state.ui=state.ui||{collapsedDays:{},
 function getSelectedNewDayWeekdays(pid){const selected=state.ui?.newDayWeekdays?.[pid];return Array.isArray(selected)?selected.filter(day=>WEEKDAYS.includes(day)):[];}
 function showToast(message,ms=1800,action){const toast=document.getElementById('appToast');if(!toast)return;toast.innerHTML=`<span>${escapeHtml(message)}</span>`;if(action?.onClick){const btn=document.createElement('button');btn.className='inline-btn subtle';btn.style.width='auto';btn.textContent=action.label||'Undo';btn.onclick=()=>action.onClick();toast.appendChild(btn);}toast.classList.add('show');if(toastTimer)clearTimeout(toastTimer);toastTimer=setTimeout(()=>toast.classList.remove('show'),ms);}
 function handleLogoError(){const logo=document.getElementById('brandLogo');const fallback=document.getElementById('brandLogoFallback');if(logo)logo.style.display='none';if(fallback)fallback.style.display='flex';}
-function normalizeExerciseName(name){
-  return String(name || '')
-    .toLowerCase()
-    .replace(/[^a-z]/g, '');
-}
-function getExerciseImageFilename(exerciseName){
-  const normalized=normalizeExerciseName(exerciseName);
-  if(EXERCISE_IMAGE_MAP[exerciseName]){
-    return EXERCISE_IMAGE_MAP[exerciseName];
-  }
-  return normalized+'.png';
-}
 function getExerciseImageUrl(exerciseName){
-  const filename=getExerciseImageFilename(exerciseName);
-  return filename?`${EXERCISE_IMAGE_BASE_URL}${filename}`:'';
+  return EXERCISE_IMAGE_MAP[exerciseName] || '';
 }
 function getCachedExerciseImageAvailability(exerciseName){
-  return true;
+  return !!EXERCISE_IMAGE_MAP[exerciseName];
 }
 function queueExerciseImageAvailabilityCheck(exerciseName){
-  return !!getExerciseImageFilename(exerciseName);
+  return !!EXERCISE_IMAGE_MAP[exerciseName];
 }
 function scheduleExercisePreviewRefresh(){
   if(previewRefreshTimer)return;
@@ -282,12 +283,7 @@ async function openSpriteModal(exerciseName) {
   const fallbackEl=document.getElementById('spriteModalFallback');
   if(!modal||!imageEl||!titleEl||!fallbackEl)return;
 
-  const filename=getExerciseImageFilename(exerciseName);
-  if(!filename){
-    fallbackEl.textContent='Preview unavailable.';
-    return;
-  }
-  const imageUrl=EXERCISE_IMAGE_BASE_URL+filename;
+  const imageUrl=getExerciseImageUrl(exerciseName);
   const requestId=++activePreviewRequestId;
   titleEl.textContent=exerciseName||'Exercise preview';
   modal.classList.add('show');
@@ -300,6 +296,11 @@ async function openSpriteModal(exerciseName) {
   imageEl.onload=null;
   imageEl.onerror=null;
   imageEl.removeAttribute('src');
+
+  if(!imageUrl){
+    fallbackEl.textContent='Preview unavailable.';
+    return;
+  }
 
   imageEl.onload=()=>{
     if(requestId!==activePreviewRequestId)return;
@@ -878,7 +879,7 @@ function renderJsonView(){
 async function registerAppServiceWorker(){
   if(!('serviceWorker' in navigator))return;
   const swCode=`
-const CACHE_NAME = 'hercules-v1.33-shell';
+const CACHE_NAME = 'hercules-v1.34-shell';
 const APP_SHELL = ['./', './index.html', './hercules_logo.svg'];
 self.addEventListener('install', (event) => {
   event.waitUntil(
@@ -923,7 +924,7 @@ self.addEventListener('fetch', (event) => {
       const installing=registration.installing;
       if(!installing)return;
       installing.addEventListener('statechange',()=>{
-        if(installing.state==='installed'&&navigator.serviceWorker.controller)showToast('App update ready. Reload to use v1.33.',3500);
+        if(installing.state==='installed'&&navigator.serviceWorker.controller)showToast('App update ready. Reload to use v1.34.',3500);
       });
     });
   }catch(err){console.warn('Service worker registration failed',err);}
